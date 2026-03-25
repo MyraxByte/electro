@@ -1,0 +1,49 @@
+{
+    "name": "@electro/codegen",
+    "version": "1.0.0",
+    "description": "Code generator for electro module runtime — scans modules/views and emits bridge and registry artifacts",
+    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cordy-dev/electro.git",
+        "directory": "packages/codegen"
+    },
+    "files": [
+        "dist"
+    ],
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "test": "vitest",
+        "prepublishOnly": "tsdown --minify"
+    },
+    "dependencies": {
+        "oxc-parser": "^0.121.0",
+        "tinyglobby": "^0.2.15"
+    },
+    "devDependencies": {
+        "@electro/common": "workspace:*",
+        "@electro/config": "workspace:*",
+        "@electro/runtime": "workspace:*",
+        "tsdown": "catalog:",
+        "vitest": "catalog:"
+    },
+    "peerDependencies": {
+        "@electro/common": ">=1",
+        "@electro/config": ">=1",
+        "@electro/runtime": ">=1",
+        "@types/node": "^25.5.0"
+    }
+}

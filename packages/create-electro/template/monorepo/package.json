@@ -1,0 +1,26 @@
+{
+    "name": "__PACKAGE_NAME__",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "electro dev",
+        "build": "electro build",
+        "preview": "electro preview",
+        "generate": "electro generate"
+    },
+    "devDependencies": {
+        "@electro/cli": "__FRAMEWORK_VERSION__",
+        "@electro/config": "__FRAMEWORK_VERSION__",
+        "@types/node": "__NODE_TYPES_VERSION__",
+        "electron": "__ELECTRON_VERSION__",
+        "typescript": "__TYPESCRIPT_VERSION__",
+        "vite": "__VITE_VERSION__"
+    },
+    "packageManager": "__PACKAGE_MANAGER__",
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "electron"
+        ]
+    }
+}

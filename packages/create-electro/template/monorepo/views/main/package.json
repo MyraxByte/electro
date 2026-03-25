@@ -1,0 +1,17 @@
+{
+    "name": "@views/main",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "devDependencies": {
+        "@electro/config": "__FRAMEWORK_VERSION__",
+        "@electro/renderer": "__FRAMEWORK_VERSION__",
+        "@types/react": "__REACT_TYPES_VERSION__",
+        "@types/react-dom": "__REACT_DOM_TYPES_VERSION__",
+        "@vitejs/plugin-react": "__VITE_REACT_PLUGIN_VERSION__",
+        "react": "__REACT_VERSION__",
+        "react-dom": "__REACT_VERSION__",
+        "typescript": "__TYPESCRIPT_VERSION__",
+        "vite": "__VITE_VERSION__"
+    }
+}

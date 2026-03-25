@@ -1,0 +1,27 @@
+{
+    "name": "electro-monorepo-app",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "electro dev",
+        "build": "electro build",
+        "preview": "electro preview",
+        "generate": "electro generate"
+    },
+    "dependencies": {
+        "@electro/cli": "link:../../packages/cli",
+        "@electro/config": "link:../../packages/config"
+    },
+    "devDependencies": {
+        "@types/node": "^25.5.0",
+        "typescript": "^6.0.2",
+        "vite": "catalog:"
+    },
+    "packageManager": "pnpm@10.32.1",
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "electron"
+        ]
+    }
+}

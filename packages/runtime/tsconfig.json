@@ -1,0 +1,7 @@
+{
+    "extends": "@electro/config/tsconfig/library.json",
+    "compilerOptions": {
+        "types": ["@types/node"]
+    },
+    "include": ["src/**/*.ts", "tests/**/*.ts"]
+}

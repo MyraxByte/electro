@@ -1,0 +1,5 @@
+packages:
+  - "views/*"
+  - "runtime"
+catalog:
+  vite: ^8.0.2

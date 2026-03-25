@@ -1,0 +1,49 @@
+{
+    "name": "@electro/config",
+    "version": "1.0.0",
+    "description": "Shared configuration presets for Electro",
+    "keywords": [
+        "config",
+        "electro",
+        "tsconfig",
+        "typescript"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cordy-dev/electro.git",
+        "directory": "packages/config"
+    },
+    "files": [
+        "tsconfig/*.json",
+        "dist",
+        "README.md"
+    ],
+    "type": "module",
+    "sideEffects": false,
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        },
+        "./tsconfig/base.json": "./tsconfig/base.json",
+        "./tsconfig/library.json": "./tsconfig/library.json"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "prepublishOnly": "tsdown --minify"
+    },
+    "devDependencies": {
+        "publint": "^0.3.18",
+        "tsdown": "catalog:"
+    },
+    "peerDependencies": {
+        "typescript": ">=6.0.2",
+        "vite": ">=8"
+    }
+}

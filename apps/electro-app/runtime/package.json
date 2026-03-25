@@ -1,0 +1,21 @@
+{
+    "name": "runtime",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "electron": "41.0.4",
+        "electron-store": "^11.0.2",
+        "electron-updater": "^6.8.3"
+    },
+    "devDependencies": {
+        "@electro/common": "link:../../../packages/common",
+        "@electro/config": "link:../../../packages/config",
+        "@electro/runtime": "link:../../../packages/runtime",
+        "@electron-toolkit/utils": "^4.0.0",
+        "@types/node": "^25.5.0",
+        "@vitejs/devtools": "^0.1.11",
+        "typescript": "^6.0.2",
+        "vite": "^8.0.2"
+    }
+}

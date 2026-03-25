@@ -1,0 +1,66 @@
+{
+    "name": "@electro/cli",
+    "version": "1.0.0",
+    "description": "CLI for @electro — dev server, build, and code generation commands",
+    "keywords": [
+        "build-tool",
+        "cli",
+        "dev-server",
+        "electron",
+        "vite"
+    ],
+    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "bugs": {
+        "url": "https://github.com/cordy-dev/electro/issues"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cordy-dev/electro.git",
+        "directory": "packages/cli"
+    },
+    "bin": {
+        "electro": "./dist/index.mjs"
+    },
+    "files": [
+        "bin",
+        "dist"
+    ],
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "test": "vitest",
+        "prepublishOnly": "tsdown --minify"
+    },
+    "dependencies": {
+        "cac": "^7.0.0",
+        "magic-string": "^0.30.21",
+        "oxc-resolver": "^11.19.1"
+    },
+    "devDependencies": {
+        "@electro/codegen": "workspace:*",
+        "@electro/config": "workspace:*",
+        "@electro/runtime": "workspace:*",
+        "tsdown": "catalog:",
+        "vitest": "catalog:"
+    },
+    "peerDependencies": {
+        "@electro/codegen": ">=1",
+        "@electro/config": ">=1",
+        "@electro/runtime": ">=1",
+        "@types/node": "^25.5.0",
+        "electron": ">=41",
+        "vite": "^8.0.2"
+    }
+}

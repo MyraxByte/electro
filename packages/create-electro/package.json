@@ -1,0 +1,51 @@
+{
+    "name": "create-electro",
+    "version": "1.0.0",
+    "description": "Create a new Electro monorepo application",
+    "keywords": [
+        "create",
+        "electro",
+        "electron",
+        "scaffold"
+    ],
+    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "bugs": {
+        "url": "https://github.com/cordy-dev/electro/issues"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cordy-dev/electro.git",
+        "directory": "packages/create-electro"
+    },
+    "bin": {
+        "create-electro": "./bin/create-electro.mjs"
+    },
+    "files": [
+        "bin",
+        "dist",
+        "template",
+        "README.md"
+    ],
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.mts",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "test": "vitest",
+        "prepublishOnly": "tsdown --minify"
+    },
+    "devDependencies": {
+        "tsdown": "catalog:",
+        "vitest": "catalog:"
+    }
+}

@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* Override font-ui to Nunito (design spec, loaded via Google Fonts) */
+@theme {
+    --font-ui: "Nunito", system-ui, sans-serif;
+}
+
+/* Platform-specific tokens */
+[data-platform="macos"] {
+    --surface-bg: rgba(28, 28, 53, 0.5);
+    --sidebar-bg: rgb(21, 21, 31);
+    --sidebar-border: rgba(41, 41, 62, 0.9);
+    --content-bg: #121214;
+    --content-border: rgba(41, 41, 62, 0.9);
+}
+
+[data-platform="windows"] {
+    --surface-bg: rgba(32, 32, 32, 0.85);
+    --surface-blur: 0px;
+    --surface-border: rgba(255, 255, 255, 0.05);
+    --titlebar-bg: rgba(32, 32, 32, 0.95);
+}
+
+/* Custom scrollbar — thinner, fades on hover */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Disable text selection on UI elements */
+.no-select {
+    -webkit-user-select: none;
+    user-select: none;
+}

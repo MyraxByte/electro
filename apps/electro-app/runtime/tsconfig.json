@@ -1,0 +1,11 @@
+{
+    "extends": "@electro/config/tsconfig/base.json",
+    "compilerOptions": {
+        "outDir": "./out",
+        "types": ["@types/node"],
+        "paths": {
+            "@/*": ["./src/*"]
+        }
+    },
+    "include": ["src/**/*", "runtime.config.ts", "electro-env.d.ts"]
+}
