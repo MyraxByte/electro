@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import type { MetadataKey, PropertyKey } from "../types";
 
 type MetadataTarget = object;
