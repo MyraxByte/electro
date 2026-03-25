@@ -2,11 +2,11 @@
     "name": "@electrojs/common",
     "version": "1.0.0",
     "description": "Common utilities for @electrojs",
-    "homepage": "https://github.com/MyraxByte/electro#readme",
+    "homepage": "https://github.com/MyraxByte/electrojs#readme",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/MyraxByte/electro.git",
+        "url": "git+https://github.com/MyraxByte/electrojs.git",
         "directory": "packages/common"
     },
     "files": [
