@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/common",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Common utilities for @electrojs",
     "homepage": "https://github.com/MyraxByte/electrojs#readme",
     "license": "MIT",
@@ -12,6 +12,7 @@
     "files": [
         "dist"
     ],
+    "sideEffects": true,
     "type": "module",
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts",
@@ -41,7 +42,7 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/config": ">=1.0.0",
+        "@electrojs/config": "1.0.1",
         "electron": ">=41"
     }
 }

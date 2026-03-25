@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/cli",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "CLI for @electro — dev server, build, and code generation commands",
     "keywords": [
         "build-tool",
@@ -56,9 +56,9 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/codegen": ">=1",
-        "@electrojs/config": ">=1",
-        "@electrojs/runtime": ">=1",
+        "@electrojs/codegen": "1.0.1",
+        "@electrojs/config": "1.0.1",
+        "@electrojs/runtime": "1.0.1",
         "@types/node": "^25.5.0",
         "electron": ">=41",
         "vite": "^8.0.2"
