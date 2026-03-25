@@ -31,4 +31,3 @@ export class MainWindow extends WindowProvider {
         this.show();
     }
 }
-}
