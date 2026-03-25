@@ -5,16 +5,16 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _ModuleAuthoringApi<TModuleId extends import("@electro/runtime").ModuleRegistryId> = import("@electro/runtime").ModuleAuthoringApi<TModuleId>;
-type _WindowAuthoringApi = import("@electro/runtime").WindowAuthoringApi;
-type _ViewAuthoringApi = import("@electro/runtime").ViewAuthoringApi;
+type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> = import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
+type _WindowAuthoringApi = import("@electrojs/runtime").WindowAuthoringApi;
+type _ViewAuthoringApi = import("@electrojs/runtime").ViewAuthoringApi;
 type _InvokeMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
     ? _Instance<T>[K] extends (...args: infer A) => infer V
         ? (...args: A) => Promise<Awaited<V>>
         : never
     : never;
 
-declare module "@electro/runtime" {
+declare module "@electrojs/runtime" {
     interface ModuleMethodMap {
         "notes:createNote": _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "createNote">;
         "notes:getNotes": _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "getNotes">;
@@ -50,7 +50,7 @@ declare module "@electro/runtime" {
     }
 }
 
-declare module "@electro/common" {
+declare module "@electrojs/common" {
     interface ViewAccessRegistry {
         "notes:createNote": true;
         "notes:getNotes": true;

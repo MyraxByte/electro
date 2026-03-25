@@ -1,6 +1,6 @@
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
-import { type PackageTypeTarget, generate as generateFiles, scan } from "@electro/codegen";
+import { type PackageTypeTarget, generate as generateFiles, scan } from "@electrojs/codegen";
 import { loadConfig } from "../dev/config-loader";
 import { getViewRoot } from "../dev/views";
 import { validateViews } from "../validate";

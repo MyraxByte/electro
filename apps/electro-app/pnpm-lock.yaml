@@ -14,10 +14,10 @@ importers:
 
   .:
     dependencies:
-      '@electro/cli':
+      '@electrojs/cli':
         specifier: link:../../packages/cli
         version: link:../../packages/cli
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../packages/config
         version: link:../../packages/config
     devDependencies:
@@ -43,13 +43,13 @@ importers:
         specifier: ^6.8.3
         version: 6.8.3
     devDependencies:
-      '@electro/common':
+      '@electrojs/common':
         specifier: link:../../../packages/common
         version: link:../../../packages/common
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../packages/config
         version: link:../../../packages/config
-      '@electro/runtime':
+      '@electrojs/runtime':
         specifier: link:../../../packages/runtime
         version: link:../../../packages/runtime
       '@electron-toolkit/utils':
@@ -107,10 +107,10 @@ importers:
         specifier: ^5.0.12
         version: 5.0.12(@types/react@19.2.14)(immer@11.1.4)(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../../packages/config
         version: link:../../../../packages/config
-      '@electro/renderer':
+      '@electrojs/renderer':
         specifier: link:../../../../packages/renderer
         version: link:../../../../packages/renderer
       '@electron-toolkit/utils':
@@ -170,10 +170,10 @@ importers:
 
   views/main:
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../../packages/config
         version: link:../../../../packages/config
-      '@electro/renderer':
+      '@electrojs/renderer':
         specifier: link:../../../../packages/renderer
         version: link:../../../../packages/renderer
       '@types/react':
@@ -203,10 +203,10 @@ importers:
 
   views/settings:
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../../packages/config
         version: link:../../../../packages/config
-      '@electro/renderer':
+      '@electrojs/renderer':
         specifier: link:../../../../packages/renderer
         version: link:../../../../packages/renderer
       '@types/react':
@@ -270,10 +270,10 @@ importers:
         specifier: ^5.0.12
         version: 5.0.12(@types/react@19.2.14)(immer@11.1.4)(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../../packages/config
         version: link:../../../../packages/config
-      '@electro/renderer':
+      '@electrojs/renderer':
         specifier: link:../../../../packages/renderer
         version: link:../../../../packages/renderer
       '@electron-toolkit/utils':

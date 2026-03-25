@@ -1,4 +1,4 @@
-import { Injectable, command, query } from "@electro/common";
+import { Injectable, command, query } from "@electrojs/common";
 import Store from "electron-store";
 
 export interface Note {

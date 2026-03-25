@@ -1,13 +1,13 @@
 /**
- * `@electro/runtime` — framework-core package for Electron applications.
+ * `@electrojs/runtime` — framework-core package for Electron applications.
  *
  * This is the main entry point for the runtime. All public classes, functions,
  * error types, and type contracts are re-exported from here so consumers can
  * use a single import path:
  *
  * ```ts
- * import { AppKernel, inject, SignalBus, WindowProvider } from "@electro/runtime";
- * import type { KernelState, ModuleSnapshot } from "@electro/runtime";
+ * import { AppKernel, inject, SignalBus, WindowProvider } from "@electrojs/runtime";
+ * import type { KernelState, ModuleSnapshot } from "@electrojs/runtime";
  * ```
  *
  * @packageDocumentation

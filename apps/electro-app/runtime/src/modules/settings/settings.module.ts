@@ -1,7 +1,7 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { app } from "electron";
 import { SettingsService } from "./settings.service";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 import { SettingsView } from "./settings.view";
 
 @Module({

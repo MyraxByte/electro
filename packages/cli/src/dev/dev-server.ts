@@ -1,8 +1,8 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
-import type { PackageTypeTarget, ScanResult } from "@electro/codegen";
-import { generate, scan } from "@electro/codegen";
+import type { PackageTypeTarget, ScanResult } from "@electrojs/codegen";
+import { generate, scan } from "@electrojs/codegen";
 import type { Plugin, ViteDevServer } from "vite";
 import { createServer, build as viteBuild, version as viteVersion } from "vite";
 import { assetPlugin } from "../plugins/asset";

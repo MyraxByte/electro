@@ -21,7 +21,7 @@ All three are available anywhere in the runtime via `inject()`. They are populat
 Provides access to all runtime views registered via `@View`.
 
 ```ts
-import { ViewRegistry } from "@electro/runtime";
+import { ViewRegistry } from "@electrojs/runtime";
 
 @Injectable()
 export class UIService {
@@ -66,7 +66,7 @@ export class UIService {
 Provides access to all windows registered via `@Window`.
 
 ```ts
-import { WindowRegistry } from "@electro/runtime";
+import { WindowRegistry } from "@electrojs/runtime";
 
 const registry = inject(WindowRegistry);
 
@@ -107,7 +107,7 @@ registry
 Provides access to module metadata, dependency relationships, and lifecycle status.
 
 ```ts
-import { ModuleRegistry } from "@electro/runtime";
+import { ModuleRegistry } from "@electrojs/runtime";
 
 @Injectable()
 export class DiagnosticsService {

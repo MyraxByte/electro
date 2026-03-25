@@ -1,4 +1,4 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { SettingsModule } from "../settings/settings.module";
 import { StorageModule } from "../storage/storage.module";
 import { HttpService } from "./http.service";

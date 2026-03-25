@@ -32,9 +32,9 @@ type _BridgeOutputFromMethod<T, K extends PropertyKey> =
             : never
         : never;
 
-declare module "@electro/renderer" {
+declare module "@electrojs/renderer" {
     interface BridgeQueries {
-        "settings:getVersion": import("@electro/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">>;
+        "settings:getVersion": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">>;
     }
 
     interface BridgeCommands {

@@ -3,7 +3,7 @@
  *
  * Generates one preload script per `@View()` class that:
  * 1. Imports `contextBridge` and `ipcRenderer` from Electron
- * 2. Creates a bridge client via `createBridgeClient()` from `@electro/runtime/client`
+ * 2. Creates a bridge client via `createBridgeClient()` from `@electrojs/runtime/client`
  * 3. Exposes the bridge on `window.__ELECTRO_RENDERER__`
  * 4. Optionally imports a user-defined preload extension
  *
@@ -45,7 +45,7 @@ export function generatePreload(view: ScannedView, viewDef: GeneratorViewDefinit
 
     let content = `${GENERATED_HEADER}
 import { contextBridge, ipcRenderer } from "electron";
-import { createBridgeClient } from "@electro/runtime/client";
+import { createBridgeClient } from "@electrojs/runtime/client";
 
 contextBridge.exposeInMainWorld("__ELECTRO_RENDERER__", createBridgeClient({
     viewId: ${JSON.stringify(view.id)},

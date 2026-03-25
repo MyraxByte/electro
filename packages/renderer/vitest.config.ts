@@ -3,7 +3,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
     test: {
-        name: "@electro/renderer",
+        name: "@electrojs/renderer",
         globals: true,
         environment: "jsdom",
         restoreMocks: true,

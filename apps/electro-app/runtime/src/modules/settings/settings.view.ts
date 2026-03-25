@@ -1,5 +1,5 @@
-import { View } from "@electro/common";
-import { ViewProvider } from "@electro/runtime";
+import { View } from "@electrojs/common";
+import { ViewProvider } from "@electrojs/runtime";
 
 @View({
     source: "view:settings",

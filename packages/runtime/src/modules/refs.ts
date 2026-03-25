@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import type { Injector } from "../container/injector";
 import { LifecycleError } from "../errors/lifecycle";
 import type { ProviderDefinition } from "./scanner";

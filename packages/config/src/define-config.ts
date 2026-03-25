@@ -10,7 +10,7 @@ import type { ViewConfig } from "./view-config";
  * @example
  * ```ts
  * // electro.config.ts
- * import { defineElectroConfig } from "@electro/config";
+ * import { defineElectroConfig } from "@electrojs/config";
  *
  * export default defineElectroConfig({
  *     runtime: "runtime",
@@ -30,7 +30,7 @@ export function defineElectroConfig(config: AppConfig): AppConfig {
  * @example
  * ```ts
  * // runtime/runtime.config.ts
- * import { defineRuntimeConfig } from "@electro/config";
+ * import { defineRuntimeConfig } from "@electrojs/config";
  *
  * export default defineRuntimeConfig({
  *     entry: "./src/main.ts",
@@ -50,7 +50,7 @@ export function defineRuntimeConfig(config: RuntimeConfig): RuntimeConfig {
  * @example
  * ```ts
  * // renderer/views/main/view.config.ts
- * import { defineViewConfig } from "@electro/config";
+ * import { defineViewConfig } from "@electrojs/config";
  * import react from "@vitejs/plugin-react";
  *
  * export default defineViewConfig({

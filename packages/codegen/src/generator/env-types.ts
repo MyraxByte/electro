@@ -21,10 +21,10 @@ const ENV_TYPES_HEADER = `${GENERATED_HEADER}// @ts-nocheck
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _ModuleAuthoringApi<TModuleId extends import("@electro/runtime").ModuleRegistryId> =
-    import("@electro/runtime").ModuleAuthoringApi<TModuleId>;
-type _WindowAuthoringApi = import("@electro/runtime").WindowAuthoringApi;
-type _ViewAuthoringApi = import("@electro/runtime").ViewAuthoringApi;
+type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> =
+    import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
+type _WindowAuthoringApi = import("@electrojs/runtime").WindowAuthoringApi;
+type _ViewAuthoringApi = import("@electrojs/runtime").ViewAuthoringApi;
 type _InvokeMethod<T, K extends PropertyKey> =
     K extends keyof _Instance<T>
         ? _Instance<T>[K] extends (...args: infer A) => infer V
@@ -259,11 +259,11 @@ export function generateEnvTypes(scanResult: ScanResult, srcDir: string): Genera
     const envFilePath = join(srcDir, "electro-env.d.ts");
 
     const content = `${ENV_TYPES_HEADER}
-declare module "@electro/runtime" {
+declare module "@electrojs/runtime" {
 ${generateModuleMethodMap(scanResult.modules, envFilePath)}${generateModuleApiRegistry(scanResult.modules, envFilePath)}${generateModuleSignalPayloadMap(scanResult.modules, envFilePath)}${generateModuleJobRegistry(scanResult.modules)}${generateInjectableClassRegistry(scanResult.modules, envFilePath)}${generateWindowClassRegistry(scanResult.windows, envFilePath)}${generateViewClassRegistry(scanResult.views, envFilePath)}
 }
 
-declare module "@electro/common" {
+declare module "@electrojs/common" {
 ${generateCommonViewAccessRegistry(scanResult.modules)}${generateCommonViewSignalRegistry(scanResult.modules)}${generateCommonBundledViewIdRegistry(scanResult.views)}
 }${generateAuthoringAugmentations(scanResult, envFilePath)}`;
 

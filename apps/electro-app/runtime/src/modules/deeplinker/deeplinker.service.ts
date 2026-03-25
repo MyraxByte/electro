@@ -1,6 +1,6 @@
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 import { SettingsService } from "../settings/settings.service";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 
 @Injectable()
 export class DeeplinkerService {

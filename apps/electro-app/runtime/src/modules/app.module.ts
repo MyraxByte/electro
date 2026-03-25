@@ -1,4 +1,4 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { AuthModule } from "./auth/auth.module";
 import { NotesModule } from "./notes/notes.module";
 import { UpdaterModule } from "./updater/updater.module";
@@ -8,7 +8,7 @@ import { HttpModule } from "./http/http.module";
 import { StorageModule } from "./storage/storage.module";
 import { MainView } from "./app.view";
 import { MainWindow } from "./app.window";
-import { inject, SignalBus } from "@electro/runtime";
+import { inject, SignalBus } from "@electrojs/runtime";
 import { app } from "electron";
 import { AuthService } from "./auth/auth.service";
 import { StartupModule } from "./startup/startup.module";

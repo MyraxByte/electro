@@ -8,16 +8,16 @@ importers:
 
   .:
     devDependencies:
-      '@electro/cli':
+      '@electrojs/cli':
         specifier: link:../../packages/cli
         version: link:../../packages/cli
-      '@electro/codegen':
+      '@electrojs/codegen':
         specifier: link:../../packages/codegen
         version: link:../../packages/codegen
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../packages/config
         version: link:../../packages/config
-      '@electro/runtime':
+      '@electrojs/runtime':
         specifier: link:../../packages/runtime
         version: link:../../packages/runtime
       '@types/node':
@@ -35,13 +35,13 @@ importers:
 
   runtime:
     devDependencies:
-      '@electro/common':
+      '@electrojs/common':
         specifier: link:../../../packages/common
         version: link:../../../packages/common
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../packages/config
         version: link:../../../packages/config
-      '@electro/runtime':
+      '@electrojs/runtime':
         specifier: link:../../../packages/runtime
         version: link:../../../packages/runtime
       '@types/node':
@@ -59,10 +59,10 @@ importers:
 
   views/main:
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: link:../../../../packages/config
         version: link:../../../../packages/config
-      '@electro/renderer':
+      '@electrojs/renderer':
         specifier: link:../../../../packages/renderer
         version: link:../../../../packages/renderer
       '@types/react':

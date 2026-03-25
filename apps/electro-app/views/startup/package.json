@@ -18,8 +18,8 @@
         "zustand": "^5.0.12"
     },
     "devDependencies": {
-        "@electro/config": "link:../../../../packages/config",
-        "@electro/renderer": "link:../../../../packages/renderer",
+        "@electrojs/config": "link:../../../../packages/config",
+        "@electrojs/renderer": "link:../../../../packages/renderer",
         "@electron-toolkit/utils": "^4.0.0",
         "@iconify-json/fluent": "^1.2.41",
         "@iconify-json/hugeicons": "^1.2.24",

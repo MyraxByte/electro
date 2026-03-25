@@ -1,4 +1,4 @@
-import { defineRuntimeConfig } from "@electro/config";
+import { defineRuntimeConfig } from "@electrojs/config";
 
 export default defineRuntimeConfig({
     entry: "./src/main.ts",

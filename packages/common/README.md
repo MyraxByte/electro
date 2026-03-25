@@ -1,8 +1,8 @@
-# @electro/common
+# @electrojs/common
 
 Foundational runtime-agnostic primitives for Electro.
 
-`@electro/common` contains the shared contracts and low-level building blocks used by the rest of the framework:
+`@electrojs/common` contains the shared contracts and low-level building blocks used by the rest of the framework:
 
 - class decorators such as `@Module()`, `@Injectable()`, `@View()`, `@Window()`
 - method decorators such as `@command()`, `@query()`, `@job()`, `@signal()`
@@ -18,14 +18,14 @@ This package intentionally does **not** implement the runtime container, bridge 
 ## Installation
 
 ```bash
-npm install @electro/common
+npm install @electrojs/common
 ```
 
 ---
 
 ## What this package is for
 
-Use `@electro/common` when you need to:
+Use `@electrojs/common` when you need to:
 
 - declare modules and providers
 - describe runtime views and windows
@@ -41,7 +41,7 @@ This package is the shared language of the framework.
 ## Exports
 
 ```ts
-import { Module, Injectable, View, Window, command, query, job, signal, SetMetadata, apply, Ref, createInjectionToken } from "@electro/common";
+import { Module, Injectable, View, Window, command, query, job, signal, SetMetadata, apply, Ref, createInjectionToken } from "@electrojs/common";
 ```
 
 It also exports:
@@ -56,7 +56,7 @@ It also exports:
 ## Quick example
 
 ```ts
-import { Injectable, Module, View, Window, command, query } from "@electro/common";
+import { Injectable, Module, View, Window, command, query } from "@electrojs/common";
 
 @Injectable()
 class AuthService {
@@ -99,7 +99,7 @@ class MainWindow {}
 Marks a class as a provider that can be managed by the runtime.
 
 ```ts
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 
 @Injectable()
 class AuthService {}
@@ -130,7 +130,7 @@ If omitted, scope defaults to `"singleton"`.
 Declares a module boundary.
 
 ```ts
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 
 @Module({
     id: "auth",
@@ -181,7 +181,7 @@ class AuthModule {}
 Declares a runtime view descriptor.
 
 ```ts
-import { View } from "@electro/common";
+import { View } from "@electrojs/common";
 
 @View({
     source: "view:main",
@@ -256,7 +256,7 @@ class DevtoolsView {}
 Declares a runtime window descriptor.
 
 ```ts
-import { Window } from "@electro/common";
+import { Window } from "@electrojs/common";
 
 @Window({ id: "main" })
 class MainWindow {}
@@ -290,7 +290,7 @@ These decorators attach metadata to instance method handler functions.
 Marks a method as a runtime command.
 
 ```ts
-import { command } from "@electro/common";
+import { command } from "@electrojs/common";
 
 class AuthService {
     @command()
@@ -326,7 +326,7 @@ class AuthService {
 Marks a method as a runtime query.
 
 ```ts
-import { query } from "@electro/common";
+import { query } from "@electrojs/common";
 
 class AuthService {
     @query()
@@ -360,7 +360,7 @@ class AuthService {
 Marks a method as a runtime job.
 
 ```ts
-import { job } from "@electro/common";
+import { job } from "@electrojs/common";
 
 class SyncService {
     @job({ id: "sync:users", cron: "0 * * * *" })
@@ -401,7 +401,7 @@ class SyncService {
 Marks a method as a runtime signal handler.
 
 ```ts
-import { signal } from "@electro/common";
+import { signal } from "@electrojs/common";
 
 class AuthService {
     @signal({ id: "auth:user-logged-in" })
@@ -439,7 +439,7 @@ class AuthService {
 Composes multiple decorators into one.
 
 ```ts
-import { apply, Injectable, SetMetadata } from "@electro/common";
+import { apply, Injectable, SetMetadata } from "@electrojs/common";
 
 const FEATURE_KEY = Symbol("feature");
 
@@ -463,7 +463,7 @@ The decorator list is validated up front.
 Attaches arbitrary metadata to a class, method, or property target.
 
 ```ts
-import { SetMetadata } from "@electro/common";
+import { SetMetadata } from "@electrojs/common";
 
 const FEATURE_KEY = Symbol("feature");
 
@@ -487,7 +487,7 @@ class AuthModule {}
 Creates a lazily resolved reference for declaration-time cycles.
 
 ```ts
-import { Ref } from "@electro/common";
+import { Ref } from "@electrojs/common";
 
 const AuthModuleRef = Ref.create(() => AuthModule);
 ```
@@ -515,7 +515,7 @@ Ref.resolve(value);
 Use typed token objects for non-class dependencies.
 
 ```ts
-import { createInjectionToken } from "@electro/common";
+import { createInjectionToken } from "@electrojs/common";
 
 export const API_URL = createInjectionToken<string>("API_URL");
 ```
@@ -523,7 +523,7 @@ export const API_URL = createInjectionToken<string>("API_URL");
 ### Example
 
 ```ts
-import { createInjectionToken, describeInjectionToken } from "@electro/common";
+import { createInjectionToken, describeInjectionToken } from "@electrojs/common";
 
 const AUTH_TOKEN = createInjectionToken<string>("AUTH_TOKEN");
 
@@ -543,7 +543,7 @@ describeInjectionToken(AUTH_TOKEN); // "AUTH_TOKEN"
 The package exports runtime guards for provider declarations.
 
 ```ts
-import { isConstructor, isProviderClass, isClassProvider, isProvider, isModule } from "@electro/common";
+import { isConstructor, isProviderClass, isClassProvider, isProvider, isModule } from "@electrojs/common";
 ```
 
 ### Example
@@ -579,7 +579,7 @@ import {
     getSignalMetadata,
     getMethodMetadata,
     getMethodsMetadataByClass,
-} from "@electro/common";
+} from "@electrojs/common";
 ```
 
 ### Example
@@ -594,7 +594,7 @@ const methods = getMethodsMetadataByClass(AuthService);
 ## Low-level metadata helpers
 
 ```ts
-import { defineMetadata, getMetadata, getOwnMetadata, hasOwnMetadata } from "@electro/common";
+import { defineMetadata, getMetadata, getOwnMetadata, hasOwnMetadata } from "@electrojs/common";
 ```
 
 These are thin typed wrappers around the Reflect Metadata API.
@@ -603,7 +603,7 @@ These are thin typed wrappers around the Reflect Metadata API.
 
 ## Validation philosophy
 
-`@electro/common` validates eagerly and throws framework-specific exceptions with stable error codes.
+`@electrojs/common` validates eagerly and throws framework-specific exceptions with stable error codes.
 
 That means invalid framework usage usually fails:
 
@@ -615,7 +615,7 @@ That means invalid framework usage usually fails:
 Example:
 
 ```ts
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 
 Injectable({ scope: "request" as never });
 ```
@@ -633,7 +633,7 @@ This throws a `DecoratorConfigurationError` with code:
 All framework-specific errors inherit from `ElectroError`.
 
 ```ts
-import { ElectroError } from "@electro/common";
+import { ElectroError } from "@electrojs/common";
 ```
 
 Every error includes:
@@ -659,7 +659,7 @@ Every error includes:
 ### Example
 
 ```ts
-import { ElectroError, createInjectionToken } from "@electro/common";
+import { ElectroError, createInjectionToken } from "@electrojs/common";
 
 try {
     createInjectionToken("   ");
@@ -685,14 +685,14 @@ The package exports the framework's shared public types, including:
 Example:
 
 ```ts
-import type { InjectionToken, Provider, ModuleOptions, ViewOptions, WindowOptions, MethodMetadata } from "@electro/common";
+import type { InjectionToken, Provider, ModuleOptions, ViewOptions, WindowOptions, MethodMetadata } from "@electrojs/common";
 ```
 
 ---
 
 ## What this package does not do
 
-`@electro/common` does not:
+`@electrojs/common` does not:
 
 - instantiate providers
 - run lifecycle hooks
@@ -710,11 +710,11 @@ Those responsibilities belong to higher-level packages such as the runtime and r
 A simplified view of the intended dependency direction:
 
 ```txt
-@electro/common
+@electrojs/common
     ↑
-@electro/runtime
+@electrojs/runtime
     ↑
-@electro/renderer
+@electrojs/renderer
 ```
 
-`@electro/common` should remain the shared, stable base layer.
+`@electrojs/common` should remain the shared, stable base layer.

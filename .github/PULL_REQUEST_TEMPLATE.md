@@ -13,12 +13,12 @@ Describe the key changes made:
 
 ## Affected Packages
 
-- [ ] `@electro/common`
-- [ ] `@electro/config`
-- [ ] `@electro/renderer`
-- [ ] `@electro/runtime`
-- [ ] `@electro/codegen`
-- [ ] `@electro/cli`
+- [ ] `@electrojs/common`
+- [ ] `@electrojs/config`
+- [ ] `@electrojs/renderer`
+- [ ] `@electrojs/runtime`
+- [ ] `@electrojs/codegen`
+- [ ] `@electrojs/cli`
 
 ## Type of Change
 

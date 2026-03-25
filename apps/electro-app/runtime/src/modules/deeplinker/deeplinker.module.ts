@@ -1,10 +1,10 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { app } from "electron";
 import { resolve } from "node:path";
 import { SettingsModule } from "../settings/settings.module";
 import { SettingsService } from "../settings/settings.service";
 import { DeeplinkerService } from "./deeplinker.service";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 
 @Module({
     imports: [SettingsModule],

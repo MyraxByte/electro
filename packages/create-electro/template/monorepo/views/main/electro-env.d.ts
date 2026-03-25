@@ -20,28 +20,28 @@ type _BridgeOutputFromMethod<T, K extends PropertyKey> = K extends keyof _Instan
         : never
     : never;
 
-declare module "@electro/renderer" {
+declare module "@electrojs/renderer" {
     interface BridgeQueries {
-        "notes:getNotes": import("@electro/renderer").BridgeContractEntry<
+        "notes:getNotes": import("@electrojs/renderer").BridgeContractEntry<
             _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">,
             _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">
         >;
-        "notes:createNote": import("@electro/renderer").BridgeContractEntry<
+        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<
             _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">,
             _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">
         >;
-        "notes:deleteNote": import("@electro/renderer").BridgeContractEntry<
+        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<
             _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">,
             _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">
         >;
     }
 
     interface BridgeCommands {
-        "notes:createNote": import("@electro/renderer").BridgeContractEntry<
+        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<
             _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">,
             _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">
         >;
-        "notes:deleteNote": import("@electro/renderer").BridgeContractEntry<
+        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<
             _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">,
             _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">
         >;

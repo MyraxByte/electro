@@ -1,5 +1,5 @@
 /**
- * Error types for `@electro/codegen`.
+ * Error types for `@electrojs/codegen`.
  *
  * @module errors
  */

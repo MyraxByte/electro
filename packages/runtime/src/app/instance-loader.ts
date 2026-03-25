@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import type { Injector } from "../container/injector";
 import { BootstrapError } from "../errors/bootstrap";
 import type { LifecycleTarget } from "../modules/refs";

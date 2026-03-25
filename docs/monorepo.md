@@ -79,7 +79,7 @@ The application root itself is the Electro app package. `runtime`, every `views/
 
 ```ts
 // electro.config.ts
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
     runtime: "runtime",
@@ -105,9 +105,9 @@ Resolution rules:
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/common": "link:../../packages/common",
-        "@electro/config": "link:../../packages/config",
-        "@electro/runtime": "link:../../packages/runtime"
+        "@electrojs/common": "link:../../packages/common",
+        "@electrojs/config": "link:../../packages/config",
+        "@electrojs/runtime": "link:../../packages/runtime"
     }
 }
 ```
@@ -136,8 +136,8 @@ The runtime package owns:
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/config": "link:../../../packages/config",
-        "@electro/renderer": "link:../../../packages/renderer"
+        "@electrojs/config": "link:../../../packages/config",
+        "@electrojs/renderer": "link:../../../packages/renderer"
     }
 }
 ```

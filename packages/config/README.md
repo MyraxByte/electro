@@ -1,4 +1,4 @@
-# @electro/config
+# @electrojs/config
 
 Typed configuration contracts for Electro applications.
 
@@ -11,21 +11,21 @@ Electro supports a monorepo-style application layout with:
 ## Installation
 
 ```bash
-pnpm add -D @electro/config vite typescript
+pnpm add -D @electrojs/config vite typescript
 ```
 
 ## Exports
 
 ```ts
-import { defineElectroConfig, defineRuntimeConfig, defineViewConfig } from "@electro/config";
+import { defineElectroConfig, defineRuntimeConfig, defineViewConfig } from "@electrojs/config";
 
-import type { AppConfig, RuntimeConfig, ViewConfig } from "@electro/config";
+import type { AppConfig, RuntimeConfig, ViewConfig } from "@electrojs/config";
 ```
 
 ## `electro.config.ts`
 
 ```ts
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
     runtime: "runtime",
@@ -50,7 +50,7 @@ Electro no longer documents single-repo auto-discovery as a supported setup.
 ## `runtime.config.ts`
 
 ```ts
-import { defineRuntimeConfig } from "@electro/config";
+import { defineRuntimeConfig } from "@electrojs/config";
 
 export default defineRuntimeConfig({
     entry: "./src/main.ts",
@@ -70,7 +70,7 @@ interface RuntimeConfig extends ViteUserConfig {
 ## `view.config.ts`
 
 ```ts
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import react from "@vitejs/plugin-react";
 
 export default defineViewConfig({
@@ -114,6 +114,6 @@ my-app/
 
 ## Related Packages
 
-- `@electro/cli` runs `dev`, `generate`, `build`, and `preview`
-- `@electro/runtime` powers the Electron runtime
-- `@electro/renderer` powers the renderer bridge and signals APIs
+- `@electrojs/cli` runs `dev`, `generate`, `build`, and `preview`
+- `@electrojs/runtime` powers the Electron runtime
+- `@electrojs/renderer` powers the renderer bridge and signals APIs

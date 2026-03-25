@@ -1,4 +1,4 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { NotesService } from "./notes.service";
 
 @Module({

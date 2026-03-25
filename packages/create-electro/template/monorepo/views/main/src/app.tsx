@@ -1,4 +1,4 @@
-import { bridge } from "@electro/renderer";
+import { bridge } from "@electrojs/renderer";
 import { useEffect, useRef, useState } from "react";
 import "./app.css";
 

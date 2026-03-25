@@ -4,8 +4,8 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/config": "__FRAMEWORK_VERSION__",
-        "@electro/renderer": "__FRAMEWORK_VERSION__",
+        "@electrojs/config": "__FRAMEWORK_VERSION__",
+        "@electrojs/renderer": "__FRAMEWORK_VERSION__",
         "@types/react": "__REACT_TYPES_VERSION__",
         "@types/react-dom": "__REACT_DOM_TYPES_VERSION__",
         "@vitejs/plugin-react": "__VITE_REACT_PLUGIN_VERSION__",

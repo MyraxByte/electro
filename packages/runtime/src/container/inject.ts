@@ -1,4 +1,4 @@
-import type { InjectionToken } from "@electro/common";
+import type { InjectionToken } from "@electrojs/common";
 import { DIError } from "../errors/di";
 import { InjectionContext } from "./injection-context";
 

@@ -170,27 +170,27 @@ describe("generate()", () => {
         const preload = files.find((file) => file.path === "generated/preload/main.gen.ts");
         const rendererEnv = packageTypes[0];
 
-        expect(preload?.content).toContain('import { createBridgeClient } from "@electro/runtime/client";');
+        expect(preload?.content).toContain('import { createBridgeClient } from "@electrojs/runtime/client";');
         expect(preload?.content).toContain('viewId: "main",');
         expect(files.find((file) => file.path === "generated/views/main.bridge.d.ts")).toBeUndefined();
         expect(files.find((file) => file.path === "generated/renderer-env.d.ts")).toBeUndefined();
-        expect(rendererEnv?.content).toContain('declare module "@electro/renderer"');
-        expect(rendererEnv?.content).not.toContain('declare module "@electro/runtime"');
+        expect(rendererEnv?.content).toContain('declare module "@electrojs/renderer"');
+        expect(rendererEnv?.content).not.toContain('declare module "@electrojs/runtime"');
         expect(rendererEnv?.content).not.toContain("_ModuleAuthoringApi");
         expect(rendererEnv?.content).not.toContain("_InvokeMethod");
 
         // Renderer env should contain allowed methods as BridgeContractEntry types
         expect(rendererEnv?.content).toContain(
-            '"workspace:getSession": import("@electro/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.state").WorkspaceState, "getSession">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.state").WorkspaceState, "getSession">>;',
+            '"workspace:getSession": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.state").WorkspaceState, "getSession">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.state").WorkspaceState, "getSession">>;',
         );
         expect(rendererEnv?.content).toContain(
-            '"workspace:getActiveProject": import("@electro/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "getActiveProject">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "getActiveProject">>;',
+            '"workspace:getActiveProject": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "getActiveProject">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "getActiveProject">>;',
         );
         expect(rendererEnv?.content).toContain(
-            '"workspace:openProject": import("@electro/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "openProject">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "openProject">>;',
+            '"workspace:openProject": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "openProject">, _BridgeOutputFromMethod<typeof import("../../src/modules/workspace/workspace.service").WorkspaceService, "openProject">>;',
         );
         expect(rendererEnv?.content).toContain(
-            '"auth:getSession": import("@electro/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/auth/auth.module").AuthModule, "getSession">, _BridgeOutputFromMethod<typeof import("../../src/modules/auth/auth.module").AuthModule, "getSession">>;',
+            '"auth:getSession": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../src/modules/auth/auth.module").AuthModule, "getSession">, _BridgeOutputFromMethod<typeof import("../../src/modules/auth/auth.module").AuthModule, "getSession">>;',
         );
 
         // Renderer env should contain allowed signals
@@ -339,7 +339,7 @@ describe("generate()", () => {
         expect(envTypes.content).toContain("interface ViewClassRegistry");
         expect(envTypes.content).toContain('"main": typeof import("./views/main.view").MainView;');
         expect(envTypes.content).toContain('interface WorkspaceService extends _ModuleAuthoringApi<"workspace"> {}');
-        expect(envTypes.content).not.toContain('declare module "@electro/renderer"');
+        expect(envTypes.content).not.toContain('declare module "@electrojs/renderer"');
     });
 
     it("generates a runtime registry with module, window, and view arrays", () => {
@@ -347,7 +347,7 @@ describe("generate()", () => {
         const registry = files.find((file) => file.path === "generated/runtime/registry.gen.ts");
 
         expect(registry).toBeDefined();
-        expect(registry?.content).toContain('import type { AppKernelDefinition, ModuleClass, ViewClass, WindowClass } from "@electro/runtime";');
+        expect(registry?.content).toContain('import type { AppKernelDefinition, ModuleClass, ViewClass, WindowClass } from "@electrojs/runtime";');
         expect(registry?.content).toContain('import { AuthModule as __electro_module_0 } from "../../../src/modules/auth/auth.module";');
         expect(registry?.content).toContain('import { WorkspaceModule as __electro_module_1 } from "../../../src/modules/workspace/workspace.module";');
         expect(registry?.content).toContain('import { MainWindow as __electro_window_0 } from "../../../src/windows/main.window";');
@@ -413,9 +413,9 @@ describe("generate()", () => {
 
         expect(files.find((file) => file.path === "generated/views/main.bridge.d.ts")).toBeUndefined();
         expect(files.find((file) => file.path === "generated/renderer-env.d.ts")).toBeUndefined();
-        expect(packageTypes[0]?.content).toContain('declare module "@electro/renderer"');
+        expect(packageTypes[0]?.content).toContain('declare module "@electrojs/renderer"');
         expect(packageTypes[0]?.content).toContain("BridgeQueries");
-        expect(packageTypes[0]?.content).not.toContain('declare module "@electro/runtime"');
+        expect(packageTypes[0]?.content).not.toContain('declare module "@electrojs/runtime"');
         expect(packageTypes[0]?.content).not.toContain("_ModuleAuthoringApi");
         expect(packageTypes[0]?.content).not.toContain("_InvokeMethod");
     });
@@ -442,9 +442,9 @@ describe("generate()", () => {
 
         expect(packageTypes).toHaveLength(1);
         expect(packageTypes[0]?.path).toBe("electro-env.d.ts");
-        expect(packageTypes[0]?.content).toContain('declare module "@electro/renderer"');
-        expect(packageTypes[0]?.content).not.toContain('declare module "@electro/runtime"');
-        expect(packageTypes[0]?.content).not.toContain('declare module "@electro/common"');
+        expect(packageTypes[0]?.content).toContain('declare module "@electrojs/renderer"');
+        expect(packageTypes[0]?.content).not.toContain('declare module "@electrojs/runtime"');
+        expect(packageTypes[0]?.content).not.toContain('declare module "@electrojs/common"');
         expect(packageTypes[0]?.content).not.toContain("_ModuleAuthoringApi");
         expect(packageTypes[0]?.content).not.toContain("_InvokeMethod");
         expect(packageTypes[0]?.content).toContain('"workspace:getSession"');

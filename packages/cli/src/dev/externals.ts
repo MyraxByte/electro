@@ -32,8 +32,8 @@ export async function resolveExternals(root: string): Promise<ResolvedExternals>
     const interopDeps = new Set<string>([...deps, ...Object.keys(pkg.devDependencies ?? {})]);
 
     // @cordy/electro must be bundled — it relies on compile-time `define` replacements
-    deps.delete("@electro/runtime");
-    interopDeps.delete("@electro/runtime");
+    deps.delete("@electrojs/runtime");
+    interopDeps.delete("@electrojs/runtime");
 
     // Node builtins: both bare (fs) and prefixed (node:fs)
     const builtins = builtinModules.flatMap((m) => [m, `node:${m}`]);

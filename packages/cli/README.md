@@ -1,11 +1,11 @@
-# @electro/cli
+# @electrojs/cli
 
 Electro CLI for development, code generation, build, and preview.
 
 ## Installation
 
 ```bash
-pnpm add -D @electro/cli @electro/codegen @electro/config @electro/runtime electron vite
+pnpm add -D @electrojs/cli @electrojs/codegen @electrojs/config @electrojs/runtime electron vite
 ```
 
 ## Commands
@@ -42,7 +42,7 @@ Builds the app and launches the production output in Electron.
 ## Config Shape
 
 ```ts
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
     runtime: "runtime",

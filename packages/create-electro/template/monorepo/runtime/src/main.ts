@@ -1,4 +1,4 @@
-import { AppKernel, createConsoleLogger } from "@electro/runtime";
+import { AppKernel, createConsoleLogger } from "@electrojs/runtime";
 import { app } from "electron";
 import { AppModule } from "./modules/app.module";
 

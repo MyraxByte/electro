@@ -1,8 +1,8 @@
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 import * as electronUpdater from "electron-updater";
 import { SettingsService } from "../settings/settings.service";
 import type { UpdaterDownloadProgressPayload, UpdaterStatusChangedPayload } from "./updater.interface";
-import { inject, SignalBus } from "@electro/runtime";
+import { inject, SignalBus } from "@electrojs/runtime";
 
 @Injectable()
 export class UpdaterService {

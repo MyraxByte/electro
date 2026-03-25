@@ -2,7 +2,7 @@ import "@/shared/css/index.css";
 import { queryClient } from "./shared/lib/query-client";
 import { ErrorBoundary } from "./shared/ui/error-boundary";
 import { PlatformProvider } from "./shared/ui/platform/provider";
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createMemoryHistory, createRouter, RouterProvider } from "@tanstack/react-router";
 import React from "react";

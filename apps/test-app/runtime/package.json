@@ -4,9 +4,9 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/common": "link:../../../packages/common",
-        "@electro/config": "link:../../../packages/config",
-        "@electro/runtime": "link:../../../packages/runtime",
+        "@electrojs/common": "link:../../../packages/common",
+        "@electrojs/config": "link:../../../packages/config",
+        "@electrojs/runtime": "link:../../../packages/runtime",
         "@types/node": "^25.5.0",
         "electron": "41.0.4",
         "typescript": "^6.0.2",

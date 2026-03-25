@@ -1,5 +1,5 @@
 /**
- * Abstract base class for all framework errors in `@electro/runtime`.
+ * Abstract base class for all framework errors in `@electrojs/runtime`.
  *
  * Every concrete error subclass (e.g. {@link BootstrapError}, {@link DIError}) extends this class
  * and exposes static factory methods that produce pre-formatted, coded error instances.

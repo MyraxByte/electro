@@ -2,7 +2,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
     test: {
-        name: "@electro/codegen",
+        name: "@electrojs/codegen",
         environment: "node",
         globals: true,
         include: ["src/**/*.spec.ts", "tests/**/*.spec.ts"],

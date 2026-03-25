@@ -1,6 +1,6 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { app } from "electron";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 import { NotesModule } from "./notes/notes.module";
 import { MainView } from "./app.view";
 import { MainWindow } from "./app.window";

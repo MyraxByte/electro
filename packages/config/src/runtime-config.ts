@@ -13,7 +13,7 @@ import type { UserConfig as ViteUserConfig } from "vite";
  * @example
  * ```ts
  * // runtime/runtime.config.ts
- * import { defineRuntimeConfig } from "@electro/config";
+ * import { defineRuntimeConfig } from "@electrojs/config";
  * import { resolve } from "node:path";
  *
  * export default defineRuntimeConfig({

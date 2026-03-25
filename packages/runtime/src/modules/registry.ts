@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import type { ModuleRef, ModuleStatus, ProviderRef } from "./refs";
 
 /**

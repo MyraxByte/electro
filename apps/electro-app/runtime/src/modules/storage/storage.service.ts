@@ -1,4 +1,4 @@
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 import Store from "electron-store";
 import { UserState } from "./store.interface";
 

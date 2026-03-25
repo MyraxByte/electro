@@ -24,7 +24,7 @@ The `id` of a view is derived automatically from `source` when the source type i
 ## Defining a View
 
 ```ts
-import { View } from "@electro/common";
+import { View } from "@electrojs/common";
 
 @View({
     // "view:main" → id is automatically "main"
@@ -195,4 +195,4 @@ export class MainWindow {
 
 ## Bridge Types
 
-Each view package gets a generated `electro-env.d.ts` that augments `@electro/renderer` for that specific view. Include it in the package `tsconfig.json`. See [Code Generation](./codegen.md) for details.
+Each view package gets a generated `electro-env.d.ts` that augments `@electrojs/renderer` for that specific view. Include it in the package `tsconfig.json`. See [Code Generation](./codegen.md) for details.

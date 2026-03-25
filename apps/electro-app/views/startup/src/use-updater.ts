@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { signals } from "@electro/renderer";
+import { signals } from "@electrojs/renderer";
 import { useUpdater } from "./updater-store";
 
 /**

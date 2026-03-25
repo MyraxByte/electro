@@ -1,18 +1,18 @@
-# @electro/codegen
+# @electrojs/codegen
 
 Code generator for Electro's module runtime — scans decorator metadata from source and emits preload scripts, runtime registry, and environment type declarations.
 
-`@electro/codegen` provides the `scan` → `generate` pipeline that powers `electro generate` and runs automatically during `electro dev` and `electro build`. It uses the OXC parser to extract `@Module`, `@Injectable`, `@Window`, `@View`, `@command`, `@query`, `@signal`, and `@job` decorators from TypeScript source without executing it.
+`@electrojs/codegen` provides the `scan` → `generate` pipeline that powers `electro generate` and runs automatically during `electro dev` and `electro build`. It uses the OXC parser to extract `@Module`, `@Injectable`, `@Window`, `@View`, `@command`, `@query`, `@signal`, and `@job` decorators from TypeScript source without executing it.
 
 ---
 
 ## Installation
 
 ```bash
-pnpm add -D @electro/codegen
+pnpm add -D @electrojs/codegen
 ```
 
-> Peer dependencies: `@electro/common`, `@electro/config`, `@electro/runtime`.
+> Peer dependencies: `@electrojs/common`, `@electrojs/config`, `@electrojs/runtime`.
 
 ---
 
@@ -21,7 +21,7 @@ pnpm add -D @electro/codegen
 ### 1. Scan
 
 ```ts
-import { scan } from "@electro/codegen";
+import { scan } from "@electrojs/codegen";
 
 const result = await scan("./src");
 ```
@@ -41,7 +41,7 @@ Files matching `*.d.ts`, `*.test.ts`, `*.spec.ts`, `*.gen.ts`, and `node_modules
 ### 2. Generate
 
 ```ts
-import { generate } from "@electro/codegen";
+import { generate } from "@electrojs/codegen";
 
 const output = generate({
     scanResult: result,
@@ -62,7 +62,7 @@ const output = generate({
 | Preload scripts | `generated/preload/{viewId}.gen.ts` | Per-view bridge client setup via `createBridgeClient()` |
 | Runtime registry | `generated/runtime/registry.gen.ts` | Exports scanned modules, windows, views; identifies root module and creates `electroAppDefinition` |
 | Runtime environment types | `runtime/electro-env.d.ts` | Ambient registry interfaces for runtime authoring: methods, signals, jobs, injectables, windows, views, and class augmentations |
-| View environment types | `views/*/electro-env.d.ts` | Package-local ambient types for `@electro/renderer` bridge contracts and forwarded signal payloads |
+| View environment types | `views/*/electro-env.d.ts` | Package-local ambient types for `@electrojs/renderer` bridge contracts and forwarded signal payloads |
 
 ---
 
@@ -97,10 +97,10 @@ Public bridge keys follow the `module:method` pattern (e.g., `workspace:openProj
 
 ```ts
 // Pipeline
-import { scan, generate } from "@electro/codegen";
+import { scan, generate } from "@electrojs/codegen";
 
 // Errors
-import { CodegenError, ValidationError } from "@electro/codegen";
+import { CodegenError, ValidationError } from "@electrojs/codegen";
 ```
 
 Type-only imports:
@@ -120,7 +120,7 @@ import type {
     GeneratedFile,
     GeneratorViewDefinition,
     CodegenDiagnostic,
-} from "@electro/codegen";
+} from "@electrojs/codegen";
 ```
 
 ---
@@ -128,10 +128,10 @@ import type {
 ## Package layering
 
 ```txt
-@electro/common        ← decorator definitions, metadata keys
-@electro/config        ← config schema (view definitions)
+@electrojs/common        ← decorator definitions, metadata keys
+@electrojs/config        ← config schema (view definitions)
     ↑
-@electro/codegen       ← this package: scanner + generator
+@electrojs/codegen       ← this package: scanner + generator
     ↑
-@electro/cli           ← invokes scan/generate during dev, build, generate commands
+@electrojs/cli           ← invokes scan/generate during dev, build, generate commands
 ```

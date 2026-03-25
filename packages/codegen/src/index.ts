@@ -1,5 +1,5 @@
 /**
- * `@electro/codegen` — AST scanner and code generator for the Electro framework.
+ * `@electrojs/codegen` — AST scanner and code generator for the Electro framework.
  *
  * Two-stage pipeline:
  * 1. `scan(basePath)` — discovers Electro decorators via OXC AST parsing
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { scan, generate } from "@electro/codegen";
+ * import { scan, generate } from "@electrojs/codegen";
  *
  * const scanResult = await scan("./src");
  * const output = generate({ scanResult, outputDir: ".electro", srcDir: "./src" });

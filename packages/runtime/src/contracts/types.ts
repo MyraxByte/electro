@@ -1,14 +1,14 @@
 /**
- * Public type contracts for `@electro/runtime`.
+ * Public type contracts for `@electrojs/runtime`.
  *
  * This module re-exports every public-facing type from the runtime's subsystems
  * as a single, flat surface. Consumers that only need types (no runtime values)
- * can import exclusively from `@electro/runtime` — the barrel re-exports these
+ * can import exclusively from `@electrojs/runtime` — the barrel re-exports these
  * with `export type`.
  *
  * @example
  * ```ts
- * import type { KernelState, ModuleSnapshot, JobStatus } from "@electro/runtime";
+ * import type { KernelState, ModuleSnapshot, JobStatus } from "@electrojs/runtime";
  * ```
  *
  * @module contracts

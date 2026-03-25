@@ -1,4 +1,4 @@
-import type { Constructor, InjectionToken, Provider } from "@electro/common";
+import type { Constructor, InjectionToken, Provider } from "@electrojs/common";
 import {
     describeInjectionToken,
     getInjectableMetadata,
@@ -7,7 +7,7 @@ import {
     getWindowMetadata,
     isClassProvider,
     isInjectionTokenSymbol,
-} from "@electro/common";
+} from "@electrojs/common";
 import { DIError } from "../errors/di";
 import { InjectionContext } from "./injection-context";
 import type { ClassProviderRecord, ProviderInstanceCell, ProviderKey, ProviderRecord, ValueProviderRecord } from "./provider-record";

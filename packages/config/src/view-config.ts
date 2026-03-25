@@ -13,7 +13,7 @@ import type { UserConfig as ViteUserConfig } from "vite";
  * @example
  * ```ts
  * // renderer/views/main/view.config.ts
- * import { defineViewConfig } from "@electro/config";
+ * import { defineViewConfig } from "@electrojs/config";
  * import { resolve } from "node:path";
  * import react from "@vitejs/plugin-react";
  *

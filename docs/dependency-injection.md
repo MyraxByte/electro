@@ -9,7 +9,7 @@ Electro's DI system is synchronous, hierarchical, and token-based. All dependenc
 `inject()` resolves a provider from the current injection context and returns its instance.
 
 ```ts
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 import { AuthService } from "./auth.service";
 
 @Injectable()
@@ -76,7 +76,7 @@ const http = inject(HttpService); // HttpService class is the token
 When you need to inject a primitive value, a plain object, or an interface (which has no runtime class), use `createInjectionToken`.
 
 ```ts
-import { createInjectionToken } from "@electro/runtime";
+import { createInjectionToken } from "@electrojs/runtime";
 
 // Define tokens with their TypeScript type
 export const API_BASE_URL = createInjectionToken<string>("API_BASE_URL");
@@ -163,7 +163,7 @@ You never need to manage this hierarchy manually — it is built from your modul
 For framework-level code or advanced testing scenarios, you can work with `RuntimeInjector` directly.
 
 ```ts
-import { RuntimeInjector } from "@electro/runtime";
+import { RuntimeInjector } from "@electrojs/runtime";
 
 // Create a standalone injector (e.g., for testing)
 const injector = new RuntimeInjector();

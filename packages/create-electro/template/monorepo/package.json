@@ -10,8 +10,8 @@
         "generate": "electro generate"
     },
     "devDependencies": {
-        "@electro/cli": "__FRAMEWORK_VERSION__",
-        "@electro/config": "__FRAMEWORK_VERSION__",
+        "@electrojs/cli": "__FRAMEWORK_VERSION__",
+        "@electrojs/config": "__FRAMEWORK_VERSION__",
         "@types/node": "__NODE_TYPES_VERSION__",
         "electron": "__ELECTRON_VERSION__",
         "typescript": "__TYPESCRIPT_VERSION__",

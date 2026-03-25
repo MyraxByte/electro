@@ -90,7 +90,7 @@ This is the runtime-side type layer used by modules, windows, views, and runtime
 
 ## Renderer Types
 
-Each view package gets its own `electro-env.d.ts`, which augments `@electro/renderer` with:
+Each view package gets its own `electro-env.d.ts`, which augments `@electrojs/renderer` with:
 
 - typed `bridge`
 - typed `signals.subscribe(...)`
@@ -167,7 +167,7 @@ And view access controls which methods become visible in a renderer package:
 export class MainView extends ViewProvider {}
 ```
 
-From that, the `views/main/electro-env.d.ts` file augments `@electro/renderer` so `bridge.notes.getNotes()` and `bridge.notes.createNote(...)` are typed in that package.
+From that, the `views/main/electro-env.d.ts` file augments `@electrojs/renderer` so `bridge.notes.getNotes()` and `bridge.notes.createNote(...)` are typed in that package.
 
 ---
 

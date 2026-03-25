@@ -1,5 +1,5 @@
 /**
- * Public type contracts for `@electro/codegen`.
+ * Public type contracts for `@electrojs/codegen`.
  *
  * All scan result types, generator input/output types, and diagnostic types
  * are defined here and re-exported from the package entry point.
@@ -166,7 +166,7 @@ export interface PackageTypeOutput {
     readonly content: string;
     /** Backward-compatible alias for the generated declaration content. */
     readonly indexDts?: string;
-    /** Deprecated leftover from the old `@electro/types` package layout. */
+    /** Deprecated leftover from the old `@electrojs/types` package layout. */
     readonly packageJson?: string;
 }
 

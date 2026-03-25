@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-// import { bridge } from "@electro/renderer";
+// import { bridge } from "@electrojs/renderer";
 import { delay } from "es-toolkit";
 import { motion } from "framer-motion";
 import { useState } from "react";

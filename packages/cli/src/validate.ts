@@ -130,7 +130,7 @@ export function validateViteVersion(viteVersion: string): void {
     const major = Number.parseInt(majorRaw ?? "", 10);
 
     if (!Number.isFinite(major) || major < MIN_VITE_MAJOR) {
-        error(`Unsupported Vite version: ${viteVersion}. @electro/runtime requires Vite ${MIN_VITE_MAJOR}+.`);
+        error(`Unsupported Vite version: ${viteVersion}. @electrojs/runtime requires Vite ${MIN_VITE_MAJOR}+.`);
         process.exit(1);
     }
 }

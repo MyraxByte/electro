@@ -65,7 +65,7 @@ packages:
 
 ```ts
 // electro.config.ts
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
     runtime: "runtime",
@@ -90,7 +90,7 @@ export default defineElectroConfig({
 
 ```ts
 // runtime/runtime.config.ts
-import { defineRuntimeConfig } from "@electro/config";
+import { defineRuntimeConfig } from "@electrojs/config";
 
 export default defineRuntimeConfig({
     entry: "./src/main.ts",
@@ -99,7 +99,7 @@ export default defineRuntimeConfig({
 
 ```ts
 // runtime/src/main.ts
-import { AppKernel } from "@electro/runtime";
+import { AppKernel } from "@electrojs/runtime";
 import { app } from "electron";
 import { AppModule } from "./modules/app.module";
 
@@ -125,8 +125,8 @@ void app.whenReady().then(async () => {
 
 ```ts
 // runtime/src/modules/app.module.ts
-import { Module } from "@electro/common";
-import { inject } from "@electro/runtime";
+import { Module } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
 import { NotesModule } from "./notes/notes.module";
 import { MainView } from "./app.view";
 import { MainWindow } from "./app.window";
@@ -154,8 +154,8 @@ Views and windows do not belong in `providers`.
 
 ```ts
 // runtime/src/modules/app.view.ts
-import { View } from "@electro/common";
-import { ViewProvider } from "@electro/runtime";
+import { View } from "@electrojs/common";
+import { ViewProvider } from "@electrojs/runtime";
 
 @View({
     source: "view:main",
@@ -173,8 +173,8 @@ export class MainView extends ViewProvider {}
 
 ```ts
 // runtime/src/modules/app.window.ts
-import { Window } from "@electro/common";
-import { inject, WindowProvider } from "@electro/runtime";
+import { Window } from "@electrojs/common";
+import { inject, WindowProvider } from "@electrojs/runtime";
 import { MainView } from "./app.view";
 
 @Window({
@@ -215,7 +215,7 @@ export class MainWindow extends WindowProvider {
 
 ```ts
 // views/main/view.config.ts
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import react from "@vitejs/plugin-react";
 
 export default defineViewConfig({
@@ -227,7 +227,7 @@ export default defineViewConfig({
 
 ```tsx
 // views/main/src/main.tsx
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import ReactDOM from "react-dom/client";
 import { App } from "./app";
 

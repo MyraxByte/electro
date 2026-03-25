@@ -9,8 +9,8 @@ A Window is an Electron `BaseWindow` managed by the Electro runtime. It hosts on
 Use the `@Window` decorator. Every window must have a unique `id`.
 
 ```ts
-import { Window } from "@electro/common";
-import { inject } from "@electro/runtime";
+import { Window } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
 import { MainView } from "../views/main.view";
 
 @Window({ id: "main" })

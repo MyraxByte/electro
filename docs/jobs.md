@@ -9,8 +9,8 @@ Jobs are background tasks that run in the Runtime. They can be scheduled via cro
 Use the `@job` decorator on a method inside an `@Injectable` class. The method becomes a registered background task.
 
 ```ts
-import { Injectable, job } from "@electro/common";
-import { JobContext } from "@electro/runtime";
+import { Injectable, job } from "@electrojs/common";
+import { JobContext } from "@electrojs/runtime";
 
 @Injectable()
 export class SyncService {

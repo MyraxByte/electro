@@ -1,6 +1,6 @@
 import { StartupView } from "@/modules/startup/startup.view";
-import { Window } from "@electro/common";
-import { inject, WindowProvider } from "@electro/runtime";
+import { Window } from "@electrojs/common";
+import { inject, WindowProvider } from "@electrojs/runtime";
 
 const isMacOS = process.platform === "darwin";
 const isWindows = process.platform === "win32";

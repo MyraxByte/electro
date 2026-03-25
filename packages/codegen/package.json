@@ -1,12 +1,12 @@
 {
-    "name": "@electro/codegen",
+    "name": "@electrojs/codegen",
     "version": "1.0.0",
     "description": "Code generator for electro module runtime — scans modules/views and emits bridge and registry artifacts",
-    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "homepage": "https://github.com/MyraxByte/electro#readme",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cordy-dev/electro.git",
+        "url": "git+https://github.com/MyraxByte/electro.git",
         "directory": "packages/codegen"
     },
     "files": [
@@ -34,16 +34,16 @@
         "tinyglobby": "^0.2.15"
     },
     "devDependencies": {
-        "@electro/common": "workspace:*",
-        "@electro/config": "workspace:*",
-        "@electro/runtime": "workspace:*",
+        "@electrojs/common": "workspace:*",
+        "@electrojs/config": "workspace:*",
+        "@electrojs/runtime": "workspace:*",
         "tsdown": "catalog:",
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electro/common": ">=1",
-        "@electro/config": ">=1",
-        "@electro/runtime": ">=1",
+        "@electrojs/common": ">=1",
+        "@electrojs/config": ">=1",
+        "@electrojs/runtime": ">=1",
         "@types/node": "^25.5.0"
     }
 }

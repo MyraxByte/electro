@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import type { ViewManager } from "../desktop/view-manager";
 import type { ViewAuthoringSurface } from "../desktop/view-provider";
 import type { WindowManager } from "../desktop/window-manager";
@@ -9,9 +9,9 @@ import type { ModuleRegistry } from "../modules/registry";
 import type { SignalHandler } from "../signals/bus";
 
 /**
- * Codegen contract types for `@electro/runtime`.
+ * Codegen contract types for `@electrojs/runtime`.
  *
- * These interfaces and types are used by `@electro/codegen` to generate
+ * These interfaces and types are used by `@electrojs/codegen` to generate
  * type-safe authoring APIs. The codegen augments the empty registry interfaces
  * via `declare module "@electro"` to populate them with app-specific types.
  *

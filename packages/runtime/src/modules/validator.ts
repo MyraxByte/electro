@@ -1,5 +1,5 @@
-import type { Constructor } from "@electro/common";
-import { getViewMetadata, getWindowMetadata } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
+import { getViewMetadata, getWindowMetadata } from "@electrojs/common";
 import { BootstrapError } from "../errors/bootstrap";
 import type { AppDefinition, ModuleDefinition } from "./scanner";
 

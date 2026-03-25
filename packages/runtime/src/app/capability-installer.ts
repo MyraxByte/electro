@@ -1,4 +1,4 @@
-import { getMethodsMetadataByClass } from "@electro/common";
+import { getMethodsMetadataByClass } from "@electrojs/common";
 import type { BridgeAccessGuard } from "../bridge/access-guard";
 import { IPC_CHANNELS } from "../bridge/client";
 import type { BridgeDispatcher } from "../bridge/dispatcher";

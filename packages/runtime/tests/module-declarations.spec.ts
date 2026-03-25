@@ -1,4 +1,4 @@
-import { Injectable, Module, View, Window } from "@electro/common";
+import { Injectable, Module, View, Window } from "@electrojs/common";
 import { describe, expect, it } from "vitest";
 import { scanModules } from "../src/modules/scanner";
 import { validateAppDefinition } from "../src/modules/validator";

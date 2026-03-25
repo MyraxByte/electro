@@ -8,14 +8,14 @@
         "electron",
         "scaffold"
     ],
-    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "homepage": "https://github.com/MyraxByte/electro#readme",
     "bugs": {
-        "url": "https://github.com/cordy-dev/electro/issues"
+        "url": "https://github.com/MyraxByte/electro/issues"
     },
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cordy-dev/electro.git",
+        "url": "git+https://github.com/MyraxByte/electro.git",
         "directory": "packages/create-electro"
     },
     "bin": {

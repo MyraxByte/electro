@@ -1,4 +1,4 @@
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import { resolve } from "node:path";
 
 export default defineViewConfig({

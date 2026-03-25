@@ -1,26 +1,26 @@
-# @electro/runtime
+# @electrojs/runtime
 
 The main-process runtime for Electro applications.
 
-`@electro/runtime` manages the full lifecycle of an Electron main process: scanning decorator metadata, building the module graph, wiring dependency injection, running lifecycle hooks, exposing a typed IPC bridge, dispatching signals, and scheduling background jobs. It is the layer between your application code and the Electron APIs.
+`@electrojs/runtime` manages the full lifecycle of an Electron main process: scanning decorator metadata, building the module graph, wiring dependency injection, running lifecycle hooks, exposing a typed IPC bridge, dispatching signals, and scheduling background jobs. It is the layer between your application code and the Electron APIs.
 
 ---
 
 ## Installation
 
 ```bash
-npm install @electro/runtime
+npm install @electrojs/runtime
 ```
 
-> Peer dependency: `@electro/common` must be installed alongside.
+> Peer dependency: `@electrojs/common` must be installed alongside.
 
 ---
 
 ## Quick start
 
 ```ts
-import { Module, Injectable, command, query } from "@electro/common";
-import { AppKernel, createConsoleLogger } from "@electro/runtime";
+import { Module, Injectable, command, query } from "@electrojs/common";
+import { AppKernel, createConsoleLogger } from "@electrojs/runtime";
 
 @Injectable()
 class GreetingService {
@@ -82,7 +82,7 @@ Providers are classes decorated with `@Injectable()`. They hold business logic, 
 Inject dependencies with the `inject()` function:
 
 ```ts
-import { inject, Injector } from "@electro/runtime";
+import { inject, Injector } from "@electrojs/runtime";
 
 @Injectable()
 class AuthService {
@@ -317,29 +317,29 @@ class MainView extends ViewProvider {
 
 ```ts
 // App
-import { AppKernel } from "@electro/runtime";
+import { AppKernel } from "@electrojs/runtime";
 
 // Container
-import { inject, InjectionContext, Injector } from "@electro/runtime";
+import { inject, InjectionContext, Injector } from "@electrojs/runtime";
 
 // Modules
-import { ModuleRef, ProviderRef, ModuleRegistry } from "@electro/runtime";
-import { scanModules, validateAppDefinition } from "@electro/runtime";
+import { ModuleRef, ProviderRef, ModuleRegistry } from "@electrojs/runtime";
+import { scanModules, validateAppDefinition } from "@electrojs/runtime";
 
 // Signals
-import { SignalBus, SignalContext } from "@electro/runtime";
+import { SignalBus, SignalContext } from "@electrojs/runtime";
 
 // Jobs
-import { JobContext, JobRegistry } from "@electro/runtime";
+import { JobContext, JobRegistry } from "@electrojs/runtime";
 
 // Desktop
-import { WindowProvider, ViewProvider, WindowManager, ViewManager, RendererRegistry, RendererSession } from "@electro/runtime";
+import { WindowProvider, ViewProvider, WindowManager, ViewManager, RendererRegistry, RendererSession } from "@electrojs/runtime";
 
 // Bridge
-import { BridgeAccessGuard, BridgeDispatcher, BridgeHandler, serializeBridgeError } from "@electro/runtime";
+import { BridgeAccessGuard, BridgeDispatcher, BridgeHandler, serializeBridgeError } from "@electrojs/runtime";
 
 // Errors
-import { RuntimeError, BootstrapError, DIError, LifecycleError, BridgeError, SignalError, JobError } from "@electro/runtime";
+import { RuntimeError, BootstrapError, DIError, LifecycleError, BridgeError, SignalError, JobError } from "@electrojs/runtime";
 ```
 
 Type-only imports:
@@ -368,7 +368,7 @@ import type {
     ContextualSignalHandler,
     ProviderKind,
     BridgeMethodKind,
-} from "@electro/runtime";
+} from "@electrojs/runtime";
 ```
 
 ---
@@ -376,11 +376,11 @@ import type {
 ## Package layering
 
 ```txt
-@electro/common        ← decorators, metadata, DI primitives
+@electrojs/common        ← decorators, metadata, DI primitives
     ↑
-@electro/runtime       ← this package: DI container, lifecycle, bridge, signals, jobs, desktop
+@electrojs/runtime       ← this package: DI container, lifecycle, bridge, signals, jobs, desktop
     ↑
-@electro/renderer      ← renderer-side bridge client, signal subscriptions
+@electrojs/renderer      ← renderer-side bridge client, signal subscriptions
 ```
 
-`@electro/common` defines the shared vocabulary. `@electro/runtime` implements the main-process engine. `@electro/renderer` provides the renderer-side counterpart.
+`@electrojs/common` defines the shared vocabulary. `@electrojs/runtime` implements the main-process engine. `@electrojs/renderer` provides the renderer-side counterpart.

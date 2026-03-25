@@ -2,7 +2,7 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
     test: {
-        name: "@electro/runtime",
+        name: "@electrojs/runtime",
         environment: "node",
         globals: true,
         include: ["tests/**/*.spec.ts"],

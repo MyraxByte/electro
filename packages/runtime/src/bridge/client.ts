@@ -3,7 +3,7 @@
  * to the main process via Electron IPC.
  *
  * This function is called inside generated preload scripts. It returns an object
- * matching the {@link RendererPreloadApi} contract expected by `@electro/renderer`:
+ * matching the {@link RendererPreloadApi} contract expected by `@electrojs/renderer`:
  * - `invoke(channel, payload)` — sends a bridge request to the main process
  * - `subscribe(signalKey, listener)` — listens for signals forwarded from the main process
  * - `once(signalKey, listener)` — like `subscribe`, but auto-removes after the first match
@@ -11,10 +11,10 @@
  * On creation the client sends an `electro:register` message so the main process
  * can create a {@link RendererSession} for this renderer's `webContentsId`.
  *
- * @example Generated preload script (produced by `@electro/codegen`):
+ * @example Generated preload script (produced by `@electrojs/codegen`):
  * ```ts
  * import { contextBridge, ipcRenderer } from "electron";
- * import { createBridgeClient } from "@electro/runtime";
+ * import { createBridgeClient } from "@electrojs/runtime";
  *
  * contextBridge.exposeInMainWorld("__ELECTRO_RENDERER__", createBridgeClient({
  *     viewId: "main",

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { createNodeConfig } from "./vite-node-config";
 
 describe("createNodeConfig()", () => {
-    it("bundles @electro/runtime preload client subpaths", () => {
+    it("bundles @electrojs/runtime preload client subpaths", () => {
         const config = createNodeConfig({
             scope: "preload",
             root: "/workspace/app",
@@ -18,7 +18,7 @@ describe("createNodeConfig()", () => {
 
         const runtimePattern = noExternal?.[0];
         expect(runtimePattern).toBeInstanceOf(RegExp);
-        expect((runtimePattern as RegExp).test("@electro/runtime")).toBe(true);
-        expect((runtimePattern as RegExp).test("@electro/runtime/client")).toBe(true);
+        expect((runtimePattern as RegExp).test("@electrojs/runtime")).toBe(true);
+        expect((runtimePattern as RegExp).test("@electrojs/runtime/client")).toBe(true);
     });
 });

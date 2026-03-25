@@ -120,7 +120,7 @@ export function generateRegistry(scanResult: ScanResult, outputDir: string): Gen
             : "";
 
     const content = `${GENERATED_HEADER}
-import type { ${typeImports.join(", ")} } from "@electro/runtime";
+import type { ${typeImports.join(", ")} } from "@electrojs/runtime";
 ${importLines.length > 0 ? `${importLines.join("\n")}\n` : ""}
 export const electroModules = ${moduleArray} as const satisfies readonly ModuleClass[];
 export const electroWindows = ${windowArray} as const satisfies readonly WindowClass[];

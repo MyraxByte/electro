@@ -35,9 +35,9 @@ Signals are a typed, one-way event system for broadcasting notifications within 
 Inject `SignalBus` and call `publish()`.
 
 ```ts
-import { Injectable, command } from "@electro/common";
-import { inject } from "@electro/runtime";
-import { SignalBus } from "@electro/runtime";
+import { Injectable, command } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
+import { SignalBus } from "@electrojs/runtime";
 
 @Injectable()
 export class AuthService {
@@ -79,9 +79,9 @@ The method receives two arguments:
 | `payload` | `T`             | The data published with the signal |
 
 ```ts
-import { Injectable, signal } from "@electro/common";
-import { inject } from "@electro/runtime";
-import { SignalContext } from "@electro/runtime";
+import { Injectable, signal } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
+import { SignalContext } from "@electrojs/runtime";
 
 @Injectable()
 export class WorkspaceService {
@@ -130,7 +130,7 @@ In Renderer code, subscribe via `signals`. Always unsubscribe on cleanup.
 
 ```tsx
 import { useEffect } from "react";
-import { signals } from "@electro/renderer";
+import { signals } from "@electrojs/renderer";
 
 function AppShell() {
     const [user, setUser] = useState(null);

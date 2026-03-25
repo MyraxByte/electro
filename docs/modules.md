@@ -20,8 +20,8 @@ Modules do **not** have direct access to `SignalBus` or `JobRegistry`. Signal su
 ## Defining a Module
 
 ```ts
-import { Module } from "@electro/common";
-import { inject } from "@electro/runtime";
+import { Module } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
 import { AuthService } from "./auth.service";
 import { HttpModule } from "../http/http.module";
 import { ConfigModule } from "../config/config.module";

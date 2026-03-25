@@ -1,5 +1,5 @@
-import { Module } from "@electro/common";
-import { inject, SignalBus } from "@electro/runtime";
+import { Module } from "@electrojs/common";
+import { inject, SignalBus } from "@electrojs/runtime";
 import { app } from "electron";
 import { SettingsModule } from "../settings/settings.module";
 import { DeeplinkerModule } from "../deeplinker/deeplinker.module";

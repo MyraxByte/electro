@@ -1,4 +1,4 @@
-import type { ClassToken, Constructor, InjectionToken, ProviderScope } from "@electro/common";
+import type { ClassToken, Constructor, InjectionToken, ProviderScope } from "@electrojs/common";
 
 /**
  * Internal record for a class-based provider registered in an {@link Injector}.

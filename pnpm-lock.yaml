@@ -67,13 +67,13 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2(@types/node@25.5.0)(esbuild@0.27.4)(tsx@4.21.0)(yaml@2.8.3)
     devDependencies:
-      '@electro/codegen':
+      '@electrojs/codegen':
         specifier: workspace:*
         version: link:../codegen
-      '@electro/config':
+      '@electrojs/config':
         specifier: workspace:*
         version: link:../config
-      '@electro/runtime':
+      '@electrojs/runtime':
         specifier: workspace:*
         version: link:../runtime
       tsdown:
@@ -95,13 +95,13 @@ importers:
         specifier: ^0.2.15
         version: 0.2.15
     devDependencies:
-      '@electro/common':
+      '@electrojs/common':
         specifier: workspace:*
         version: link:../common
-      '@electro/config':
+      '@electrojs/config':
         specifier: workspace:*
         version: link:../config
-      '@electro/runtime':
+      '@electrojs/runtime':
         specifier: workspace:*
         version: link:../runtime
       tsdown:
@@ -120,7 +120,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: workspace:*
         version: link:../config
       '@vitest/coverage-v8':
@@ -166,7 +166,7 @@ importers:
 
   packages/renderer:
     devDependencies:
-      '@electro/config':
+      '@electrojs/config':
         specifier: workspace:*
         version: link:../config
       '@vitest/browser-playwright':
@@ -203,10 +203,10 @@ importers:
         specifier: '>=41'
         version: 41.0.4
     devDependencies:
-      '@electro/common':
+      '@electrojs/common':
         specifier: workspace:*
         version: link:../common
-      '@electro/config':
+      '@electrojs/config':
         specifier: workspace:*
         version: link:../config
       '@vitest/coverage-v8':

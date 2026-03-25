@@ -1,5 +1,5 @@
 {
-    "extends": "@electro/config/tsconfig/library.json",
+    "extends": "@electrojs/config/tsconfig/library.json",
     "compilerOptions": {
         "types": ["@types/node", "vite/client"]
     },

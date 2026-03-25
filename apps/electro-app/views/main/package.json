@@ -4,8 +4,8 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/config": "link:../../../../packages/config",
-        "@electro/renderer": "link:../../../../packages/renderer",
+        "@electrojs/config": "link:../../../../packages/config",
+        "@electrojs/renderer": "link:../../../../packages/renderer",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "@vitejs/devtools": "^0.1.11",

@@ -1,4 +1,4 @@
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import babel from "@rolldown/plugin-babel";
 import tailwind from "@tailwindcss/vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";

@@ -1,9 +1,9 @@
-import { Injectable } from "@electro/common";
+import { Injectable } from "@electrojs/common";
 import { join } from "node:path";
 import { SettingsService } from "../settings/settings.service";
 import { StorageService } from "../storage/storage.service";
 import { SerializedRequest, SerializedResponse } from "./http.interface";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 
 @Injectable()
 export class HttpService {

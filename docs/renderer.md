@@ -1,6 +1,6 @@
 # Renderer
 
-The renderer side of Electro is a normal frontend package that uses `@electro/renderer`.
+The renderer side of Electro is a normal frontend package that uses `@electrojs/renderer`.
 
 Each view package owns:
 
@@ -34,7 +34,7 @@ The package-local `electro-env.d.ts` is what provides typed `bridge` and `signal
 ## `view.config.ts`
 
 ```ts
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import react from "@vitejs/plugin-react";
 
 export default defineViewConfig({
@@ -53,7 +53,7 @@ export default defineViewConfig({
 Use `ElectroRenderer.initialize(...)`.
 
 ```tsx
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import ReactDOM from "react-dom/client";
 import { App } from "./app";
 
@@ -74,10 +74,10 @@ This does three things:
 
 ## Bridge
 
-Import `bridge` from `@electro/renderer`:
+Import `bridge` from `@electrojs/renderer`:
 
 ```ts
-import { bridge } from "@electro/renderer";
+import { bridge } from "@electrojs/renderer";
 
 const notes = await bridge.notes.getNotes();
 await bridge.notes.createNote("Title", "Body");
@@ -89,10 +89,10 @@ The available namespaces and methods are generated from runtime source and const
 
 ## Signals
 
-Import `signals` from `@electro/renderer`:
+Import `signals` from `@electrojs/renderer`:
 
 ```ts
-import { signals } from "@electro/renderer";
+import { signals } from "@electrojs/renderer";
 
 const subscription = signals.subscribe("notes:changed", (payload) => {
     console.log(payload);
@@ -115,7 +115,7 @@ Signal keys and payloads are also generated from runtime source and constrained 
 
 ## Typing Model
 
-Electro augments `@electro/renderer` inside each view package's `electro-env.d.ts`.
+Electro augments `@electrojs/renderer` inside each view package's `electro-env.d.ts`.
 
 That means you do not manually write bridge typings in renderer code. You only:
 

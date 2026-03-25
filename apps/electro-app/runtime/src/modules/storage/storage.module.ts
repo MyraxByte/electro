@@ -1,10 +1,10 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { SettingsModule } from "../settings/settings.module";
 
 import { app } from "electron";
 import { SettingsService } from "../settings/settings.service";
 import { StorageService } from "./storage.service";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 
 @Module({
     imports: [SettingsModule],

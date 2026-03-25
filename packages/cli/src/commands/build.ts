@@ -1,6 +1,6 @@
 import { mkdir, readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { dirname, join, relative, resolve } from "node:path";
-import { type PackageTypeTarget, generate, scan } from "@electro/codegen";
+import { type PackageTypeTarget, generate, scan } from "@electrojs/codegen";
 import { build as viteBuild, version as viteVersion } from "vite";
 import { loadConfig } from "../dev/config-loader";
 import { resolveExternals } from "../dev/externals";

@@ -1,6 +1,6 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { app } from "electron";
-import { inject, SignalBus } from "@electro/runtime";
+import { inject, SignalBus } from "@electrojs/runtime";
 import { StartupWindow } from "./startup.window";
 import { StartupView } from "./startup.view";
 import { SettingsModule } from "../settings/settings.module";

@@ -1,4 +1,4 @@
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./app";

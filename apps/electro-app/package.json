@@ -10,8 +10,8 @@
         "generate": "electro generate"
     },
     "dependencies": {
-        "@electro/cli": "link:../../packages/cli",
-        "@electro/config": "link:../../packages/config"
+        "@electrojs/cli": "link:../../packages/cli",
+        "@electrojs/config": "link:../../packages/config"
     },
     "devDependencies": {
         "@types/node": "^25.5.0",

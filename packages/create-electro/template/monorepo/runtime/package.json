@@ -4,9 +4,9 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electro/common": "__FRAMEWORK_VERSION__",
-        "@electro/config": "__FRAMEWORK_VERSION__",
-        "@electro/runtime": "__FRAMEWORK_VERSION__",
+        "@electrojs/common": "__FRAMEWORK_VERSION__",
+        "@electrojs/config": "__FRAMEWORK_VERSION__",
+        "@electrojs/runtime": "__FRAMEWORK_VERSION__",
         "@types/node": "__NODE_TYPES_VERSION__",
         "electron": "__ELECTRON_VERSION__",
         "typescript": "__TYPESCRIPT_VERSION__",

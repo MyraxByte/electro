@@ -1,8 +1,8 @@
-# @electro/renderer
+# @electrojs/renderer
 
 Typed renderer-side runtime for Electro applications.
 
-`@electro/renderer` is the only public entrypoint that renderer code uses to talk to the Electro runtime. It exposes:
+`@electrojs/renderer` is the only public entrypoint that renderer code uses to talk to the Electro runtime. It exposes:
 
 - `ElectroRenderer.initialize(...)` — bootstraps the renderer package
 - `bridge` — typed query/command API
@@ -15,7 +15,7 @@ This package does **not** know anything about preload implementation details bey
 ## Installation
 
 ```bash
-npm install @electro/renderer
+npm install @electrojs/renderer
 ```
 
 ---
@@ -34,7 +34,7 @@ Bridge and signal types are provided through declaration merging.
 ## Quick start
 
 ```ts
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import { createRoot } from "react-dom/client";
 import { App } from "./app";
 
@@ -54,7 +54,7 @@ After initialization finishes, `bridge` and `signals` are ready to use.
 Initializes the renderer package exactly once.
 
 ```ts
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 
 await ElectroRenderer.initialize(async () => {
     // renderer bootstrap logic
@@ -82,7 +82,7 @@ await ElectroRenderer.initialize(async () => {
 `bridge` is a lazily resolved typed proxy.
 
 ```ts
-import { bridge } from "@electro/renderer";
+import { bridge } from "@electrojs/renderer";
 
 const user = await bridge.auth.getMe();
 await bridge.auth.login("john@example.com", "secret");
@@ -124,7 +124,7 @@ await bridge.project.create({ name: "Electro" });
 `signals` provides typed subscription helpers.
 
 ```ts
-import { signals } from "@electro/renderer";
+import { signals } from "@electrojs/renderer";
 
 const subscription = signals.subscribe("auth:user-logged-in", (payload) => {
     console.log(payload);
@@ -176,7 +176,7 @@ Generated code augments them.
 Example:
 
 ```ts
-declare module "@electro/renderer" {
+declare module "@electrojs/renderer" {
     interface BridgeQueries {
         "auth:getMe": {
             input: undefined;
@@ -233,7 +233,7 @@ This package does not create that object. It only consumes it.
 
 ```tsx
 import { useEffect, useState } from "react";
-import { bridge, signals } from "@electro/renderer";
+import { bridge, signals } from "@electrojs/renderer";
 
 export function App(): JSX.Element {
     const [email, setEmail] = useState<string | null>(null);
@@ -302,7 +302,7 @@ Examples:
 Example:
 
 ```ts
-import { ElectroRenderer, RendererInitializationError } from "@electro/renderer";
+import { ElectroRenderer, RendererInitializationError } from "@electrojs/renderer";
 
 try {
     await ElectroRenderer.initialize();
@@ -380,7 +380,7 @@ Both root and namespace proxies explicitly return `undefined` for `"then"` to av
 ## Exports
 
 ```ts
-import { bridge, signals, ElectroRenderer, RendererError, RendererInitializationError, RendererTransportError, RendererUsageError } from "@electro/renderer";
+import { bridge, signals, ElectroRenderer, RendererError, RendererInitializationError, RendererTransportError, RendererUsageError } from "@electrojs/renderer";
 ```
 
 Type exports:
@@ -394,7 +394,7 @@ import type {
     RendererPreloadApi,
     RendererSignalListener,
     RendererSignalSubscription,
-} from "@electro/renderer";
+} from "@electrojs/renderer";
 ```
 
 ---
@@ -426,6 +426,6 @@ Keep preload implementation thin and transport-focused. Business logic belongs i
 
 ## Browser requirement
 
-`@electro/renderer` expects a browser-like environment with a `window` global.
+`@electrojs/renderer` expects a browser-like environment with a `window` global.
 
 Running tests in plain Node.js without browser mode or DOM emulation will fail for code paths that access `window`.

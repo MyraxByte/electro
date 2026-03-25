@@ -1,4 +1,4 @@
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
     runtime: "runtime",

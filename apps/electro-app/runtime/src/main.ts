@@ -1,4 +1,4 @@
-import { AppKernel } from "@electro/runtime";
+import { AppKernel } from "@electrojs/runtime";
 import { app } from "electron";
 import { AppModule } from "./modules/app.module";
 

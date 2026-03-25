@@ -1,5 +1,5 @@
-import { Window } from "@electro/common";
-import { inject, WindowProvider } from "@electro/runtime";
+import { Window } from "@electrojs/common";
+import { inject, WindowProvider } from "@electrojs/runtime";
 import { MainView } from "./app.view";
 
 @Window({

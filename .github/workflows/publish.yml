@@ -38,37 +38,37 @@ jobs:
       - name: Test
         run: pnpm run test
 
-      - name: Publish @electro/common
+      - name: Publish @electrojs/common
         working-directory: packages/common
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @electro/config
+      - name: Publish @electrojs/config
         working-directory: packages/config
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @electro/renderer
+      - name: Publish @electrojs/renderer
         working-directory: packages/renderer
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @electro/runtime
+      - name: Publish @electrojs/runtime
         working-directory: packages/runtime
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @electro/codegen
+      - name: Publish @electrojs/codegen
         working-directory: packages/codegen
         run: pnpm publish --access public --no-git-checks
         env:
           NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @electro/cli
+      - name: Publish @electrojs/cli
         working-directory: packages/cli
         run: pnpm publish --access public --no-git-checks
         env:

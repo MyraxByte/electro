@@ -1,5 +1,5 @@
-import type { Constructor, MethodMetadata, ProviderScope } from "@electro/common";
-import { getInjectableMetadata, getMethodsMetadataByClass, getModuleMetadata, getViewMetadata, getWindowMetadata, Ref } from "@electro/common";
+import type { Constructor, MethodMetadata, ProviderScope } from "@electrojs/common";
+import { getInjectableMetadata, getMethodsMetadataByClass, getModuleMetadata, getViewMetadata, getWindowMetadata, Ref } from "@electrojs/common";
 import { BootstrapError } from "../errors/bootstrap";
 
 // --- Static Definition Types (serializable for tooling) ---

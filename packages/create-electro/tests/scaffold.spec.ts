@@ -32,7 +32,7 @@ describe("scaffoldProject", () => {
 
         const rootPackageJson = await readFile(join(projectDir, "package.json"), "utf8");
         expect(rootPackageJson).toContain(`"name": "my-notes-app"`);
-        expect(rootPackageJson).toContain(`"@electro/cli": "2.0.0"`);
+        expect(rootPackageJson).toContain(`"@electrojs/cli": "2.0.0"`);
     });
 
     it("refuses to write into a non-empty directory without force", async () => {

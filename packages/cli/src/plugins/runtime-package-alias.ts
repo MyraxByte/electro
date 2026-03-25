@@ -2,10 +2,10 @@ import { dirname, resolve } from "node:path";
 import { normalizePath, type Plugin } from "vite";
 
 export function runtimePackageAliasPlugin(runtimeConfigPath: string): Plugin {
-    const runtimePackageRoot = resolve(dirname(runtimeConfigPath), "node_modules/@electro/runtime");
+    const runtimePackageRoot = resolve(dirname(runtimeConfigPath), "node_modules/@electrojs/runtime");
     const aliases = new Map<string, string>([
-        ["@electro/runtime", normalizePath(resolve(runtimePackageRoot, "dist/index.mjs"))],
-        ["@electro/runtime/client", normalizePath(resolve(runtimePackageRoot, "dist/client.mjs"))],
+        ["@electrojs/runtime", normalizePath(resolve(runtimePackageRoot, "dist/index.mjs"))],
+        ["@electrojs/runtime/client", normalizePath(resolve(runtimePackageRoot, "dist/client.mjs"))],
     ]);
 
     return {

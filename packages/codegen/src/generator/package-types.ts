@@ -105,7 +105,7 @@ function bridgeOutputTypeRef(fromFile: string, entry: AllowedMethodEntry): strin
 }
 
 function methodContractTypeRef(fromFile: string, entry: AllowedMethodEntry): string {
-    return `import("@electro/renderer").BridgeContractEntry<${bridgeInputTypeRef(fromFile, entry)}, ${bridgeOutputTypeRef(fromFile, entry)}>`;
+    return `import("@electrojs/renderer").BridgeContractEntry<${bridgeInputTypeRef(fromFile, entry)}, ${bridgeOutputTypeRef(fromFile, entry)}>`;
 }
 
 function signalTypeRef(fromFile: string, entry: AllowedSignalEntry): string {
@@ -144,7 +144,7 @@ function generateBridgeSection(view: ScannedView, modules: readonly ScannedModul
     const commandEntries = methodEntries("command");
     const signalEntries = allowedSignals.map((entry) => `        ${JSON.stringify(entry.signal.id)}: ${signalTypeRef(fromFile, entry)};`).join("\n");
 
-    return `declare module "@electro/renderer" {
+    return `declare module "@electrojs/renderer" {
     interface BridgeQueries {
 ${queryEntries}
     }

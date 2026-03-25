@@ -62,7 +62,7 @@ Electro still generates internal build artifacts under `.electro/generated`, but
 Electro has two execution worlds:
 
 - runtime: Electron main process, modules, providers, windows, views, jobs, signals
-- renderer: per-view frontend bundles that use `@electro/renderer`
+- renderer: per-view frontend bundles that use `@electrojs/renderer`
 
 The renderer never talks to Electron directly. It only uses:
 

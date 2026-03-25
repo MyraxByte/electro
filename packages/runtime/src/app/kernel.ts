@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import { BridgeAccessGuard } from "../bridge/access-guard";
 import { BridgeDispatcher } from "../bridge/dispatcher";
 import type { Injector } from "../container/injector";
@@ -44,7 +44,7 @@ const ALLOWED_KERNEL_TRANSITIONS: Readonly<Record<KernelState, readonly KernelSt
 };
 
 /**
- * The main entry point for an `@electro/runtime` application.
+ * The main entry point for an `@electrojs/runtime` application.
  *
  * `AppKernel` orchestrates the full application lifecycle: scanning decorator metadata,
  * validating the module graph, creating the DI container, loading modules, installing

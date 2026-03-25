@@ -7,8 +7,8 @@ A **Provider** is any class decorated with `@Injectable`. Providers are the prim
 ## Defining a Provider
 
 ```ts
-import { Injectable } from "@electro/common";
-import { inject } from "@electro/runtime";
+import { Injectable } from "@electrojs/common";
+import { inject } from "@electrojs/runtime";
 
 @Injectable()
 export class AuthService {

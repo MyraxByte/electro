@@ -1,7 +1,7 @@
 import "@/shared/css/index.css";
 import { PlatformProvider } from "@/shared/ui/platform/provider";
 import { Surface } from "@/shared/ui/platform/surface";
-import { ElectroRenderer } from "@electro/renderer";
+import { ElectroRenderer } from "@electrojs/renderer";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { SplashScreen } from "./splash-screen";

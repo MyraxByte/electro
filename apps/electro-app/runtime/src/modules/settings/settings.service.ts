@@ -1,4 +1,4 @@
-import { Injectable, query } from "@electro/common";
+import { Injectable, query } from "@electrojs/common";
 import { is } from "@electron-toolkit/utils";
 import { app } from "electron";
 import { createHash } from "node:crypto";

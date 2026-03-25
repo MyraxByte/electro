@@ -32,7 +32,7 @@ type _BridgeOutputFromMethod<T, K extends PropertyKey> =
             : never
         : never;
 
-declare module "@electro/renderer" {
+declare module "@electrojs/renderer" {
     interface BridgeQueries {
 
     }

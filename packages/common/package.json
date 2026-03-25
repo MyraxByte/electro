@@ -1,12 +1,12 @@
 {
-    "name": "@electro/common",
+    "name": "@electrojs/common",
     "version": "1.0.0",
-    "description": "Common utilities for @electro",
-    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "description": "Common utilities for @electrojs",
+    "homepage": "https://github.com/MyraxByte/electro#readme",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cordy-dev/electro.git",
+        "url": "git+https://github.com/MyraxByte/electro.git",
         "directory": "packages/common"
     },
     "files": [
@@ -33,7 +33,7 @@
         "reflect-metadata": "^0.2.2"
     },
     "devDependencies": {
-        "@electro/config": "workspace:*",
+        "@electrojs/config": "workspace:*",
         "@vitest/coverage-v8": "^4.1.1",
         "@vitest/ui": "^4.1.1",
         "publint": "^0.3.18",
@@ -41,7 +41,7 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electro/config": ">=1.0.0",
+        "@electrojs/config": ">=1.0.0",
         "electron": ">=41"
     }
 }

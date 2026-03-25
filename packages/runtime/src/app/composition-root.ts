@@ -1,4 +1,4 @@
-import type { Constructor } from "@electro/common";
+import type { Constructor } from "@electrojs/common";
 import { Injector } from "../container/injector";
 import type { ModuleRef } from "../modules/refs";
 import type { AppDefinition } from "../modules/scanner";

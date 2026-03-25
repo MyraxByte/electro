@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { bridge } from "@electro/renderer";
+import { bridge } from "@electrojs/renderer";
 
 // In a real app, this package's generated `electro-env.d.ts`
 // makes `bridge` fully typed automatically.

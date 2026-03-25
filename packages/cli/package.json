@@ -1,5 +1,5 @@
 {
-    "name": "@electro/cli",
+    "name": "@electrojs/cli",
     "version": "1.0.0",
     "description": "CLI for @electro — dev server, build, and code generation commands",
     "keywords": [
@@ -9,14 +9,14 @@
         "electron",
         "vite"
     ],
-    "homepage": "https://github.com/cordy-dev/electro#readme",
+    "homepage": "https://github.com/MyraxByte/electro#readme",
     "bugs": {
-        "url": "https://github.com/cordy-dev/electro/issues"
+        "url": "https://github.com/MyraxByte/electro/issues"
     },
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/cordy-dev/electro.git",
+        "url": "git+https://github.com/MyraxByte/electro.git",
         "directory": "packages/cli"
     },
     "bin": {
@@ -49,16 +49,16 @@
         "oxc-resolver": "^11.19.1"
     },
     "devDependencies": {
-        "@electro/codegen": "workspace:*",
-        "@electro/config": "workspace:*",
-        "@electro/runtime": "workspace:*",
+        "@electrojs/codegen": "workspace:*",
+        "@electrojs/config": "workspace:*",
+        "@electrojs/runtime": "workspace:*",
         "tsdown": "catalog:",
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electro/codegen": ">=1",
-        "@electro/config": ">=1",
-        "@electro/runtime": ">=1",
+        "@electrojs/codegen": ">=1",
+        "@electrojs/config": ">=1",
+        "@electrojs/runtime": ">=1",
         "@types/node": "^25.5.0",
         "electron": ">=41",
         "vite": "^8.0.2"

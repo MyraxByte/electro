@@ -1,8 +1,8 @@
-import { Module } from "@electro/common";
+import { Module } from "@electrojs/common";
 import { SettingsModule } from "../settings/settings.module";
 
 import { UpdaterService } from "./updater.service";
-import { inject } from "@electro/runtime";
+import { inject } from "@electrojs/runtime";
 
 @Module({
     imports: [SettingsModule],

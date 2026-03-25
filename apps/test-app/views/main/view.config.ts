@@ -1,4 +1,4 @@
-import { defineViewConfig } from "@electro/config";
+import { defineViewConfig } from "@electrojs/config";
 import react from "@vitejs/plugin-react";
 
 export default defineViewConfig({

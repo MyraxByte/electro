@@ -1,11 +1,11 @@
-import { command, Injectable, query } from "@electro/common";
+import { command, Injectable, query } from "@electrojs/common";
 import { shell } from "electron";
 import { join } from "node:path";
 import { SettingsService } from "../settings/settings.service";
 import { DeeplinkerService } from "../deeplinker/deeplinker.service";
 import { HttpService } from "../http/http.service";
 import { StorageService } from "../storage/storage.service";
-import { inject, SignalBus } from "@electro/runtime";
+import { inject, SignalBus } from "@electrojs/runtime";
 
 @Injectable()
 export class AuthService {

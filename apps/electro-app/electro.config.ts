@@ -1,4 +1,4 @@
-import { defineElectroConfig } from "@electro/config";
+import { defineElectroConfig } from "@electrojs/config";
 
 // Monorepo-style config: each sub-package is referenced by workspace name.
 // The CLI resolves runtime and views by scanning the workspace for matching package.json names.

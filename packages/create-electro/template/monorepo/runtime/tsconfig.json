@@ -1,5 +1,5 @@
 {
-    "extends": "@electro/config/tsconfig/base.json",
+    "extends": "@electrojs/config/tsconfig/base.json",
     "compilerOptions": {
         "outDir": "./out",
         "types": ["@types/node"],

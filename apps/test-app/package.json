@@ -10,10 +10,10 @@
         "generate": "electro generate"
     },
     "devDependencies": {
-        "@electro/cli": "link:../../packages/cli",
-        "@electro/codegen": "link:../../packages/codegen",
-        "@electro/config": "link:../../packages/config",
-        "@electro/runtime": "link:../../packages/runtime",
+        "@electrojs/cli": "link:../../packages/cli",
+        "@electrojs/codegen": "link:../../packages/codegen",
+        "@electrojs/config": "link:../../packages/config",
+        "@electrojs/runtime": "link:../../packages/runtime",
         "@types/node": "^25.5.0",
         "electron": "41.0.4",
         "typescript": "^6.0.2",
