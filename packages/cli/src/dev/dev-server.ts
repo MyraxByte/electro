@@ -296,7 +296,6 @@ export class DevServer {
                 this.readyEndpoints = [];
                 await Promise.allSettled(closePromises);
             }
-
         })();
 
         await this.stopPromise;
@@ -429,7 +428,9 @@ export class DevServer {
 
     private logDevToolsHints(): void {
         if (this.isRuntimeDevToolsEnabled()) {
-            note("Vite config `devtools` is enabled for runtime, but this Vite version supports that flag only in build mode. `electro dev` will not expose a DevTools UI for main/preload.");
+            note(
+                "Vite config `devtools` is enabled for runtime, but this Vite version supports that flag only in build mode. `electro dev` will not expose a DevTools UI for main/preload.",
+            );
         }
 
         if (this.rendererDevToolsEnabled.size === 0) {
@@ -441,7 +442,9 @@ export class DevServer {
             if (!this.rendererDevToolsEnabled.has(view.id)) continue;
 
             const label = multipleViews ? `renderer:${view.id}` : "renderer";
-            note(`Vite config \`devtools\` is enabled for ${label}, but this Vite version supports that flag only in build mode. \`electro dev\` will not expose a DevTools UI for it.`);
+            note(
+                `Vite config \`devtools\` is enabled for ${label}, but this Vite version supports that flag only in build mode. \`electro dev\` will not expose a DevTools UI for it.`,
+            );
         }
     }
 

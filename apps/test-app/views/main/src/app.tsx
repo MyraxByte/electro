@@ -51,15 +51,11 @@ export function App() {
                     Electro Starter
                 </span>
                 <h1 className="hero-heading">
-                    You're all set.{" "}
-                    <span className="hero-heading-dim">
-                        Start building.
-                    </span>
+                    You're all set. <span className="hero-heading-dim">Start building.</span>
                 </h1>
                 <p className="hero-sub">
-                    This view talks to the runtime through a typed{" "}
-                    <code>bridge</code> — commands, queries, and signals
-                    cross the IPC boundary with full type safety.
+                    This view talks to the runtime through a typed <code>bridge</code> — commands, queries, and signals cross the IPC boundary with full type
+                    safety.
                 </p>
             </section>
 
@@ -72,9 +68,7 @@ export function App() {
                             <span className="demo-dot" />
                             <span className="demo-dot" />
                         </div>
-                        <span className="demo-toolbar-title">
-                            @views/main
-                        </span>
+                        <span className="demo-toolbar-title">@views/main</span>
                     </div>
 
                     <div className="demo-body">
@@ -82,7 +76,9 @@ export function App() {
                             <span className="sidebar-label">Create</span>
                             <div className="form">
                                 <div className="field">
-                                    <label className="field-label" htmlFor="note-title">Title</label>
+                                    <label className="field-label" htmlFor="note-title">
+                                        Title
+                                    </label>
                                     <input
                                         ref={titleRef}
                                         id="note-title"
@@ -93,7 +89,9 @@ export function App() {
                                     />
                                 </div>
                                 <div className="field">
-                                    <label className="field-label" htmlFor="note-content">Content</label>
+                                    <label className="field-label" htmlFor="note-content">
+                                        Content
+                                    </label>
                                     <textarea
                                         id="note-content"
                                         className="field-input field-textarea"
@@ -102,11 +100,7 @@ export function App() {
                                         onChange={(e) => setContent(e.target.value)}
                                     />
                                 </div>
-                                <button
-                                    className="btn-create"
-                                    onClick={() => void handleCreate()}
-                                    disabled={!title.trim()}
-                                >
+                                <button className="btn-create" onClick={() => void handleCreate()} disabled={!title.trim()}>
                                     Create note
                                     <span className="shortcut">&#8984;&#9166;</span>
                                 </button>
@@ -116,9 +110,7 @@ export function App() {
                         <section className="notes-panel">
                             <div className="notes-bar">
                                 <span className="notes-bar-label">Notes</span>
-                                {notes.length > 0 && (
-                                    <span className="count-pill">{notes.length}</span>
-                                )}
+                                {notes.length > 0 && <span className="count-pill">{notes.length}</span>}
                             </div>
 
                             {notes.length === 0 ? (
@@ -131,31 +123,19 @@ export function App() {
                                     </div>
                                     <p className="empty-heading">No notes yet</p>
                                     <p className="empty-copy">
-                                        Create a note — it crosses the typed{" "}
-                                        <code>bridge</code> to the runtime and back.
+                                        Create a note — it crosses the typed <code>bridge</code> to the runtime and back.
                                     </p>
                                 </div>
                             ) : (
                                 <div className="notes-list">
                                     {notes.map((note, i) => (
-                                        <article
-                                            key={note.id}
-                                            className="note"
-                                            style={{ animationDelay: `${i * 0.03}s` }}
-                                        >
+                                        <article key={note.id} className="note" style={{ animationDelay: `${i * 0.03}s` }}>
                                             <div className="note-body">
                                                 <h2 className="note-title">{note.title}</h2>
-                                                {note.content && (
-                                                    <p className="note-content">{note.content}</p>
-                                                )}
-                                                <time className="note-meta">
-                                                    {new Date(note.createdAt).toLocaleString()}
-                                                </time>
+                                                {note.content && <p className="note-content">{note.content}</p>}
+                                                <time className="note-meta">{new Date(note.createdAt).toLocaleString()}</time>
                                             </div>
-                                            <button
-                                                className="btn-remove"
-                                                onClick={() => void handleDelete(note.id)}
-                                            >
+                                            <button className="btn-remove" onClick={() => void handleDelete(note.id)}>
                                                 Remove
                                             </button>
                                         </article>

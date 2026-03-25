@@ -5,46 +5,55 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? I extends keyof A
-                ? A[I]
-                : void
-            : never
-        : never;
-type _SignalPayloadFromMethod<T, K extends PropertyKey> =
-    _SignalPayloadFromMethodParam<T, K, 0>;
-type _BridgeInputFromMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? A extends []
-                ? undefined
-                : A extends [infer TOnly]
-                    ? TOnly
-                    : A
-            : never
-        : never;
-type _BridgeOutputFromMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer _Args) => infer V
-            ? Awaited<V>
-            : never
-        : never;
+type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? I extends keyof A
+            ? A[I]
+            : void
+        : never
+    : never;
+type _SignalPayloadFromMethod<T, K extends PropertyKey> = _SignalPayloadFromMethodParam<T, K, 0>;
+type _BridgeInputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? A extends []
+            ? undefined
+            : A extends [infer TOnly]
+              ? TOnly
+              : A
+        : never
+    : never;
+type _BridgeOutputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer _Args) => infer V
+        ? Awaited<V>
+        : never
+    : never;
 
 declare module "@electrojs/renderer" {
     interface BridgeQueries {
-        "notes:getNotes": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">>;
-        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">>;
-        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">>;
+        "notes:getNotes": import("@electrojs/renderer").BridgeContractEntry<
+            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">,
+            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "getNotes">
+        >;
+        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<
+            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">,
+            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">
+        >;
+        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<
+            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">,
+            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">
+        >;
     }
 
     interface BridgeCommands {
-        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">>;
-        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">>;
+        "notes:createNote": import("@electrojs/renderer").BridgeContractEntry<
+            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">,
+            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "createNote">
+        >;
+        "notes:deleteNote": import("@electrojs/renderer").BridgeContractEntry<
+            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">,
+            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/notes/notes.service").NotesService, "deleteNote">
+        >;
     }
 
-    interface BridgeSignals {
-
-    }
+    interface BridgeSignals {}
 }

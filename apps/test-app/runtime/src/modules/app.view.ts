@@ -6,7 +6,6 @@ import { ViewProvider } from "@electrojs/runtime";
     source: "view:main",
 })
 export class MainView extends ViewProvider {
-
     public resize(width: number, height: number) {
         this.contentView?.setBounds({ x: 0, y: 0, width, height });
     }

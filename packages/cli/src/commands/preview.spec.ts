@@ -41,10 +41,7 @@ describe("preview()", () => {
                     __source: "/workspace/app/packages/runtime/runtime.config.ts",
                 },
             },
-            views: [
-                { root: "/workspace/app/packages/view-main" },
-                { root: "/workspace/app/packages/view-auth" },
-            ],
+            views: [{ root: "/workspace/app/packages/view-main" }, { root: "/workspace/app/packages/view-auth" }],
         });
         resolveMainEntryPathMock.mockResolvedValue("/workspace/app/dist/main/index.mjs");
         launchElectronMock.mockResolvedValue({
@@ -60,12 +57,7 @@ describe("preview()", () => {
         });
 
         expect(launchElectronMock).toHaveBeenCalledWith({
-            searchRoots: [
-                "/workspace/app",
-                "/workspace/app/packages/runtime",
-                "/workspace/app/packages/view-main",
-                "/workspace/app/packages/view-auth",
-            ],
+            searchRoots: ["/workspace/app", "/workspace/app/packages/runtime", "/workspace/app/packages/view-main", "/workspace/app/packages/view-auth"],
             cwd: "/workspace/app",
             entry: "/workspace/app/dist/main/index.mjs",
         });

@@ -57,12 +57,12 @@ const output = generate({
 
 `generate()` validates the scan result, then produces:
 
-| Output | Path | Description |
-| --- | --- | --- |
-| Preload scripts | `generated/preload/{viewId}.gen.ts` | Per-view bridge client setup via `createBridgeClient()` |
-| Runtime registry | `generated/runtime/registry.gen.ts` | Exports scanned modules, windows, views; identifies root module and creates `electroAppDefinition` |
-| Runtime environment types | `runtime/electro-env.d.ts` | Ambient registry interfaces for runtime authoring: methods, signals, jobs, injectables, windows, views, and class augmentations |
-| View environment types | `views/*/electro-env.d.ts` | Package-local ambient types for `@electrojs/renderer` bridge contracts and forwarded signal payloads |
+| Output                    | Path                                | Description                                                                                                                     |
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Preload scripts           | `generated/preload/{viewId}.gen.ts` | Per-view bridge client setup via `createBridgeClient()`                                                                         |
+| Runtime registry          | `generated/runtime/registry.gen.ts` | Exports scanned modules, windows, views; identifies root module and creates `electroAppDefinition`                              |
+| Runtime environment types | `runtime/electro-env.d.ts`          | Ambient registry interfaces for runtime authoring: methods, signals, jobs, injectables, windows, views, and class augmentations |
+| View environment types    | `views/*/electro-env.d.ts`          | Package-local ambient types for `@electrojs/renderer` bridge contracts and forwarded signal payloads                            |
 
 ---
 
@@ -82,12 +82,12 @@ All diagnostics are collected and thrown as a single `ValidationError` with the 
 
 ## ID derivation
 
-| Entity | Default ID | Override |
-| --- | --- | --- |
-| Module | Class name minus `Module` suffix, lowercased first char | `@Module({ id: "custom" })` |
-| Method | Method name | `@command({ id: "custom" })` / `@query({ id: "custom" })` |
-| View | Extracted from `source: "view:<id>"` | `@View({ id: "custom" })` |
-| Job | Method name | `@job({ id: "custom" })` |
+| Entity | Default ID                                              | Override                                                  |
+| ------ | ------------------------------------------------------- | --------------------------------------------------------- |
+| Module | Class name minus `Module` suffix, lowercased first char | `@Module({ id: "custom" })`                               |
+| Method | Method name                                             | `@command({ id: "custom" })` / `@query({ id: "custom" })` |
+| View   | Extracted from `source: "view:<id>"`                    | `@View({ id: "custom" })`                                 |
+| Job    | Method name                                             | `@job({ id: "custom" })`                                  |
 
 Public bridge keys follow the `module:method` pattern (e.g., `workspace:openProject`). Signal keys follow the `signalId` pattern (e.g., `projectOpened`).
 

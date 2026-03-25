@@ -90,7 +90,7 @@ export function createNodeConfig(opts: NodeConfigOptions): InlineConfig {
 
         ssr: {
             target: "node",
-            noExternal: [/^@electro\/runtime(?:\/.*)?$/],
+            noExternal: [/^@electrojs\/runtime(?:\/.*)?$/],
         },
 
         resolve: {

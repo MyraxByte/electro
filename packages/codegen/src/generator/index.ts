@@ -58,9 +58,7 @@ export function generate(input: GeneratorInput): GeneratorOutput {
     const envTypes = generateEnvTypes(scanResult, srcDir);
 
     // Per-view renderer electro-env.d.ts
-    const packageTypes: readonly PackageTypeOutput[] = input.packageTargets
-        ? generatePackageTypes(scanResult, input.packageTargets)
-        : [];
+    const packageTypes: readonly PackageTypeOutput[] = input.packageTargets ? generatePackageTypes(scanResult, input.packageTargets) : [];
 
     return { files, envTypes, packageTypes };
 }

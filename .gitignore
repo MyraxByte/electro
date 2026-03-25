@@ -41,6 +41,7 @@ coverage/
 
 # AI Agents
 .claude/
+.agents/
 ./**/AGENTS.md
 ./**/CLAUDE.md
 electron-vite

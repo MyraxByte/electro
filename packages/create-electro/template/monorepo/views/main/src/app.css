@@ -42,7 +42,11 @@ body,
 }
 
 body {
-    font-family: "Inter", -apple-system, system-ui, sans-serif;
+    font-family:
+        "Inter",
+        -apple-system,
+        system-ui,
+        sans-serif;
     background: var(--bg-base);
     color: var(--text-1);
     -webkit-font-smoothing: antialiased;
@@ -252,7 +256,9 @@ body {
     font-family: inherit;
     font-size: 13.5px;
     line-height: 1.5;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s;
     outline: none;
 }
 
@@ -285,7 +291,9 @@ body {
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.12s, transform 0.08s;
+    transition:
+        opacity 0.12s,
+        transform 0.08s;
 }
 
 .btn-create:hover {
@@ -367,7 +375,9 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    transition: background 0.15s, border-color 0.15s;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
     animation: note-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 

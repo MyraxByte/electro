@@ -5,29 +5,24 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> =
-    import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
+type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> = import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
 type _WindowAuthoringApi = import("@electrojs/runtime").WindowAuthoringApi;
 type _ViewAuthoringApi = import("@electrojs/runtime").ViewAuthoringApi;
-type _InvokeMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer V
-            ? (...args: A) => Promise<Awaited<V>>
-            : never
-        : never;
-type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? I extends keyof A
-                ? A[I]
-                : void
-            : never
-        : never;
-type _SignalPayloadFromMethod<T, K extends PropertyKey> =
-    _SignalPayloadFromMethodParam<T, K, 0>;
+type _InvokeMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer V
+        ? (...args: A) => Promise<Awaited<V>>
+        : never
+    : never;
+type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? I extends keyof A
+            ? A[I]
+            : void
+        : never
+    : never;
+type _SignalPayloadFromMethod<T, K extends PropertyKey> = _SignalPayloadFromMethodParam<T, K, 0>;
 
 declare module "@electrojs/runtime" {
-
     interface ModuleMethodMap {
         "notes:getNotes": _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "getNotes">;
         "notes:createNote": _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "createNote">;
@@ -35,53 +30,46 @@ declare module "@electrojs/runtime" {
     }
 
     interface ModuleApiRegistry {
-        "app": {};
-        "notes": {
+        app: {};
+        notes: {
             getNotes: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "getNotes">;
             createNote: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "createNote">;
             deleteNote: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "deleteNote">;
         };
     }
 
-    interface ModuleSignalPayloadMap {
-
-    }
+    interface ModuleSignalPayloadMap {}
 
     interface ModuleJobRegistry {
-        "app": never;
-        "notes": never;
+        app: never;
+        notes: never;
     }
 
     interface InjectableClassRegistry {
-        "NotesService": typeof import("./src/modules/notes/notes.service").NotesService;
+        NotesService: typeof import("./src/modules/notes/notes.service").NotesService;
     }
 
     interface WindowClassRegistry {
-        "main": typeof import("./src/modules/app.window").MainWindow;
+        main: typeof import("./src/modules/app.window").MainWindow;
     }
 
     interface ViewClassRegistry {
-        "main": typeof import("./src/modules/app.view").MainView;
+        main: typeof import("./src/modules/app.view").MainView;
     }
-
 }
 
 declare module "@electrojs/common" {
-
     interface ViewAccessRegistry {
         "notes:getNotes": true;
         "notes:createNote": true;
         "notes:deleteNote": true;
     }
 
-    interface ViewSignalRegistry {
-
-    }
+    interface ViewSignalRegistry {}
 
     interface BundledViewIdRegistry {
-        "main": true;
+        main: true;
     }
-
 }
 import "./src/modules/app.module";
 declare module "./src/modules/app.module" {
