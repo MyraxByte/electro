@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import "./reflect-metadata.bootstrap";
 
 export * from "./decorators";
 export * from "./di";
