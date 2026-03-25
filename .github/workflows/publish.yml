@@ -12,6 +12,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -22,6 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+          registry-url: https://registry.npmjs.org
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
@@ -41,35 +44,23 @@ jobs:
       - name: Publish @electrojs/common
         working-directory: packages/common
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @electrojs/config
         working-directory: packages/config
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @electrojs/renderer
         working-directory: packages/renderer
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @electrojs/runtime
         working-directory: packages/runtime
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @electrojs/codegen
         working-directory: packages/codegen
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @electrojs/cli
         working-directory: packages/cli
         run: pnpm publish --access public --no-git-checks
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
