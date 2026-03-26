@@ -1,0 +1,60 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please fill out the form below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: A clear description of the problem or limitation you're facing.
+      placeholder: "When defining features with many services, there's no way to ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe how you'd like this to work. Include API sketches if possible.
+      placeholder: |
+        const myFeature = createFeature({
+            id: "example",
+            // proposed new option
+            newOption: true,
+        });
+      render: ts
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches or workarounds have you thought about?
+
+  - type: dropdown
+    id: packages
+    attributes:
+      label: Affected packages
+      multiple: true
+      options:
+        - "@electrojs/runtime"
+        - "@electrojs/common"
+        - "@electrojs/config"
+        - "@electrojs/renderer"
+        - "@electrojs/codegen"
+        - "@electrojs/cli"
+        - "create-electro"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any other information, mockups, or references.

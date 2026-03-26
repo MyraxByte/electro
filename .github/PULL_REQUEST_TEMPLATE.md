@@ -6,8 +6,6 @@ Closes #
 
 ## Changes
 
-Describe the key changes made:
-
 -
 -
 
@@ -19,6 +17,7 @@ Describe the key changes made:
 - [ ] `@electrojs/runtime`
 - [ ] `@electrojs/codegen`
 - [ ] `@electrojs/cli`
+- [ ] `create-electro`
 
 ## Type of Change
 
@@ -33,13 +32,13 @@ Describe the key changes made:
 How was this tested?
 
 - [ ] Added/updated specs for affected code
-- [ ] `pnpm run test` passes
-- [ ] `pnpm run lint` passes
-- [ ] Tested manually with `apps/electro-app`
+- [ ] `pnpm test` passes
+- [ ] `pnpm lint` passes
+- [ ] Tested manually with example app
 
 ## Checklist
 
-- [ ] Code follows the project's style (Biome passes)
+- [ ] Code follows the project's style (oxlint + oxfmt pass)
 - [ ] `import type` uses separated style where applicable
 - [ ] No new import cycles introduced
 - [ ] Breaking changes are documented

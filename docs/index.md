@@ -11,7 +11,7 @@ hero:
           link: /guide/getting-started
         - theme: alt
           text: GitHub
-          link: https://github.com/aspect-build/electro
+          link: https://github.com/MyraxByte/electrojs
 
 features:
     - title: Module System
