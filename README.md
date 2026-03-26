@@ -1,6 +1,8 @@
-# ElectroJS Documentation
+# ElectroJS
 
 > A TypeScript framework for building structured, type-safe Electron desktop applications.
+
+Documentation: https://electrojs.myraxbyte.dev/
 
 ---
 
@@ -34,41 +36,41 @@ Dependencies are resolved synchronously through `inject()`. No constructors. No 
 
 |                                              |                                             |
 | -------------------------------------------- | ------------------------------------------- |
-| [Introduction](./docs/introduction.md)       | Architecture overview, key concepts         |
-| [Getting Started](./docs/getting-started.md) | Bootstrap a working application in minutes  |
-| [Application Lifecycle](./docs/lifecycle.md) | Phase order, hook contracts, error handling |
+| [Introduction](https://electrojs.myraxbyte.dev/guide/introduction)       | Architecture overview, key concepts         |
+| [Getting Started](https://electrojs.myraxbyte.dev/guide/getting-started) | Bootstrap a working application in minutes  |
+| [Application Lifecycle](https://electrojs.myraxbyte.dev/core/lifecycle)  | Phase order, hook contracts, error handling |
 
 ### Core Architecture
 
 |                                                        |                                                                |
 | ------------------------------------------------------ | -------------------------------------------------------------- |
-| [Modules](./docs/modules.md)                           | Domain boundaries, imports/exports, inter-module communication |
-| [Services & Providers](./docs/providers.md)            | `@Injectable`, `@query`, `@command`, state patterns            |
-| [Dependency Injection](./docs/dependency-injection.md) | `inject()`, tokens, scopes, injector hierarchy                 |
+| [Modules](https://electrojs.myraxbyte.dev/core/modules)                           | Domain boundaries, imports/exports, inter-module communication |
+| [Services & Providers](https://electrojs.myraxbyte.dev/core/providers)            | `@Injectable`, `@query`, `@command`, state patterns            |
+| [Dependency Injection](https://electrojs.myraxbyte.dev/core/dependency-injection) | `inject()`, tokens, scopes, injector hierarchy                 |
 
 ### UI System
 
 |                                                 |                                              |
 | ----------------------------------------------- | -------------------------------------------- |
-| [Windows](./docs/windows.md)                    | Electron windows, mounting views, layout     |
-| [Views — Runtime Side](./docs/views-runtime.md) | `@View` decorator, access control            |
-| [Renderer — Frontend Side](./docs/renderer.md)  | Vite config, `bridge`, bootstrapping         |
-| [Bridge API](./docs/bridge.md)                  | Queries, commands, signals from the frontend |
+| [Windows](https://electrojs.myraxbyte.dev/ui/windows)                  | Electron windows, mounting views, layout     |
+| [Views — Runtime Side](https://electrojs.myraxbyte.dev/ui/views)       | `@View` decorator, access control            |
+| [Renderer — Frontend Side](https://electrojs.myraxbyte.dev/ui/renderer) | Vite config, `bridge`, bootstrapping         |
+| [Bridge API](https://electrojs.myraxbyte.dev/ui/bridge)                | Queries, commands, signals from the frontend |
 
 ### Messaging & Background Work
 
 |                              |                                                   |
 | ---------------------------- | ------------------------------------------------- |
-| [Signals](./docs/signals.md) | Typed events, cross-module and Runtime → Renderer |
-| [Jobs](./docs/jobs.md)       | Background tasks, cron scheduling, cancellation   |
+| [Signals](https://electrojs.myraxbyte.dev/core/signals) | Typed events, cross-module and Runtime → Renderer |
+| [Jobs](https://electrojs.myraxbyte.dev/core/jobs)       | Background tasks, cron scheduling, cancellation   |
 
 ### Advanced
 
 |                                            |                                              |
 | ------------------------------------------ | -------------------------------------------- |
-| [Registry System](./docs/registry.md)      | Runtime introspection, dynamic orchestration |
-| [Code Generation](./docs/codegen.md)       | How the typed Bridge is produced             |
-| [Build Pipeline](./docs/build-pipeline.md) | Dev, preview, production builds              |
+| [Registry System](https://electrojs.myraxbyte.dev/advanced/registry) | Runtime introspection, dynamic orchestration |
+| [Code Generation](https://electrojs.myraxbyte.dev/advanced/codegen)  | How the typed Bridge is produced             |
+| [Build Pipeline](https://electrojs.myraxbyte.dev/guide/dev-workflow) | Dev, preview, production builds              |
 
 ---
 

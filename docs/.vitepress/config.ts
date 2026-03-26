@@ -1,6 +1,8 @@
 import { defineConfig } from "vitepress";
 import type MarkdownIt from "markdown-it";
 
+const siteUrl = "https://electrojs.myraxbyte.dev";
+
 // Extract filename from [filename.ext] in code fence info string.
 // VitePress natively only shows the language; this plugin shows the filename instead.
 function codeFilenamePlugin(md: MarkdownIt) {
@@ -29,12 +31,16 @@ export default defineConfig({
     title: "ElectroJS",
     description: "TypeScript framework for Electron apps",
     appearance: "dark",
+    sitemap: {
+        hostname: siteUrl,
+    },
 
     head: [
         ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
         ["meta", { name: "theme-color", content: "#fba924" }],
         ["meta", { property: "og:type", content: "website" }],
-        ["meta", { property: "og:title", content: "Electro" }],
+        ["meta", { property: "og:title", content: "ElectroJS" }],
+        ["meta", { property: "og:site_name", content: "ElectroJS" }],
         [
             "meta",
             {

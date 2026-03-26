@@ -2,6 +2,8 @@
 
 ElectroJS CLI for development, code generation, build, and preview.
 
+Documentation: https://electrojs.myraxbyte.dev/
+
 ## Installation
 
 ```bash
@@ -56,7 +58,7 @@ ElectroJS expects a monorepo-style project:
 - `views` is an explicit list of view package specifiers
 - each view package owns its own `view.config.ts`
 
-ElectroJS no longer documents auto-discovery-only single-repo setups as the supported path.
+ElectroJS documents explicit package configuration as the supported path instead of auto-discovery-only single-repo setups.
 
 ## Typical Layout
 

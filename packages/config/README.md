@@ -2,6 +2,8 @@
 
 Typed configuration contracts for ElectroJS applications.
 
+Documentation: https://electrojs.myraxbyte.dev/
+
 ElectroJS supports a monorepo-style application layout with:
 
 - one root `electro.config.ts`
@@ -45,7 +47,7 @@ interface AppConfig {
 - `runtime` is the package specifier for the runtime package
 - `views` is the explicit list of renderer view package specifiers
 
-ElectroJS no longer documents single-repo auto-discovery as a supported setup.
+ElectroJS documents explicit package configuration as the supported setup instead of single-repo auto-discovery.
 
 ## `runtime.config.ts`
 
