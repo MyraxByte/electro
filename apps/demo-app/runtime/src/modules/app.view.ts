@@ -2,8 +2,18 @@ import { View } from "@electrojs/common";
 import { ViewProvider } from "@electrojs/runtime";
 
 @View({
-    access: ["notes:createNote", "notes:getNotes", "notes:deleteNote"],
+    access: [
+        "app:getShellState",
+        "app:minimizeWindow",
+        "app:toggleMaximizeWindow",
+        "app:closeWindow",
+        "app:openDocumentation",
+        "notes:createNote",
+        "notes:getNotes",
+        "notes:deleteNote",
+    ],
     source: "view:main",
+    configuration: {},
 })
 export class MainView extends ViewProvider {
     public resize(width: number, height: number) {
