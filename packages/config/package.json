@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/config",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Typed config helpers for ElectroJS runtime and renderer view packages",
     "keywords": [
         "config",

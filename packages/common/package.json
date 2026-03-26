@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/common",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Decorators, DI primitives, and shared contracts for ElectroJS Electron apps",
     "keywords": [
         "decorators",
@@ -53,7 +53,7 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/config": "1.0.4",
+        "@electrojs/config": "1.0.5",
         "electron": ">=41"
     }
 }
