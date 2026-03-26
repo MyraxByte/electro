@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/codegen",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Code generator for electro module runtime — scans modules/views and emits bridge and registry artifacts",
     "homepage": "https://electrojs.myraxbyte.dev/",
     "license": "MIT",
@@ -41,9 +41,9 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/common": "1.0.3",
-        "@electrojs/config": "1.0.3",
-        "@electrojs/runtime": "1.0.3",
+        "@electrojs/common": "1.0.4",
+        "@electrojs/config": "1.0.4",
+        "@electrojs/runtime": "1.0.4",
         "@types/node": "^25.5.0"
     }
 }

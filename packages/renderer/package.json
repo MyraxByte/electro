@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/renderer",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Library for working with the renderer process in @electro",
     "homepage": "https://electrojs.myraxbyte.dev/",
     "license": "MIT",
@@ -41,6 +41,6 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/config": "1.0.3"
+        "@electrojs/config": "1.0.4"
     }
 }
