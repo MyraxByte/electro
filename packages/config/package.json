@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/config",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Shared configuration presets for Electro",
     "keywords": [
         "config",
@@ -8,6 +8,7 @@
         "tsconfig",
         "typescript"
     ],
+    "homepage": "https://electrojs.myraxbyte.dev/",
     "license": "MIT",
     "repository": {
         "type": "git",

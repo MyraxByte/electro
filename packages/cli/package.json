@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/cli",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "CLI for @electro — dev server, build, and code generation commands",
     "keywords": [
         "build-tool",
@@ -9,7 +9,7 @@
         "electron",
         "vite"
     ],
-    "homepage": "https://github.com/MyraxByte/electrojs#readme",
+    "homepage": "https://electrojs.myraxbyte.dev/",
     "bugs": {
         "url": "https://github.com/MyraxByte/electrojs/issues"
     },
@@ -56,9 +56,9 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/codegen": "1.0.1",
-        "@electrojs/config": "1.0.1",
-        "@electrojs/runtime": "1.0.1",
+        "@electrojs/codegen": "1.0.2",
+        "@electrojs/config": "1.0.2",
+        "@electrojs/runtime": "1.0.2",
         "@types/node": "^25.5.0",
         "electron": ">=41",
         "vite": "^8.0.2"

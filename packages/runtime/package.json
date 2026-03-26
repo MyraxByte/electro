@@ -1,8 +1,8 @@
 {
     "name": "@electrojs/runtime",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Library for working with the runtime process in @electro",
-    "homepage": "https://github.com/MyraxByte/electrojs#readme",
+    "homepage": "https://electrojs.myraxbyte.dev/",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -46,8 +46,8 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/common": "1.0.1",
-        "@electrojs/config": "1.0.1",
+        "@electrojs/common": "1.0.2",
+        "@electrojs/config": "1.0.2",
         "@types/node": "^25.5.0",
         "electron": ">=41"
     }
