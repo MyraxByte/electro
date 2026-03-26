@@ -1,29 +1,37 @@
-import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
+import { basename, dirname, extname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const FRAMEWORK_VERSION = "2.0.0";
-const PACKAGE_MANAGER = "pnpm@10.32.1";
-const TYPESCRIPT_VERSION = "^6.0.2";
-const NODE_TYPES_VERSION = "^25.5.0";
-const VITE_VERSION = "^8.0.2";
-const ELECTRON_VERSION = "41.0.4";
-const REACT_VERSION = "^19.2.4";
-const REACT_TYPES_VERSION = "^19.2.14";
-const REACT_DOM_TYPES_VERSION = "^19.2.3";
-const VITE_REACT_PLUGIN_VERSION = "^6.0.1";
+const DEFAULT_TEMPLATE = "monorepo";
 
-const TEMPLATE_ROOT = fileURLToPath(new URL("../template/monorepo", import.meta.url));
+const TEMPLATE_ROOT_CANDIDATES = [
+    (template: string) => fileURLToPath(new URL(`../../../templates/${template}`, import.meta.url)),
+    (template: string) => fileURLToPath(new URL(`../dist/template-${template}`, import.meta.url)),
+] as const;
+
+const TEMPLATE_FILE_RENAMES = new Map([["_gitignore", ".gitignore"]]);
+
+const TEXT_FILE_EXTENSIONS = new Set([
+    ".css",
+    ".html",
+    ".json",
+    ".md",
+    ".svg",
+    ".ts",
+    ".tsx",
+    ".yaml",
+    ".yml",
+]);
 
 interface ScaffoldProjectOptions {
-    readonly force: boolean;
+    readonly force?: boolean;
     readonly projectDir: string;
-    readonly projectName: string;
+    readonly template?: string;
 }
 
 interface TemplateContext {
-    readonly packageName: string;
     readonly displayName: string;
+    readonly packageName: string;
 }
 
 function toPackageName(value: string): string {
@@ -36,48 +44,12 @@ function toPackageName(value: string): string {
     return normalized.length > 0 ? normalized : "electro-app";
 }
 
-function toTitleCase(value: string): string {
+function toDisplayName(value: string): string {
     return value
         .split(/[^a-zA-Z0-9]+/)
         .filter((part) => part.length > 0)
         .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
         .join(" ");
-}
-
-function createTemplateContext(projectName: string): TemplateContext {
-    const packageName = toPackageName(projectName);
-
-    return {
-        packageName,
-        displayName: toTitleCase(packageName),
-    };
-}
-
-function createTemplateReplacements(context: TemplateContext): Readonly<Record<string, string>> {
-    return {
-        __DISPLAY_NAME__: context.displayName,
-        __ELECTRON_VERSION__: ELECTRON_VERSION,
-        __FRAMEWORK_VERSION__: FRAMEWORK_VERSION,
-        __NODE_TYPES_VERSION__: NODE_TYPES_VERSION,
-        __PACKAGE_MANAGER__: PACKAGE_MANAGER,
-        __PACKAGE_NAME__: context.packageName,
-        __REACT_DOM_TYPES_VERSION__: REACT_DOM_TYPES_VERSION,
-        __REACT_TYPES_VERSION__: REACT_TYPES_VERSION,
-        __REACT_VERSION__: REACT_VERSION,
-        __TYPESCRIPT_VERSION__: TYPESCRIPT_VERSION,
-        __VITE_REACT_PLUGIN_VERSION__: VITE_REACT_PLUGIN_VERSION,
-        __VITE_VERSION__: VITE_VERSION,
-    };
-}
-
-function renderTemplateContent(content: string, replacements: Readonly<Record<string, string>>): string {
-    let rendered = content;
-
-    for (const [token, value] of Object.entries(replacements)) {
-        rendered = rendered.replaceAll(token, value);
-    }
-
-    return rendered;
 }
 
 async function pathExists(path: string): Promise<boolean> {
@@ -89,7 +61,12 @@ async function pathExists(path: string): Promise<boolean> {
     }
 }
 
-async function ensureWritableProjectDir(projectDir: string, force: boolean): Promise<void> {
+async function emptyDirectory(path: string): Promise<void> {
+    const entries = await readdir(path);
+    await Promise.all(entries.map((entry) => rm(join(path, entry), { recursive: true, force: true })));
+}
+
+async function prepareProjectDir(projectDir: string, force: boolean): Promise<void> {
     const exists = await pathExists(projectDir);
     if (!exists) {
         await mkdir(projectDir, { recursive: true });
@@ -97,50 +74,103 @@ async function ensureWritableProjectDir(projectDir: string, force: boolean): Pro
     }
 
     const entries = await readdir(projectDir);
-    if (entries.length > 0 && !force) {
-        throw new Error(`Target directory "${projectDir}" is not empty. Use --force to overwrite scaffold files.`);
+    if (entries.length === 0) {
+        return;
     }
+
+    if (!force) {
+        throw new Error(`Target directory "${projectDir}" is not empty. Use --force to remove existing files.`);
+    }
+
+    await emptyDirectory(projectDir);
 }
 
-async function collectTemplateFiles(root: string, currentDir = root): Promise<string[]> {
-    const entries = await readdir(currentDir, { withFileTypes: true });
-    const files: string[] = [];
+async function resolveTemplateDir(template: string): Promise<string> {
+    const candidates = TEMPLATE_ROOT_CANDIDATES.map((resolveTemplatePath) => resolveTemplatePath(template));
 
-    for (const entry of entries) {
-        const absolutePath = join(currentDir, entry.name);
+    for (const candidate of candidates) {
+        if (await pathExists(candidate)) {
+            return candidate;
+        }
+    }
+
+    throw new Error(`Unknown template "${template}". Checked:\n${candidates.map((candidate) => `- ${candidate}`).join("\n")}`);
+}
+
+function renameTemplateEntry(name: string): string {
+    return TEMPLATE_FILE_RENAMES.get(name) ?? name;
+}
+
+function shouldRenderAsText(path: string): boolean {
+    return TEXT_FILE_EXTENSIONS.has(extname(path)) || basename(path) === "_gitignore";
+}
+
+function renderTemplate(content: string, context: TemplateContext): string {
+    return content.replaceAll("__DISPLAY_NAME__", context.displayName);
+}
+
+async function patchProjectPackageJson(projectDir: string, context: TemplateContext): Promise<void> {
+    const packageJsonPath = join(projectDir, "package.json");
+    if (!(await pathExists(packageJsonPath))) {
+        return;
+    }
+
+    const source = await readFile(packageJsonPath, "utf8");
+    const manifest = JSON.parse(source) as { name?: string };
+    manifest.name = context.packageName;
+
+    await writeFile(packageJsonPath, `${JSON.stringify(manifest, null, 4)}\n`, "utf8");
+}
+
+async function copyTemplateFile(sourcePath: string, outputPath: string, context: TemplateContext): Promise<void> {
+    await mkdir(dirname(outputPath), { recursive: true });
+
+    if (!shouldRenderAsText(sourcePath)) {
+        await copyFile(sourcePath, outputPath);
+        return;
+    }
+
+    const source = await readFile(sourcePath, "utf8");
+    await writeFile(outputPath, renderTemplate(source, context), "utf8");
+}
+
+async function copyTemplateDir(sourceDir: string, outputDir: string, context: TemplateContext, createdFiles: string[]): Promise<void> {
+    const entries = await readdir(sourceDir, { withFileTypes: true });
+
+    for (const entry of entries.sort((left, right) => left.name.localeCompare(right.name))) {
+        const sourcePath = join(sourceDir, entry.name);
+        const outputPath = join(outputDir, renameTemplateEntry(entry.name));
+
         if (entry.isDirectory()) {
-            files.push(...(await collectTemplateFiles(root, absolutePath)));
+            await copyTemplateDir(sourcePath, outputPath, context, createdFiles);
             continue;
         }
 
-        if (entry.isFile()) {
-            files.push(absolutePath);
+        if (!entry.isFile()) {
+            continue;
         }
-    }
 
-    return files.sort();
-}
-
-async function writeTemplateFiles(projectDir: string, context: TemplateContext): Promise<string[]> {
-    const replacements = createTemplateReplacements(context);
-    const templateFiles = await collectTemplateFiles(TEMPLATE_ROOT);
-    const createdFiles: string[] = [];
-
-    for (const templatePath of templateFiles) {
-        const relativePath = templatePath.slice(TEMPLATE_ROOT.length + 1);
-        const outputPath = join(projectDir, relativePath);
-        const source = await readFile(templatePath, "utf8");
-        const content = renderTemplateContent(source, replacements);
-
-        await mkdir(dirname(outputPath), { recursive: true });
-        await writeFile(outputPath, content, "utf8");
+        await copyTemplateFile(sourcePath, outputPath, context);
         createdFiles.push(outputPath);
     }
-
-    return createdFiles.sort();
 }
 
 export async function scaffoldProject(options: ScaffoldProjectOptions): Promise<string[]> {
-    await ensureWritableProjectDir(options.projectDir, options.force);
-    return writeTemplateFiles(options.projectDir, createTemplateContext(options.projectName));
+    const force = options.force ?? false;
+    const template = options.template ?? DEFAULT_TEMPLATE;
+    const packageName = toPackageName(basename(options.projectDir));
+    const context: TemplateContext = {
+        displayName: toDisplayName(packageName),
+        packageName,
+    };
+
+    await prepareProjectDir(options.projectDir, force);
+
+    const templateDir = await resolveTemplateDir(template);
+    const createdFiles: string[] = [];
+
+    await copyTemplateDir(templateDir, options.projectDir, context, createdFiles);
+    await patchProjectPackageJson(options.projectDir, context);
+
+    return createdFiles.sort();
 }

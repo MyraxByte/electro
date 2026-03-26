@@ -2,7 +2,6 @@ import { Window } from "@electrojs/common";
 import { inject, WindowProvider } from "@electrojs/runtime";
 import { shell } from "electron";
 import { MainView } from "./app.view";
-import { app, Menu } from "electron/main";
 
 const isMacOS = process.platform === "darwin";
 const isWindows = process.platform === "win32";

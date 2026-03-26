@@ -1,9 +1,0 @@
-{
-    "extends": "@electrojs/config/tsconfig/base.json",
-    "compilerOptions": {
-        "jsx": "react-jsx",
-        "outDir": "./out",
-        "types": ["vite/client"]
-    },
-    "include": ["src/**/*", "view.config.ts", "electro-env.d.ts"]
-}

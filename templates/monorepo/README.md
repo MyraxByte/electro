@@ -1,6 +1,8 @@
-# Test App
+# **ElectroJS Starter**
 
 ElectroJS monorepo application scaffolded with `create-electro`.
+
+Documentation: https://electrojs.myraxbyte.dev/
 
 ## Commands
 

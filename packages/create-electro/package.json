@@ -1,6 +1,6 @@
 {
     "name": "create-electro",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Scaffold a new ElectroJS Electron app with the recommended monorepo layout",
     "keywords": [
         "create",
@@ -28,7 +28,6 @@
     "files": [
         "bin",
         "dist",
-        "template",
         "README.md"
     ],
     "type": "module",
@@ -44,9 +43,9 @@
         "access": "public"
     },
     "scripts": {
-        "build": "tsdown",
+        "build": "tsdown && node ./scripts/sync-templates.mjs",
         "test": "vitest",
-        "prepublishOnly": "tsdown --minify"
+        "prepublishOnly": "tsdown --minify && node ./scripts/sync-templates.mjs"
     },
     "devDependencies": {
         "tsdown": "catalog:",

@@ -4,14 +4,14 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electrojs/config": "link:../../../../packages/config",
-        "@electrojs/renderer": "link:../../../../packages/renderer",
+        "@electrojs/config": "^1.0.6",
+        "@electrojs/renderer": "^1.0.6",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^6.0.1",
         "react": "^19.2.4",
         "react-dom": "^19.2.4",
         "typescript": "^6.0.2",
-        "vite": "^8.0.2"
+        "vite": "^8.0.3"
     }
 }

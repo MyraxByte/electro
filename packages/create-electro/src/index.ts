@@ -1,10 +1,14 @@
-import { basename, resolve } from "node:path";
+import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { scaffoldProject } from "./scaffold";
+
+const DEFAULT_TARGET_DIR = "electro-app";
+const DEFAULT_TEMPLATE = "monorepo";
 
 interface CliOptions {
     readonly force: boolean;
     readonly help: boolean;
+    readonly template: string;
     readonly targetDir: string;
 }
 
@@ -14,19 +18,29 @@ function printHelp(): void {
 Usage:
   npm create electro@latest [project-name]
   pnpm create electro [project-name]
+  npm create electro@latest [project-name] -- --template monorepo
 
 Options:
-  -f, --force    Overwrite scaffold files in a non-empty directory
-  -h, --help     Show this help message
+  -f, --force       Remove existing files in a non-empty directory
+  -h, --help        Show this help message
+  -t, --template    Template name (default: ${DEFAULT_TEMPLATE})
 `);
 }
 
 function parseArgs(argv: readonly string[]): CliOptions {
     let force = false;
     let help = false;
-    let targetDir = "electro-app";
+    let targetDir = DEFAULT_TARGET_DIR;
+    let template = DEFAULT_TEMPLATE;
+    let targetDirWasSet = false;
 
-    for (const argument of argv) {
+    for (let index = 0; index < argv.length; index += 1) {
+        const argument = argv[index];
+
+        if (!argument) {
+            continue;
+        }
+
         if (argument === "--force" || argument === "-f") {
             force = true;
             continue;
@@ -37,16 +51,33 @@ function parseArgs(argv: readonly string[]): CliOptions {
             continue;
         }
 
+        if (argument === "--template" || argument === "-t") {
+            const value = argv[index + 1];
+            if (!value || value.startsWith("-")) {
+                throw new Error(`Missing value for "${argument}".`);
+            }
+
+            template = value;
+            index += 1;
+            continue;
+        }
+
         if (argument.startsWith("-")) {
             throw new Error(`Unknown option "${argument}".`);
         }
 
+        if (targetDirWasSet) {
+            throw new Error(`Unexpected argument "${argument}".`);
+        }
+
         targetDir = argument;
+        targetDirWasSet = true;
     }
 
     return {
         force,
         help,
+        template,
         targetDir,
     };
 }
@@ -68,11 +99,10 @@ export async function runCli(argv: readonly string[] = process.argv.slice(2)): P
     }
 
     const targetDir = resolve(process.cwd(), options.targetDir);
-    const projectName = basename(targetDir);
     const createdFiles = await scaffoldProject({
         force: options.force,
         projectDir: targetDir,
-        projectName,
+        template: options.template,
     });
 
     console.log(`\nScaffolded ElectroJS app in ${targetDir}`);
