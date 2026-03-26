@@ -1,8 +1,20 @@
 {
     "name": "@electrojs/codegen",
     "version": "1.0.4",
-    "description": "Code generator for electro module runtime — scans modules/views and emits bridge and registry artifacts",
+    "description": "TypeScript code generation for ElectroJS preload scripts, typed IPC, and runtime registry",
+    "keywords": [
+        "ast",
+        "codegen",
+        "electrojs",
+        "electron",
+        "ipc",
+        "preload",
+        "typescript"
+    ],
     "homepage": "https://electrojs.myraxbyte.dev/",
+    "bugs": {
+        "url": "https://github.com/MyraxByte/electrojs/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",

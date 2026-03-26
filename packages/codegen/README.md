@@ -2,6 +2,8 @@
 
 Code generator for Electro's module runtime — scans decorator metadata from source and emits preload scripts, runtime registry, and environment type declarations.
 
+Documentation: https://electrojs.myraxbyte.dev/advanced/codegen
+
 `@electrojs/codegen` provides the `scan` → `generate` pipeline that powers `electro generate` and runs automatically during `electro dev` and `electro build`. It uses the OXC parser to extract `@Module`, `@Injectable`, `@Window`, `@View`, `@command`, `@query`, `@signal`, and `@job` decorators from TypeScript source without executing it.
 
 ---

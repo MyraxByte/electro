@@ -1,14 +1,20 @@
 {
     "name": "@electrojs/config",
     "version": "1.0.4",
-    "description": "Shared configuration presets for Electro",
+    "description": "Typed config helpers for ElectroJS runtime and renderer view packages",
     "keywords": [
         "config",
         "electro",
+        "electrojs",
+        "electron",
         "tsconfig",
-        "typescript"
+        "typescript",
+        "vite"
     ],
     "homepage": "https://electrojs.myraxbyte.dev/",
+    "bugs": {
+        "url": "https://github.com/MyraxByte/electrojs/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",

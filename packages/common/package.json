@@ -1,8 +1,19 @@
 {
     "name": "@electrojs/common",
     "version": "1.0.4",
-    "description": "Common utilities for @electrojs",
+    "description": "Decorators, DI primitives, and shared contracts for ElectroJS Electron apps",
+    "keywords": [
+        "decorators",
+        "dependency-injection",
+        "electrojs",
+        "electron",
+        "ipc",
+        "typescript"
+    ],
     "homepage": "https://electrojs.myraxbyte.dev/",
+    "bugs": {
+        "url": "https://github.com/MyraxByte/electrojs/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -12,8 +23,8 @@
     "files": [
         "dist"
     ],
-    "sideEffects": true,
     "type": "module",
+    "sideEffects": true,
     "main": "./dist/index.mjs",
     "types": "./dist/index.d.mts",
     "exports": {

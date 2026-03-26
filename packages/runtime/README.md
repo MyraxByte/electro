@@ -2,6 +2,8 @@
 
 The main-process runtime for ElectroJS applications.
 
+Documentation: https://electrojs.myraxbyte.dev/guide/getting-started
+
 `@electrojs/runtime` manages the full lifecycle of an Electron main process: scanning decorator metadata, building the module graph, wiring dependency injection, running lifecycle hooks, exposing a typed IPC bridge, dispatching signals, and scheduling background jobs. It is the layer between your application code and the Electron APIs.
 
 ---

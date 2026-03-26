@@ -2,6 +2,8 @@
 
 Foundational runtime-agnostic primitives for Electro.
 
+Documentation: https://electrojs.myraxbyte.dev/guide/introduction
+
 `@electrojs/common` contains the shared contracts and low-level building blocks used by the rest of the framework:
 
 - class decorators such as `@Module()`, `@Injectable()`, `@View()`, `@Window()`

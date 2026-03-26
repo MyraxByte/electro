@@ -1,8 +1,21 @@
 {
     "name": "@electrojs/renderer",
     "version": "1.0.4",
-    "description": "Library for working with the renderer process in @electro",
+    "description": "Renderer-side bridge and signals client for ElectroJS Electron apps",
+    "keywords": [
+        "bridge",
+        "electrojs",
+        "electron",
+        "ipc",
+        "renderer",
+        "signals",
+        "typescript",
+        "vite"
+    ],
     "homepage": "https://electrojs.myraxbyte.dev/",
+    "bugs": {
+        "url": "https://github.com/MyraxByte/electrojs/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",

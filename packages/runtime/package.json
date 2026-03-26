@@ -1,8 +1,20 @@
 {
     "name": "@electrojs/runtime",
     "version": "1.0.4",
-    "description": "Library for working with the runtime process in @electro",
+    "description": "Electron main-process runtime for ElectroJS with DI, lifecycle hooks, typed IPC, and jobs",
+    "keywords": [
+        "dependency-injection",
+        "desktop-app",
+        "electrojs",
+        "electron",
+        "ipc",
+        "runtime",
+        "typescript"
+    ],
     "homepage": "https://electrojs.myraxbyte.dev/",
+    "bugs": {
+        "url": "https://github.com/MyraxByte/electrojs/issues"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",

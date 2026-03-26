@@ -1,12 +1,16 @@
 {
-    "name": "@electrojs/create-electro",
+    "name": "create-electro",
     "version": "1.0.4",
-    "description": "Create a new ElectroJS monorepo application",
+    "description": "Scaffold a new ElectroJS Electron app with the recommended monorepo layout",
     "keywords": [
         "create",
         "electro",
+        "electrojs",
         "electron",
-        "scaffold"
+        "scaffold",
+        "starter",
+        "template",
+        "vite"
     ],
     "homepage": "https://electrojs.myraxbyte.dev/",
     "bugs": {

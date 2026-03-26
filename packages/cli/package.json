@@ -1,12 +1,15 @@
 {
     "name": "@electrojs/cli",
     "version": "1.0.4",
-    "description": "CLI for @electro — dev server, build, and code generation commands",
+    "description": "CLI for ElectroJS dev, code generation, build, and preview in Electron apps",
     "keywords": [
         "build-tool",
         "cli",
+        "codegen",
         "dev-server",
+        "electrojs",
         "electron",
+        "typescript",
         "vite"
     ],
     "homepage": "https://electrojs.myraxbyte.dev/",

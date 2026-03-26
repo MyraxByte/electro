@@ -2,6 +2,8 @@
 
 Typed renderer-side runtime for ElectroJS applications.
 
+Documentation: https://electrojs.myraxbyte.dev/ui/renderer
+
 `@electrojs/renderer` is the only public entrypoint that renderer code uses to talk to the ElectroJS runtime. It exposes:
 
 - `ElectroRenderer.initialize(...)` — bootstraps the renderer package
