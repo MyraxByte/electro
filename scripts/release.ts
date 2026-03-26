@@ -19,12 +19,13 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 
 const PACKAGES = [
+    "packages/cli/package.json",
+    "packages/codegen/package.json",
     "packages/common/package.json",
     "packages/config/package.json",
+    "packages/create-electro/package.json",
     "packages/renderer/package.json",
     "packages/runtime/package.json",
-    "packages/codegen/package.json",
-    "packages/cli/package.json",
 ] as const;
 const LOCKFILE = "pnpm-lock.yaml";
 
