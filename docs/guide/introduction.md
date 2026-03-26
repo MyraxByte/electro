@@ -7,14 +7,14 @@ description: Overview of the ElectroJS TypeScript framework for Electron applica
 
 ElectroJS is a TypeScript framework for Electron applications built around a module runtime, explicit renderer boundaries, and generated typing between main and renderer.
 
-The current direction is intentionally narrow:
+The documented ElectroJS model is intentionally narrow:
 
 - ElectroJS is documented for a monorepo-style application layout
 - the recommended shape is `one renderer view = one package`
 - runtime UI ownership is explicit through `@Module({ views, windows })`
 - renderer typing is provided through generated `electro-env.d.ts` files inside each package
 
-If you build outside this shape, you are outside the documented path.
+If you build outside this shape, you are outside the supported baseline described in these docs.
 
 The shortest supported path is:
 
@@ -58,7 +58,7 @@ my-app/
     └── settings/
 ```
 
-ElectroJS still generates internal build artifacts under `.electro/generated`, but the important authoring types now live in package-local `electro-env.d.ts`.
+ElectroJS generates internal build artifacts under `.electro/generated`, and the authoring types live in package-local `electro-env.d.ts`.
 
 ---
 
@@ -99,12 +99,12 @@ Those APIs are typed from runtime source and each view's declared access/signal 
 
 ---
 
-## App Config Today
+## App Config
 
-`defineElectroConfig(...)` currently describes runtime/view package resolution and optional codegen behavior. It is intentionally narrow:
+`defineElectroConfig(...)` describes runtime/view package resolution and optional codegen behavior. It is intentionally narrow:
 
 - explicit `runtime` package
 - explicit `views` package list
 - optional `codegen.scanDir`
 
-Packaging identity and installer metadata are not part of the supported app config surface yet.
+Packaging identity and installer metadata are not part of the supported app config surface.

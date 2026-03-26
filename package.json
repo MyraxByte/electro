@@ -3,15 +3,15 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "docs:dev": "pnpm --filter website dev",
+        "docs:build": "pnpm --filter website build",
+        "docs:preview": "pnpm --filter website preview",
         "build": "pnpm --filter './packages/*' build",
         "test": "pnpm -r test",
         "lint": "oxlint --fix",
         "fmt": "oxfmt --write .",
         "release": "tsx scripts/release.ts",
-        "publish:packages": "tsx scripts/publish.ts",
-        "docs:dev": "pnpm --filter website dev",
-        "docs:build": "pnpm --filter website build",
-        "docs:preview": "pnpm --filter website preview"
+        "publish:packages": "tsx scripts/publish.ts"
     },
     "devDependencies": {
         "lint-staged": "^16.4.0",

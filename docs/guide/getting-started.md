@@ -1,8 +1,11 @@
+---
+title: Getting Started
+description: Set up a new ElectroJS application with the recommended monorepo workspace layout
+---
+
 # Getting Started
 
 This guide documents the supported ElectroJS setup: a monorepo-style app workspace with one runtime package and one package per renderer view.
-
-ElectroJS is no longer documented as a single-repo auto-discovery framework.
 
 Start with:
 
@@ -49,8 +52,7 @@ Generated internals go to `.electro/generated`. Authoring types go to package-lo
 
 ## 1. Workspace Config
 
-```yaml
-# pnpm-workspace.yaml
+```yaml [pnpm-workspace.yaml]
 packages:
     - "runtime"
     - "views/*"
@@ -63,8 +65,7 @@ packages:
 
 ## 2. App Config
 
-```ts
-// electro.config.ts
+```ts [electro.config.ts]
 import { defineElectroConfig } from "@electrojs/config";
 
 export default defineElectroConfig({
@@ -73,14 +74,13 @@ export default defineElectroConfig({
 });
 ```
 
-`runtime` and `views` are explicit. ElectroJS no longer relies on project-wide auto-discovery as the primary documented workflow.
+`runtime` and `views` are explicit. The documented workflow uses explicit package configuration instead of project-wide auto-discovery.
 
 ---
 
 ## 3. Runtime Package
 
-```json
-// runtime/package.json
+```json [runtime/package.json]
 {
     "name": "runtime",
     "private": true,
@@ -88,8 +88,7 @@ export default defineElectroConfig({
 }
 ```
 
-```ts
-// runtime/runtime.config.ts
+```ts [runtime/runtime.config.ts]
 import { defineRuntimeConfig } from "@electrojs/config";
 
 export default defineRuntimeConfig({
@@ -97,8 +96,7 @@ export default defineRuntimeConfig({
 });
 ```
 
-```ts
-// runtime/src/main.ts
+```ts [runtime/src/main.ts]
 import { AppKernel } from "@electrojs/runtime";
 import { app } from "electron";
 import { AppModule } from "./modules/app.module";
@@ -121,10 +119,9 @@ void app.whenReady().then(async () => {
 
 ## 4. Root Module
 
-`@Module()` now separates providers, views, and windows explicitly.
+`@Module()` separates providers, views, and windows explicitly.
 
-```ts
-// runtime/src/modules/app.module.ts
+```ts [runtime/src/modules/app.module.ts]
 import { Module } from "@electrojs/common";
 import { inject } from "@electrojs/runtime";
 import { NotesModule } from "./notes/notes.module";
@@ -152,8 +149,7 @@ Views and windows do not belong in `providers`.
 
 ## 5. Runtime View
 
-```ts
-// runtime/src/modules/app.view.ts
+```ts [runtime/src/modules/app.view.ts]
 import { View } from "@electrojs/common";
 import { ViewProvider } from "@electrojs/runtime";
 
@@ -171,8 +167,7 @@ export class MainView extends ViewProvider {}
 
 ## 6. Runtime Window
 
-```ts
-// runtime/src/modules/app.window.ts
+```ts [runtime/src/modules/app.window.ts]
 import { Window } from "@electrojs/common";
 import { inject, WindowProvider } from "@electrojs/runtime";
 import { MainView } from "./app.view";
@@ -204,8 +199,7 @@ export class MainWindow extends WindowProvider {
 
 ## 7. View Package
 
-```json
-// views/main/package.json
+```json [views/main/package.json]
 {
     "name": "@views/main",
     "private": true,
@@ -213,8 +207,7 @@ export class MainWindow extends WindowProvider {
 }
 ```
 
-```ts
-// views/main/view.config.ts
+```ts [views/main/view.config.ts]
 import { defineViewConfig } from "@electrojs/config";
 import react from "@vitejs/plugin-react";
 
@@ -225,8 +218,7 @@ export default defineViewConfig({
 });
 ```
 
-```tsx
-// views/main/src/main.tsx
+```tsx [views/main/src/main.tsx]
 import { ElectroRenderer } from "@electrojs/renderer";
 import ReactDOM from "react-dom/client";
 import { App } from "./app";
@@ -253,7 +245,7 @@ You do not edit any of them manually.
 
 The important part for IDE support is that each package includes its own `electro-env.d.ts` in `tsconfig.json`.
 
-```json
+```json [tsconfig.json]
 {
     "include": ["src", "electro-env.d.ts"]
 }
@@ -279,7 +271,7 @@ pnpm run preview
 
 Typical scripts:
 
-```json
+```json [package.json]
 {
     "scripts": {
         "dev": "electro dev",
@@ -304,4 +296,4 @@ Typical scripts:
 
 Renderer file changes go through Vite HMR. Runtime and preload changes rebuild and restart Electron.
 
-For more detail, see [Build Pipeline](./build-pipeline.md) and [Code Generation](./codegen.md).
+For more detail, see [Dev Workflow](/guide/dev-workflow) and [Code Generation](/advanced/codegen).

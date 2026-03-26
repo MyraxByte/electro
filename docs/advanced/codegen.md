@@ -1,3 +1,7 @@
+---
+title: Code Generation
+---
+
 # Code Generation
 
 `electro generate` scans runtime source and emits the artifacts that make Electro's runtime and renderer contracts type-safe.
@@ -37,7 +41,7 @@ The scanner is static. It does not execute the code it reads.
 
 ## What Gets Generated
 
-ElectroJS currently generates four categories of files:
+ElectroJS generates four categories of files:
 
 ### Internal build artifacts
 
@@ -62,9 +66,7 @@ These are the important files for IDE and TypeScript integration.
 
 ## Why `electro-env.d.ts`
 
-ElectroJS used to rely on generated declarations under `.electro/.../bridge.d.ts`.
-
-The current model writes `electro-env.d.ts` directly into each package because IDEs track project-local `.d.ts` files more reliably than generated pseudo-packages under `node_modules` or a shared `.electro` typing tree.
+ElectroJS writes `electro-env.d.ts` directly into each package because IDEs track project-local `.d.ts` files more reliably than generated pseudo-packages under `node_modules` or a shared `.electro` typing tree.
 
 That gives:
 
@@ -102,7 +104,7 @@ That means `views/main` and `views/auth` can have different renderer bridge surf
 
 ## Expected `tsconfig.json`
 
-The current recommended setup is simple:
+The recommended setup is simple:
 
 ```json
 {
@@ -115,7 +117,7 @@ This applies to:
 - `runtime/tsconfig.json`
 - every `views/*/tsconfig.json`
 
-No manual `.electro/.../bridge.d.ts` includes are needed anymore.
+No manual `.electro/.../bridge.d.ts` includes are needed.
 
 ---
 
@@ -185,7 +187,7 @@ Fix the source definition or fix the generator.
 
 ## Monorepo Assumption
 
-Current codegen is documented for the package layout described in [Monorepo](./monorepo.md):
+Codegen is documented for the package layout described in [Monorepo](/guide/project-structure):
 
 - one runtime package
 - one renderer view per package

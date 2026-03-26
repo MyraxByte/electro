@@ -1,3 +1,8 @@
+---
+title: Dev Workflow
+description: What electro dev, build, and preview commands actually do
+---
+
 # Build Pipeline
 
 ElectroJS has three user-facing commands:
@@ -17,7 +22,7 @@ All three start from the same base pipeline:
 
 ## Generated Outputs
 
-ElectroJS currently generates these files:
+ElectroJS generates these files:
 
 | Output            | Path                                         | Purpose                                                              |
 | ----------------- | -------------------------------------------- | -------------------------------------------------------------------- |
@@ -71,7 +76,7 @@ Runtime and preload are not served as renderer-style Vite dev servers. They are 
 4. build renderer bundles
 5. flatten renderer HTML output for packaged runtime lookup
 
-The CLI currently uses Vite/Rolldown for build work. Renderer minification is part of that pipeline already.
+The CLI uses Vite/Rolldown for build work. Renderer minification is part of that pipeline.
 
 ---
 
@@ -88,7 +93,7 @@ It is a smoke test for production output, not a dev-mode session.
 
 ## Package Resolution
 
-ElectroJS resolves `runtime` and `views` from `electro.config.ts` as package specifiers first. The current CLI uses `oxc-resolver` for that path and keeps a local workspace fallback for linked workspace development.
+ElectroJS resolves `runtime` and `views` from `electro.config.ts` as package specifiers first. The CLI uses `oxc-resolver` for that path and keeps a local workspace fallback for linked workspace development.
 
 That gives ElectroJS two important behaviors:
 
@@ -135,10 +140,10 @@ my-app/
 
 ## App Config in the Pipeline
 
-At build time ElectroJS currently uses `electro.config.ts` for package resolution and codegen configuration:
+At build time ElectroJS uses `electro.config.ts` for package resolution and codegen configuration:
 
 - `runtime` points at the runtime package
 - `views` points at renderer view packages
 - `codegen.scanDir` can narrow the scan root when needed
 
-Application identity, packaging metadata, and installer concerns are intentionally not part of the supported config surface yet.
+Application identity, packaging metadata, and installer concerns are intentionally not part of the supported config surface.

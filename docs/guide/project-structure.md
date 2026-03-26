@@ -1,3 +1,8 @@
+---
+title: Project Structure
+description: Reference for the supported ElectroJS monorepo package layout and dependency ownership
+---
+
 # Monorepo Workspace
 
 This is the supported ElectroJS layout.
@@ -9,7 +14,7 @@ ElectroJS is optimized for:
 - one renderer view per package
 - shared packages alongside them when needed
 
-Other layouts may work, but they are not the documented path and are not something ElectroJS currently optimizes for.
+Other layouts may work, but this monorepo layout is the supported baseline and the one ElectroJS optimizes for.
 
 ---
 
