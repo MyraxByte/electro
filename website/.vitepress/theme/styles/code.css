@@ -1,0 +1,117 @@
+/* ─── Code block wrapper ──────────────────────────────── */
+.dark div[class*="language-"] {
+    border: 1px solid rgba(255, 248, 235, 0.07);
+    border-radius: 10px;
+    background: var(--vp-code-block-bg) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* ─── Default lang badge (language only) ─────────────── */
+.dark div[class*="language-"] .lang {
+    /* Keep as subtle top-right badge for pure language labels */
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--vp-c-text-3);
+    opacity: 0.8;
+}
+
+/* ─── Filename header (Vite-style) ───────────────────────
+   Applied when .file-label class is added by our plugin  */
+.dark div[class*="language-"] .lang.file-label {
+    /* Override badge positioning — become a full-width header */
+    position: static !important;
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    padding: 0 14px;
+    height: 38px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--vp-font-family-mono);
+    letter-spacing: 0.015em;
+    color: var(--vp-c-text-2);
+    background: rgba(255, 248, 235, 0.025);
+    border-bottom: 1px solid rgba(255, 248, 235, 0.07);
+    box-sizing: border-box;
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
+    /* Reset the top-right float/position from default .lang */
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+}
+
+/* File icon before filename */
+.dark div[class*="language-"] .lang.file-label::before {
+    content: "";
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 7px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239E9B96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+/* Code body below filename header */
+.dark div[class*="language-"]:has(.file-label) > pre {
+    border-left: 2px solid rgba(251, 191, 36, 0.14);
+}
+
+/* Copy button offset when filename header is present */
+.dark div[class*="language-"]:has(.file-label) > button.copy {
+    top: 46px;
+}
+
+/* ─── Inline code ─────────────────────────────────────── */
+.dark .vp-doc :not(pre) > code {
+    background: rgba(251, 191, 36, 0.07);
+    color: #FCD34D;
+    border: 1px solid rgba(251, 191, 36, 0.14);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.875em;
+}
+
+/* ─── Line highlight ──────────────────────────────────── */
+.dark div[class*="language-"] .line.highlighted {
+    background: rgba(251, 191, 36, 0.06);
+    border-left-color: #FBBF24;
+}
+
+/* ─── Copy button ─────────────────────────────────────── */
+.dark div[class*="language-"] > button.copy {
+    top: 46px; /* below the filename header */
+    border: 1px solid rgba(255, 248, 235, 0.08);
+    border-radius: 6px;
+    background: rgba(13, 12, 11, 0.8);
+    transition: border-color 0.2s, background 0.2s;
+}
+.dark div[class*="language-"] > button.copy:hover {
+    border-color: rgba(251, 191, 36, 0.25);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+/* ─── Code groups ─────────────────────────────────────── */
+.dark .vp-code-group .tabs {
+    background: rgba(255, 248, 235, 0.025);
+    border-bottom: 1px solid rgba(255, 248, 235, 0.07);
+}
+
+.dark .vp-code-group .tabs label {
+    color: var(--vp-c-text-2);
+    transition: color 0.2s;
+}
+
+.dark .vp-code-group .tabs label.active,
+.dark .vp-code-group .tabs input:checked + label {
+    color: var(--vp-c-brand-1);
+}
+
+.dark .vp-code-group .tabs input:checked + label::after {
+    background: var(--vp-c-brand-1);
+}
