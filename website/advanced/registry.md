@@ -4,7 +4,7 @@ title: Registry System
 
 # Registry System
 
-Electro maintains three runtime registries that provide programmatic access to all registered components. They are useful for dynamic orchestration, health monitoring, and administrative tooling.
+ElectroJS maintains three runtime registries that provide programmatic access to all registered components. They are useful for dynamic orchestration, health monitoring, and administrative tooling.
 
 ---
 

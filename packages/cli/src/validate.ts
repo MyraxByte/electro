@@ -74,7 +74,7 @@ export function validateMergedNodeConfig(config: { build?: Record<string, unknow
         for (const t of targets) {
             if (typeof t === "string" && t !== "esnext") {
                 throw new Error(
-                    `[electro] ${scope}: invalid target "${t}". Electro requires target: "esnext" (Electron 40+). ` +
+                    `[electro] ${scope}: invalid target "${t}". ElectroJS requires target: "esnext" (Electron 40+). ` +
                         "Remove the target override from your config.",
                 );
             }
@@ -89,7 +89,7 @@ export function validateMergedNodeConfig(config: { build?: Record<string, unknow
             if (fmt !== undefined && fmt !== "es" && fmt !== "cjs") {
                 throw new Error(
                     `[electro] ${scope}: invalid output format ${JSON.stringify(fmt)}. ` +
-                        `Electro supports "es" and "cjs" for Node scopes. ` +
+                        `ElectroJS supports "es" and "cjs" for Node scopes. ` +
                         "Update build.rolldownOptions.output.format in your config.",
                 );
             }

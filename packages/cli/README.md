@@ -1,6 +1,6 @@
 # @electrojs/cli
 
-Electro CLI for development, code generation, build, and preview.
+ElectroJS CLI for development, code generation, build, and preview.
 
 ## Installation
 
@@ -50,13 +50,13 @@ export default defineElectroConfig({
 });
 ```
 
-Electro expects a monorepo-style project:
+ElectroJS expects a monorepo-style project:
 
 - `runtime` is an explicit package specifier
 - `views` is an explicit list of view package specifiers
 - each view package owns its own `view.config.ts`
 
-Electro no longer documents auto-discovery-only single-repo setups as the supported path.
+ElectroJS no longer documents auto-discovery-only single-repo setups as the supported path.
 
 ## Typical Layout
 

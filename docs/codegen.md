@@ -12,7 +12,7 @@ Codegen is also run automatically by:
 
 ## What Codegen Scans
 
-Electro scans the runtime source tree and reads decorator metadata from:
+ElectroJS scans the runtime source tree and reads decorator metadata from:
 
 - `@Module()`
 - `@Injectable()`
@@ -37,7 +37,7 @@ The scanner is static. It does not execute the code it reads.
 
 ## What Gets Generated
 
-Electro currently generates four categories of files:
+ElectroJS currently generates four categories of files:
 
 ### Internal build artifacts
 
@@ -62,7 +62,7 @@ These are the important files for IDE and TypeScript integration.
 
 ## Why `electro-env.d.ts`
 
-Electro used to rely on generated declarations under `.electro/.../bridge.d.ts`.
+ElectroJS used to rely on generated declarations under `.electro/.../bridge.d.ts`.
 
 The current model writes `electro-env.d.ts` directly into each package because IDEs track project-local `.d.ts` files more reliably than generated pseudo-packages under `node_modules` or a shared `.electro` typing tree.
 
@@ -121,7 +121,7 @@ No manual `.electro/.../bridge.d.ts` includes are needed anymore.
 
 ## Validation Rules
 
-Before generation, Electro validates the scanned graph.
+Before generation, ElectroJS validates the scanned graph.
 
 Examples of generation failures:
 

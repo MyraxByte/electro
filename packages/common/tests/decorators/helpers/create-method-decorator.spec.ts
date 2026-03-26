@@ -141,7 +141,7 @@ describe("createMethodDecorator()", () => {
         });
     });
 
-    it("rejects duplicate Electro role", () => {
+    it("rejects duplicate ElectroJS role", () => {
         const testDecorator = createMethodDecorator<{ readonly kind: "query"; readonly methodName: string; readonly id: string }, Record<string, never>>({
             decoratorName: "@test()",
             metadataKey: Symbol("test:query"),

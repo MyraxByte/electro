@@ -206,7 +206,7 @@ try {
 
 ## Type Reference
 
-After running `electro generate`, Electro writes package-local `electro-env.d.ts` files that augment `@electrojs/renderer`. The generated interface looks like:
+After running `electro generate`, ElectroJS writes package-local `electro-env.d.ts` files that augment `@electrojs/renderer`. The generated interface looks like:
 
 ```ts
 // views/main/electro-env.d.ts (auto-generated — do not edit)

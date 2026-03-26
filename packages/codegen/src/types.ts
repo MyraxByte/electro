@@ -9,7 +9,7 @@
 
 // ── Scan Result ─────────────────────────────────────────────────────
 
-/** Complete result of scanning a project's source files for Electro decorators. */
+/** Complete result of scanning a project's source files for ElectroJS decorators. */
 export interface ScanResult {
     readonly modules: readonly ScannedModule[];
     readonly windows: readonly ScannedWindow[];

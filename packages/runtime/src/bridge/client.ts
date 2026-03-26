@@ -174,7 +174,7 @@ export function createBridgeClient(config: BridgeClientConfig): PreloadBridgeApi
 // Signal channel constant — used by subscribe/once above and by the main-process relay.
 const SIGNAL_CHANNEL = "electro:signal";
 
-/** Well-known IPC channel names used by the Electro bridge protocol. */
+/** Well-known IPC channel names used by the ElectroJS bridge protocol. */
 export const IPC_CHANNELS = {
     bridge: BRIDGE_CHANNEL,
     register: REGISTER_CHANNEL,

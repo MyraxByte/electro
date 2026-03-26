@@ -1,6 +1,6 @@
 # Views — Runtime Side
 
-A **View** in Electro is a runtime class that wraps a `WebContentsView`. It declares which bridge methods the frontend can call and which signals it receives.
+A **View** in ElectroJS is a runtime class that wraps a `WebContentsView`. It declares which bridge methods the frontend can call and which signals it receives.
 
 > **Terminology:** "View" always refers to the **runtime-side class** decorated with `@View`. The corresponding frontend code is the **Renderer View**.
 

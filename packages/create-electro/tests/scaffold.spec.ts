@@ -11,7 +11,7 @@ afterEach(async () => {
 });
 
 describe("scaffoldProject", () => {
-    it("creates a monorepo Electro starter", async () => {
+    it("creates a monorepo ElectroJS starter", async () => {
         const root = await mkdtemp(join(tmpdir(), "create-electro-"));
         createdDirs.push(root);
 

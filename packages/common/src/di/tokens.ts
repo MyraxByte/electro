@@ -23,7 +23,7 @@ export function createInjectionToken<TValue>(description: string): InjectionToke
 }
 
 /**
- * Checks whether a value is a typed Electro injection token object.
+ * Checks whether a value is a typed ElectroJS injection token object.
  */
 export function isInjectionTokenSymbol<TValue = unknown>(value: unknown): value is InjectionTokenSymbol<TValue> {
     return TokenValidator.isInjectionTokenSymbol(value);

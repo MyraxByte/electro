@@ -14,7 +14,7 @@ import { type RawModuleDescriptor, type RawProviderDescriptor, scanFileClasses }
 import { discoverFiles } from "./file-discovery";
 
 /**
- * Scan a project directory for Electro decorators and return a normalized result.
+ * Scan a project directory for ElectroJS decorators and return a normalized result.
  *
  * This is the main entry point for the codegen scanner.
  *

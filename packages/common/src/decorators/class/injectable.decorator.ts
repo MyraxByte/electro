@@ -4,7 +4,7 @@ import { ScopeValidator } from "../../validation";
 import { createClassDecorator } from "../helpers/create-class-decorator";
 
 /**
- * Marks a class as an Electro provider that can be managed by the runtime container.
+ * Marks a class as an ElectroJS provider that can be managed by the runtime container.
  *
  * The decorator stores only descriptive metadata.
  * Provider creation and lifecycle semantics are implemented by the runtime package.

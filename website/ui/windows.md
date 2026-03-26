@@ -4,7 +4,7 @@ title: Windows
 
 # Windows
 
-A Window is an Electron `BaseWindow` managed by the Electro runtime. It hosts one or more Views (WebContentsView), participates in the application lifecycle, and is accessible anywhere in the runtime via DI.
+A Window is an Electron `BaseWindow` managed by the ElectroJS runtime. It hosts one or more Views (WebContentsView), participates in the application lifecycle, and is accessible anywhere in the runtime via DI.
 
 ---
 

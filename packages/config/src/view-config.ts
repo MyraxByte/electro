@@ -4,7 +4,7 @@ import type { UserConfig as ViteUserConfig } from "vite";
  * View build configuration.
  *
  * Exported from `view.config.ts` inside each view package.
- * Extends Vite's `UserConfig` (minus fields Electro manages) with
+ * Extends Vite's `UserConfig` (minus fields ElectroJS manages) with
  * view-specific fields.
  *
  * Users have full access to: `resolve`, `plugins`, `define`,

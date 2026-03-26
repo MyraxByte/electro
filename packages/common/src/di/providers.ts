@@ -35,7 +35,7 @@ export function isProvider(provider: unknown): provider is Provider {
 }
 
 /**
- * Checks whether a value is a decorated Electro module class.
+ * Checks whether a value is a decorated ElectroJS module class.
  */
 export function isModule(value: unknown): value is Constructor<object> {
     return isConstructable(value) && getModuleMetadata(value as Constructor<object>) !== undefined;

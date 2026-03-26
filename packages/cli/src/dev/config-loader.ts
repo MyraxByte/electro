@@ -337,7 +337,7 @@ export async function loadConfig(configPath: string): Promise<LoadedConfig> {
         throw new Error(`Config file not found: ${absolutePath}`);
     }
 
-    const loadedAppConfig = await loadConfigModule<AppConfigShape>(absolutePath, "Electro config");
+    const loadedAppConfig = await loadConfigModule<AppConfigShape>(absolutePath, "ElectroJS config");
     if (!isObjectRecord(loadedAppConfig.value)) {
         throw new Error(`${configPath} must export an object from defineElectroConfig(...)`);
     }

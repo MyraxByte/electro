@@ -5,7 +5,7 @@ import { ModuleOptionsValidator } from "../../validation";
 import { createClassDecorator } from "../helpers/create-class-decorator";
 
 /**
- * Declares an Electro module.
+ * Declares an ElectroJS module.
  *
  * A module describes:
  * - imported modules

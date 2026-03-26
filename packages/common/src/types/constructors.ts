@@ -20,6 +20,6 @@ export type AbstractConstructor<TInstance = object, TArgs extends readonly unkno
 export type ClassToken<TInstance = object> = (new (...args: readonly any[]) => TInstance) | (abstract new (...args: readonly any[]) => TInstance);
 
 /**
- * Represents any class-like token accepted by the Electro type system.
+ * Represents any class-like token accepted by the ElectroJS type system.
  */
 export type TargetType<TInstance = object> = ClassToken<TInstance>;

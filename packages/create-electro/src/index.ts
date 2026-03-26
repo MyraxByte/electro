@@ -75,7 +75,7 @@ export async function runCli(argv: readonly string[] = process.argv.slice(2)): P
         projectName,
     });
 
-    console.log(`\nScaffolded Electro app in ${targetDir}`);
+    console.log(`\nScaffolded ElectroJS app in ${targetDir}`);
     console.log(`Created ${createdFiles.length} file(s).\n`);
     console.log("Next steps:");
 

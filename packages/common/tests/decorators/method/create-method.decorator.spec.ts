@@ -6,7 +6,7 @@ import { command } from "../../../src/decorators/method/command.decorator";
 import { query } from "../../../src/decorators/method/query.decorator";
 
 describe("createRuntimeMethodDecorator()", () => {
-    it("rejects duplicate Electro runtime roles", () => {
+    it("rejects duplicate ElectroJS runtime roles", () => {
         const act = () => {
             class Service {
                 @command()

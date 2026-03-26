@@ -20,7 +20,7 @@ export class RendererInitializationError extends RendererError {
 
     public static preloadApiMissing(windowKey: string): RendererInitializationError {
         return new RendererInitializationError(
-            `Electro renderer preload API is not available on window.${windowKey}.`,
+            `ElectroJS renderer preload API is not available on window.${windowKey}.`,
             "ELECTRO_RENDERER_PRELOAD_API_MISSING",
             { windowKey },
         );

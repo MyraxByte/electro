@@ -1,20 +1,20 @@
 ---
 title: Project Structure
-description: Reference for the supported Electro monorepo package layout and dependency ownership
+description: Reference for the supported ElectroJS monorepo package layout and dependency ownership
 ---
 
 # Monorepo Workspace
 
-This is the supported Electro layout.
+This is the supported ElectroJS layout.
 
-Electro is optimized for:
+ElectroJS is optimized for:
 
 - one application workspace root
 - one runtime package
 - one renderer view per package
 - shared packages alongside them when needed
 
-Other layouts may work, but they are not the documented path and are not something Electro currently optimizes for.
+Other layouts may work, but they are not the documented path and are not something ElectroJS currently optimizes for.
 
 ---
 
@@ -53,7 +53,7 @@ The key design point is package isolation:
 
 ---
 
-## Why Electro Recommends This
+## Why ElectroJS Recommends This
 
 This layout matches how the framework actually behaves:
 
@@ -76,7 +76,7 @@ packages:
     - "packages/*"
 ```
 
-The application root itself is the Electro app package. `runtime`, every `views/*`, and any `packages/*` entries are regular workspace packages.
+The application root itself is the ElectroJS app package. `runtime`, every `views/*`, and any `packages/*` entries are regular workspace packages.
 
 ---
 
@@ -96,7 +96,7 @@ Resolution rules:
 
 - `runtime` points to the runtime package
 - `views` points to view packages
-- Electro resolves them as package specifiers first
+- ElectroJS resolves them as package specifiers first
 - local workspace lookup remains as fallback for linked workspace development
 
 ---
@@ -161,13 +161,13 @@ Each view package owns:
 - its `index.html`
 - its own generated renderer typing in `electro-env.d.ts`
 
-This is the layout Electro recommends and tests against.
+This is the layout ElectroJS recommends and tests against.
 
 ---
 
 ## Shared Packages
 
-Shared workspace packages are ordinary TypeScript packages with no Electro config:
+Shared workspace packages are ordinary TypeScript packages with no ElectroJS config:
 
 ```json
 // packages/ui/package.json
@@ -183,7 +183,7 @@ Keep the ownership boundary clear:
 
 - shared packages do not declare `runtime.config.ts`
 - shared packages do not declare `view.config.ts`
-- only the runtime package and view packages are Electro surfaces
+- only the runtime package and view packages are ElectroJS surfaces
 
 ---
 
@@ -231,7 +231,7 @@ Suggested root scripts:
 
 ## Generated Files
 
-Electro writes:
+ElectroJS writes:
 
 - `.electro/generated/preload/*.gen.ts`
 - `.electro/generated/runtime/registry.gen.ts`
@@ -252,4 +252,4 @@ The following are intentionally not the recommended path:
 - many renderer views inside one package as the default architecture
 - undocumented package layouts that rely on implicit scanning
 
-If you need those shapes, treat them as advanced or experimental setups, not as the baseline Electro architecture.
+If you need those shapes, treat them as advanced or experimental setups, not as the baseline ElectroJS architecture.

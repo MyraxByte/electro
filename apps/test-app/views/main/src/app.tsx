@@ -48,7 +48,7 @@ export function App() {
             <section className="hero">
                 <span className="hero-badge">
                     <span className="hero-badge-dot" />
-                    Electro Starter
+                    ElectroJS Starter
                 </span>
                 <h1 className="hero-heading">
                     You're all set. <span className="hero-heading-dim">Start building.</span>

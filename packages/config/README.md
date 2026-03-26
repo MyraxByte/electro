@@ -1,8 +1,8 @@
 # @electrojs/config
 
-Typed configuration contracts for Electro applications.
+Typed configuration contracts for ElectroJS applications.
 
-Electro supports a monorepo-style application layout with:
+ElectroJS supports a monorepo-style application layout with:
 
 - one root `electro.config.ts`
 - one `runtime/` package with `runtime.config.ts`
@@ -45,7 +45,7 @@ interface AppConfig {
 - `runtime` is the package specifier for the runtime package
 - `views` is the explicit list of renderer view package specifiers
 
-Electro no longer documents single-repo auto-discovery as a supported setup.
+ElectroJS no longer documents single-repo auto-discovery as a supported setup.
 
 ## `runtime.config.ts`
 
@@ -92,7 +92,7 @@ interface ViewConfig extends ViteUserConfig {
 
 - `viewId` is the bundled renderer id used by runtime `@View({ source: "view:<id>" })`
 - `entry` defaults to `./index.html`
-- `preload` is optional because Electro usually generates preload entrypoints automatically
+- `preload` is optional because ElectroJS usually generates preload entrypoints automatically
 
 ## Layout
 

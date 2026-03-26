@@ -84,7 +84,7 @@ export function getSignalMetadata(target: object): SignalMethodMetadata | undefi
 
 /**
 
-* Reads the first Electro method metadata found on a handler function.
+* Reads the first ElectroJS method metadata found on a handler function.
  */
 export function getMethodMetadata(target: object): MethodMetadata | undefined {
     return getCommandMetadata(target) ?? getQueryMetadata(target) ?? getJobMetadata(target) ?? getSignalMetadata(target);

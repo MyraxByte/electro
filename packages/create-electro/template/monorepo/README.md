@@ -1,6 +1,6 @@
 # **DISPLAY_NAME**
 
-Electro monorepo application scaffolded with `create-electro`.
+ElectroJS monorepo application scaffolded with `create-electro`.
 
 ## Commands
 

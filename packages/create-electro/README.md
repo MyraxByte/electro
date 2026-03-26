@@ -1,6 +1,6 @@
 # create-electro
 
-Scaffold a new Electro application with the supported monorepo-first layout.
+Scaffold a new ElectroJS application with the supported monorepo-first layout.
 
 ## Usage
 
@@ -21,4 +21,4 @@ The generated project contains:
 - a `views/main/` package
 - package-local `electro-env.d.ts` starter files
 
-Electro documents and supports this monorepo-style layout. Other layouts are outside the documented path.
+ElectroJS documents and supports this monorepo-style layout. Other layouts are outside the documented path.

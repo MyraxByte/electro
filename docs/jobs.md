@@ -48,7 +48,7 @@ export class SyncService {
 
 ## Cron Expressions
 
-Electro uses standard 5-field cron syntax (minute, hour, day-of-month, month, day-of-week):
+ElectroJS uses standard 5-field cron syntax (minute, hour, day-of-month, month, day-of-week):
 
 ```
 ┌──── minute      (0–59)

@@ -15,7 +15,7 @@ function Settings() {
                 <h2 style={headingStyle}>About</h2>
                 <div style={rowStyle}>
                     <span style={{ color: "#888" }}>App</span>
-                    <span>Electro Mono App</span>
+                    <span>ElectroJS Mono App</span>
                 </div>
                 <div style={rowStyle}>
                     <span style={{ color: "#888" }}>Pattern</span>

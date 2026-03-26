@@ -1,6 +1,6 @@
 # Build Pipeline
 
-Electro has three user-facing commands:
+ElectroJS has three user-facing commands:
 
 - `electro dev`
 - `electro build`
@@ -17,7 +17,7 @@ All three start from the same base pipeline:
 
 ## Generated Outputs
 
-Electro currently generates these files:
+ElectroJS currently generates these files:
 
 | Output            | Path                                         | Purpose                                                              |
 | ----------------- | -------------------------------------------- | -------------------------------------------------------------------- |
@@ -88,9 +88,9 @@ It is a smoke test for production output, not a dev-mode session.
 
 ## Package Resolution
 
-Electro resolves `runtime` and `views` from `electro.config.ts` as package specifiers first. The current CLI uses `oxc-resolver` for that path and keeps a local workspace fallback for linked workspace development.
+ElectroJS resolves `runtime` and `views` from `electro.config.ts` as package specifiers first. The current CLI uses `oxc-resolver` for that path and keeps a local workspace fallback for linked workspace development.
 
-That gives Electro two important behaviors:
+That gives ElectroJS two important behaviors:
 
 - installed package resolution works without workspace scanning
 - local workspace packages still resolve even when the package is linked rather than published
@@ -135,7 +135,7 @@ my-app/
 
 ## App Config in the Pipeline
 
-At build time Electro currently uses `electro.config.ts` for package resolution and codegen configuration:
+At build time ElectroJS currently uses `electro.config.ts` for package resolution and codegen configuration:
 
 - `runtime` points at the runtime package
 - `views` points at renderer view packages

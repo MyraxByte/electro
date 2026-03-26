@@ -14,7 +14,7 @@ import { GENERATED_HEADER, toRelativeImport } from "./import-utils";
 import { collectSignals } from "./signal-utils";
 
 const VIEW_HEADER = `${GENERATED_HEADER}// @ts-nocheck
-// Electro renderer bridge contract types — provides IDE completions for bridge access and forwarded signals.
+// ElectroJS renderer bridge contract types — provides IDE completions for bridge access and forwarded signals.
 
 export {};
 

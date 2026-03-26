@@ -45,7 +45,7 @@ function resolveBundledViewSource(source: string): string {
     const resolved = getGeneratedViewRegistry().find((entry) => entry.id === viewId)?.source;
 
     if (!resolved) {
-        throw new Error(`Bundled view source "${source}" could not be resolved. Start the app through the Electro CLI so the view registry is injected.`);
+        throw new Error(`Bundled view source "${source}" could not be resolved. Start the app through the ElectroJS CLI so the view registry is injected.`);
     }
 
     return resolved;

@@ -1,7 +1,7 @@
 {
     "name": "create-electro",
     "version": "1.0.0",
-    "description": "Create a new Electro monorepo application",
+    "description": "Create a new ElectroJS monorepo application",
     "keywords": [
         "create",
         "electro",

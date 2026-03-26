@@ -1,4 +1,4 @@
-# Electro Documentation
+# ElectroJS Documentation
 
 > A TypeScript framework for building structured, type-safe Electron desktop applications.
 
@@ -6,9 +6,9 @@
 
 ## What is Electro?
 
-Electro brings the architectural patterns found in server-side frameworks — modules, dependency injection, lifecycle hooks, typed IPC — to the Electron ecosystem. It is designed for applications where maintainability, type safety, and long-term scalability matter.
+ElectroJS brings the architectural patterns found in server-side frameworks — modules, dependency injection, lifecycle hooks, typed IPC — to the Electron ecosystem. It is designed for applications where maintainability, type safety, and long-term scalability matter.
 
-If you have worked with NestJS, the mental model will feel familiar. The key difference is that Electro targets **Electron desktop apps** rather than HTTP servers, and the "API layer" is a typed IPC bridge between the main process and your renderer views.
+If you have worked with NestJS, the mental model will feel familiar. The key difference is that ElectroJS targets **Electron desktop apps** rather than HTTP servers, and the "API layer" is a typed IPC bridge between the main process and your renderer views.
 
 ---
 

@@ -18,10 +18,7 @@ function codeFilenamePlugin(md: MarkdownIt) {
 
         if (filename) {
             // Replace the auto-generated lang label with the filename
-            html = html.replace(
-                /<span class="lang">.*?<\/span>/,
-                `<span class="lang file-label">${filename}</span>`,
-            );
+            html = html.replace(/<span class="lang">.*?<\/span>/, `<span class="lang file-label">${filename}</span>`);
         }
 
         return html;
@@ -29,13 +26,13 @@ function codeFilenamePlugin(md: MarkdownIt) {
 }
 
 export default defineConfig({
-    title: "Electro",
+    title: "ElectroJS",
     description: "TypeScript framework for Electron apps",
     appearance: "dark",
 
     head: [
         ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
-        ["meta", { name: "theme-color", content: "#FBBF24" }],
+        ["meta", { name: "theme-color", content: "#fba924" }],
         ["meta", { property: "og:type", content: "website" }],
         ["meta", { property: "og:title", content: "Electro" }],
         [
@@ -45,12 +42,20 @@ export default defineConfig({
                 content: "TypeScript framework for Electron apps",
             },
         ],
+        // Hugeicons icon font CDN
+        [
+            "link",
+            {
+                rel: "stylesheet",
+                href: "https://use.hugeicons.com/font/icons.css",
+            },
+        ],
     ],
 
     markdown: {
         theme: {
-            dark: "one-dark-pro",
             light: "github-light",
+            dark: "github-dark",
         },
         config: (md) => {
             codeFilenamePlugin(md);
@@ -73,7 +78,7 @@ export default defineConfig({
         socialLinks: [
             {
                 icon: "github",
-                link: "https://github.com/aspect-build/electro",
+                link: "https://github.com/MyraxByte/electrojs",
             },
         ],
 
@@ -135,8 +140,7 @@ export default defineConfig({
         ],
 
         footer: {
-            message: "Released under the MIT License.",
-            copyright: "Copyright © 2024-present Electro Contributors",
+            copyright: "Copyright © 2024-present ElectroJS Contributors",
         },
     },
 });

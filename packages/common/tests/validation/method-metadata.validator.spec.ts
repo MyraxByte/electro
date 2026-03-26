@@ -6,7 +6,7 @@ import { expectElectroError } from "../../src/utils/expect-electro-error";
 import { MethodMetadataValidator } from "../../src/validation/method-metadata.validator";
 
 describe("MethodMetadataValidator", () => {
-    it("accepts method without Electro metadata", () => {
+    it("accepts method without ElectroJS metadata", () => {
         const handler = function handler(): void {};
 
         expect(() => MethodMetadataValidator.ensureRoleIsAvailable(handler, "@query()")).not.toThrow();

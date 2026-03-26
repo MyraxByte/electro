@@ -40,6 +40,19 @@
     color: var(--vp-c-text-1);
 }
 
+/* ─── Hugeicons in feature cards ─────────────────────── */
+.dark .VPFeatures .VPFeature .icon i[class*="hgi-"] {
+    font-size: 28px;
+    color: var(--vp-c-brand-1);
+    display: block;
+    line-height: 1;
+    transition: color 0.25s ease;
+}
+
+.dark .VPFeatures .VPFeature:hover .icon i[class*="hgi-"] {
+    color: var(--vp-c-brand-2);
+}
+
 /* ─── Feature cards ───────────────────────────────────── */
 .dark .VPFeatures .VPFeature {
     background: var(--vp-c-bg-soft);
@@ -67,19 +80,29 @@
 
 /* ─── Callout blocks ──────────────────────────────────── */
 .dark .custom-block.tip {
-    border-color: rgba(251, 191, 36, 0.2);
-    background: rgba(251, 191, 36, 0.04);
+    border-color: rgba(251, 191, 36, 0.35);
+    background: rgba(251, 191, 36, 0.07);
 }
 .dark .custom-block.tip .custom-block-title {
     color: var(--vp-c-brand-1);
 }
+.dark .custom-block.info {
+    border-color: rgba(99, 179, 237, 0.35);
+    background: rgba(99, 179, 237, 0.07);
+}
 .dark .custom-block.warning {
-    border-color: rgba(251, 146, 60, 0.2);
-    background: rgba(251, 146, 60, 0.04);
+    border-color: rgba(251, 146, 60, 0.4);
+    background: rgba(251, 146, 60, 0.09);
+}
+.dark .custom-block.warning .custom-block-title {
+    color: #fb923c;
 }
 .dark .custom-block.danger {
-    border-color: rgba(239, 68, 68, 0.2);
-    background: rgba(239, 68, 68, 0.04);
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.1);
+}
+.dark .custom-block.danger .custom-block-title {
+    color: #f87171;
 }
 
 /* ─── Tables ──────────────────────────────────────────── */

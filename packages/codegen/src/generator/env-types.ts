@@ -16,7 +16,7 @@ import { GENERATED_HEADER, quoteProperty, toRelativeImport } from "./import-util
 import { collectSignals } from "./signal-utils";
 
 const ENV_TYPES_HEADER = `${GENERATED_HEADER}// @ts-nocheck
-// Electro runtime authoring contract types — provides IDE completions for modules, signals, jobs, windows, and runtime-declared views.
+// ElectroJS runtime authoring contract types — provides IDE completions for modules, signals, jobs, windows, and runtime-declared views.
 
 export {};
 

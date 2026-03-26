@@ -11,7 +11,7 @@ Foundational runtime-agnostic primitives for Electro.
 - strict validation and framework-specific error types
 - small immutable utility helpers
 
-This package intentionally does **not** implement the runtime container, bridge transport, window lifecycle, or renderer execution. It defines the stable primitives that higher-level Electro packages consume.
+This package intentionally does **not** implement the runtime container, bridge transport, window lifecycle, or renderer execution. It defines the stable primitives that higher-level ElectroJS packages consume.
 
 ---
 
@@ -32,7 +32,7 @@ Use `@electrojs/common` when you need to:
 - mark methods as commands, queries, jobs, or signals
 - create typed DI tokens
 - define provider declarations in a strict and framework-friendly way
-- inspect Electro metadata from runtime code, tooling, or code generation
+- inspect ElectroJS metadata from runtime code, tooling, or code generation
 
 This package is the shared language of the framework.
 
@@ -565,7 +565,7 @@ These guards are useful in runtime internals, tooling, and validation layers.
 
 ## Metadata accessors
 
-The package provides read helpers for Electro metadata.
+The package provides read helpers for ElectroJS metadata.
 
 ```ts
 import {

@@ -4,7 +4,7 @@ import type { ClassToken, Constructor } from "./constructors";
 
 * Represents a typed injection token object.
 *
-* Electro intentionally does not use raw strings as tokens in the public API,
+* ElectroJS intentionally does not use raw strings as tokens in the public API,
 * because string tokens weaken type safety and make refactoring less reliable.
  */
 export interface InjectionTokenSymbol<TValue = unknown> {

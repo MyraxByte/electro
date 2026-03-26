@@ -4,7 +4,7 @@ title: Renderer
 
 # Renderer
 
-The renderer side of Electro is a normal frontend package that uses `@electrojs/renderer`.
+The renderer side of ElectroJS is a normal frontend package that uses `@electrojs/renderer`.
 
 Each view package owns:
 
@@ -119,7 +119,7 @@ Signal keys and payloads are also generated from runtime source and constrained 
 
 ## Typing Model
 
-Electro augments `@electrojs/renderer` inside each view package's `electro-env.d.ts`.
+ElectroJS augments `@electrojs/renderer` inside each view package's `electro-env.d.ts`.
 
 That means you do not manually write bridge typings in renderer code. You only:
 
@@ -175,4 +175,4 @@ During `electro dev`:
 - renderer source changes go through HMR
 - runtime/preload changes rebuild and restart Electron
 
-This separation is one of the reasons Electro recommends one view per package as the default architecture.
+This separation is one of the reasons ElectroJS recommends one view per package as the default architecture.

@@ -1,8 +1,8 @@
 # @electrojs/renderer
 
-Typed renderer-side runtime for Electro applications.
+Typed renderer-side runtime for ElectroJS applications.
 
-`@electrojs/renderer` is the only public entrypoint that renderer code uses to talk to the Electro runtime. It exposes:
+`@electrojs/renderer` is the only public entrypoint that renderer code uses to talk to the ElectroJS runtime. It exposes:
 
 - `ElectroRenderer.initialize(...)` — bootstraps the renderer package
 - `bridge` — typed query/command API

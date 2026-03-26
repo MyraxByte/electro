@@ -11,7 +11,7 @@ export interface InjectableMetadata {
 
 /**
 
-* Shared shape for Electro method metadata.
+* Shared shape for ElectroJS method metadata.
  */
 interface BaseMethodMetadata {
     readonly methodName: string;
@@ -53,6 +53,6 @@ export interface SignalMethodMetadata extends BaseMethodMetadata {
 
 /**
 
-* Union of all Electro runtime method metadata kinds.
+* Union of all ElectroJS runtime method metadata kinds.
  */
 export type MethodMetadata = CommandMethodMetadata | QueryMethodMetadata | JobMethodMetadata | SignalMethodMetadata;

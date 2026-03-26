@@ -1,8 +1,8 @@
 # Getting Started
 
-This guide documents the supported Electro setup: a monorepo-style app workspace with one runtime package and one package per renderer view.
+This guide documents the supported ElectroJS setup: a monorepo-style app workspace with one runtime package and one package per renderer view.
 
-Electro is no longer documented as a single-repo auto-discovery framework.
+ElectroJS is no longer documented as a single-repo auto-discovery framework.
 
 Start with:
 
@@ -73,7 +73,7 @@ export default defineElectroConfig({
 });
 ```
 
-`runtime` and `views` are explicit. Electro no longer relies on project-wide auto-discovery as the primary documented workflow.
+`runtime` and `views` are explicit. ElectroJS no longer relies on project-wide auto-discovery as the primary documented workflow.
 
 ---
 
@@ -242,7 +242,7 @@ Use `bridge` and `signals` only after `ElectroRenderer.initialize()` has complet
 
 ## 8. Generated Types
 
-Electro writes four kinds of generated artifacts:
+ElectroJS writes four kinds of generated artifacts:
 
 - `.electro/generated/preload/*.gen.ts`
 - `.electro/generated/runtime/registry.gen.ts`

@@ -1,8 +1,8 @@
 /**
- * `@electrojs/codegen` — AST scanner and code generator for the Electro framework.
+ * `@electrojs/codegen` — AST scanner and code generator for the ElectroJS framework.
  *
  * Two-stage pipeline:
- * 1. `scan(basePath)` — discovers Electro decorators via OXC AST parsing
+ * 1. `scan(basePath)` — discovers ElectroJS decorators via OXC AST parsing
  * 2. `generate(input)` — produces preload scripts, runtime registry, and package-local env types
  *
  * @example

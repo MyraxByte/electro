@@ -1,6 +1,6 @@
 # Application Lifecycle
 
-Every component in Electro — modules, views, and windows — participates in a shared, ordered lifecycle. Understanding this lifecycle is essential for correct resource management.
+Every component in ElectroJS — modules, views, and windows — participates in a shared, ordered lifecycle. Understanding this lifecycle is essential for correct resource management.
 
 ---
 

@@ -4,7 +4,7 @@ import type { UserConfig as ViteUserConfig } from "vite";
  * Runtime build configuration.
  *
  * Exported from `runtime.config.ts` inside the runtime package.
- * Extends Vite's `UserConfig` (minus fields Electro manages) with
+ * Extends Vite's `UserConfig` (minus fields ElectroJS manages) with
  * the Electron main-process–specific `entry` field.
  *
  * Users have full access to: `resolve`, `plugins`, `define`,
