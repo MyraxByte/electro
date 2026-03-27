@@ -128,4 +128,40 @@ describe("loadConfig()", () => {
             entry: "./index.html",
         });
     });
+
+    it("allows dev to evaluate runtime and view configs with different Vite envs", async () => {
+        const root = await createTempDir("electro-cli-env-split-");
+
+        await writeText(join(root, "electro.config.ts"), `export default { runtime: "./runtime", views: ["./renderer/views/main"] };`);
+        await writeText(
+            join(root, "runtime/runtime.config.ts"),
+            `export default ({ command, mode }) => ({
+                entry: "./src/main.ts",
+                define: { __RUNTIME_ENV__: JSON.stringify(\`\${command}:\${mode}\`) }
+            });`,
+        );
+        await writeText(join(root, "runtime/src/main.ts"), `export {};`);
+        await writeText(
+            join(root, "renderer/views/main/view.config.ts"),
+            `export default ({ command, mode }) => ({
+                viewId: "main",
+                entry: "./index.html",
+                define: { __VIEW_ENV__: JSON.stringify(\`\${command}:\${mode}\`) }
+            });`,
+        );
+        await writeText(join(root, "renderer/views/main/index.html"), "<!doctype html><html></html>");
+
+        const loaded = await loadConfig(join(root, "electro.config.ts"), {
+            appEnv: { command: "serve", mode: "development" },
+            runtimeEnv: { command: "build", mode: "development" },
+            viewEnv: { command: "serve", mode: "development" },
+        });
+
+        expect(loaded.config.runtime.userConfig).toMatchObject({
+            define: { __RUNTIME_ENV__: '"build:development"' },
+        });
+        expect(loaded.views[0]?.userConfig).toMatchObject({
+            define: { __VIEW_ENV__: '"serve:development"' },
+        });
+    });
 });

@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { ResolverFactory } from "oxc-resolver";
-import { loadConfigFromFile } from "vite";
+import { loadConfigFromFile, type ConfigEnv } from "vite";
 import { validateConfig } from "../validate";
 import {
     assertLoadedViewDefinition,
@@ -21,6 +21,13 @@ interface LoadedConfigModule<TValue> {
     readonly dependencies: readonly string[];
     readonly value: TValue;
 }
+
+const DEFAULT_CONFIG_ENV: ConfigEnv = {
+    command: "build",
+    mode: "production",
+    isSsrBuild: false,
+    isPreview: false,
+};
 
 interface AppConfigShape {
     readonly runtime?: unknown;
@@ -56,8 +63,8 @@ function normalizeWatchFiles(filePath: string, dependencies?: readonly string[])
     return [...new Set([filePath, ...(dependencies ?? [])])];
 }
 
-async function loadConfigModule<TValue>(filePath: string, label: string): Promise<LoadedConfigModule<TValue>> {
-    const loaded = await loadConfigFromFile({ command: "build", mode: "production" }, filePath);
+async function loadConfigModuleWithEnv<TValue>(filePath: string, label: string, configEnv: ConfigEnv): Promise<LoadedConfigModule<TValue>> {
+    const loaded = await loadConfigFromFile(configEnv, filePath);
     const value = loaded?.config as TValue | undefined;
 
     if (!value) {
@@ -301,6 +308,7 @@ async function loadViewDefinitions(
     appConfig: AppConfigShape,
     resolver: ResolverFactory,
     workspaceIndex: WorkspacePackageIndex,
+    configEnv: ConfigEnv,
 ): Promise<{
     readonly views: readonly CliViewDefinition[];
     readonly watchFiles: readonly string[];
@@ -314,7 +322,7 @@ async function loadViewDefinitions(
     const watchFiles = new Set<string>();
 
     for (const viewConfigPath of viewConfigPaths) {
-        const loaded = await loadConfigModule<unknown>(viewConfigPath, "View config");
+        const loaded = await loadConfigModuleWithEnv<unknown>(viewConfigPath, "View config", configEnv);
         assertLoadedViewDefinition(loaded.value, viewConfigPath);
 
         views.push(normalizeLoadedViewDefinition(loaded.value, viewConfigPath));
@@ -329,15 +337,24 @@ async function loadViewDefinitions(
     };
 }
 
-export async function loadConfig(configPath: string): Promise<LoadedConfig> {
+export interface LoadConfigOptions {
+    readonly appEnv?: ConfigEnv;
+    readonly runtimeEnv?: ConfigEnv;
+    readonly viewEnv?: ConfigEnv;
+}
+
+export async function loadConfig(configPath: string, options?: LoadConfigOptions): Promise<LoadedConfig> {
     const absolutePath = resolve(process.cwd(), configPath);
     const root = dirname(absolutePath);
+    const appEnv = options?.appEnv ?? DEFAULT_CONFIG_ENV;
+    const runtimeEnv = options?.runtimeEnv ?? DEFAULT_CONFIG_ENV;
+    const viewEnv = options?.viewEnv ?? DEFAULT_CONFIG_ENV;
 
     if (!existsSync(absolutePath)) {
         throw new Error(`Config file not found: ${absolutePath}`);
     }
 
-    const loadedAppConfig = await loadConfigModule<AppConfigShape>(absolutePath, "ElectroJS config");
+    const loadedAppConfig = await loadConfigModuleWithEnv<AppConfigShape>(absolutePath, "ElectroJS config", appEnv);
     if (!isObjectRecord(loadedAppConfig.value)) {
         throw new Error(`${configPath} must export an object from defineElectroConfig(...)`);
     }
@@ -357,7 +374,7 @@ export async function loadConfig(configPath: string): Promise<LoadedConfig> {
 
         const runtimeConfigPath = resolveExplicitConfigPath(root, absolutePath, resolver, workspaceIndex, appConfig.runtime, "runtime.config.ts");
 
-        const loadedRuntimeConfig = await loadConfigModule<RuntimeConfigShape>(runtimeConfigPath, "Runtime config");
+        const loadedRuntimeConfig = await loadConfigModuleWithEnv<RuntimeConfigShape>(runtimeConfigPath, "Runtime config", runtimeEnv);
         runtime = normalizeRuntimeConfig(loadedRuntimeConfig.value, runtimeConfigPath);
 
         for (const filePath of loadedRuntimeConfig.dependencies) {
@@ -365,7 +382,7 @@ export async function loadConfig(configPath: string): Promise<LoadedConfig> {
         }
     }
 
-    const loadedViews = await loadViewDefinitions(root, absolutePath, appConfig, resolver, workspaceIndex);
+    const loadedViews = await loadViewDefinitions(root, absolutePath, appConfig, resolver, workspaceIndex, viewEnv);
     for (const filePath of loadedViews.watchFiles) {
         watchFiles.add(filePath);
     }

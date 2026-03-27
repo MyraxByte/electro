@@ -3,6 +3,7 @@ import { dirname, join, relative, resolve } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
 import type { PackageTypeTarget, ScanResult } from "@electrojs/codegen";
 import { generate, scan } from "@electrojs/codegen";
+import type { ConfigEnv } from "vite";
 import type { Plugin, ViteDevServer } from "vite";
 import { createServer, build as viteBuild, version as viteVersion } from "vite";
 import { assetPlugin } from "../plugins/asset";
@@ -31,6 +32,9 @@ const CONFIG_DEBOUNCE_MS = 300;
 const MAIN_ENTRY_WAIT_TIMEOUT_MS = 10_000;
 const MAIN_ENTRY_WAIT_INTERVAL_MS = 50;
 const RENDERER_DEV_HOST = "127.0.0.1";
+const DEV_APP_CONFIG_ENV: ConfigEnv = { command: "serve", mode: "development", isSsrBuild: false, isPreview: false };
+const DEV_RUNTIME_CONFIG_ENV: ConfigEnv = { command: "build", mode: "development", isSsrBuild: false, isPreview: false };
+const DEV_VIEW_CONFIG_ENV: ConfigEnv = { command: "serve", mode: "development", isSsrBuild: false, isPreview: false };
 
 export interface DevServerOptions {
     configPath: string;
@@ -118,7 +122,11 @@ export class DevServer {
         const totalTimer = startTimer();
 
         // 1. Load config
-        const loaded = await loadConfig(this.configPath);
+        const loaded = await loadConfig(this.configPath, {
+            appEnv: DEV_APP_CONFIG_ENV,
+            runtimeEnv: DEV_RUNTIME_CONFIG_ENV,
+            viewEnv: DEV_VIEW_CONFIG_ENV,
+        });
         this.config = loaded.config;
         this.root = loaded.root;
         this.scanDir = loaded.scanDir;
