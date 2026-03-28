@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect } from "react";
 import IconDismiss from "~icons/hugeicons/cancel-01";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "../lib/utils";
 
 interface DialogProps {
     open: boolean;

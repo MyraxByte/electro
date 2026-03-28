@@ -1,6 +1,6 @@
-import "@/shared/css/index.css";
-import { PlatformProvider } from "@/shared/ui/platform/provider";
-import { Surface } from "@/shared/ui/platform/surface";
+import "@libs/ui/assets/css/index.css";
+import { PlatformProvider } from "@libs/ui";
+import { Surface } from "@libs/ui";
 import { ElectroRenderer } from "@electrojs/renderer";
 import React from "react";
 import ReactDOM from "react-dom/client";

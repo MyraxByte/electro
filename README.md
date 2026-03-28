@@ -4,6 +4,10 @@
 
 Documentation: https://electrojs.myraxbyte.dev/
 
+> [!NOTE]
+> If you find a bug or something feels off, feel free to open an [issue](https://github.com/MyraxByte/ElectroJS/issues).
+> You won't bother me by reporting it — I'll look into it and fix what I can when possible.
+
 ---
 
 ## What is Electro?

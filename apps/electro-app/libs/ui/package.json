@@ -1,0 +1,44 @@
+{
+    "name": "@libs/ui",
+    "version": "0.0.0",
+    "private": true,
+    "files": [
+        "dist"
+    ],
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./assets/*": "./dist/assets/*"
+    },
+    "scripts": {
+        "build": "tsdown"
+    },
+    "dependencies": {
+        "framer-motion": "^12.38.0"
+    },
+    "devDependencies": {
+        "@electrojs/config": "link:../../packages/config",
+        "@iconify-json/hugeicons": "^1.2.24",
+        "@radix-ui/react-slot": "^1.2.4",
+        "@svgr/core": "^8.1.0",
+        "@svgr/plugin-jsx": "^8.1.0",
+        "@types/react": "^19.2.14",
+        "@types/react-dom": "^19.2.3",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.5.0",
+        "tsdown": "^0.21.6",
+        "typescript": "^6.0.2",
+        "unplugin-icons": "^23.0.1"
+    },
+    "peerDependencies": {
+        "react": "^19.2.4",
+        "react-dom": "^19.2.4",
+        "tailwindcss": "^4.2.2"
+    }
+}

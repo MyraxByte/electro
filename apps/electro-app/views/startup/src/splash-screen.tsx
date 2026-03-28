@@ -1,4 +1,4 @@
-import logoSrc from "@/shared/assets/images/logo.svg";
+import logoSrc from "@libs/ui/assets/images/logo.svg";
 import { motion } from "framer-motion";
 import { useUpdater } from "./updater-store";
 import { useUpdaterEvents } from "./use-updater";

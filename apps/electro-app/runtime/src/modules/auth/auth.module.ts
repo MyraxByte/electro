@@ -72,15 +72,14 @@ export class AuthModule {
     }
 
     async onReady() {
-        this.logger.info("checking auth session");
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        if (!this.auth.isAuthorized()) return this.signalBus.publish("user-logout");
-
-        try {
-            const user = await this.auth.getCurrentUser();
-            this.signalBus.publish("user-logged", { user, isNew: false });
-        } catch {
-            this.signalBus.publish("user-logout");
-        }
+        // this.logger.info("checking auth session");
+        // await new Promise((resolve) => setTimeout(resolve, 1000));
+        // if (!this.auth.isAuthorized()) return this.signalBus.publish("user-logout");
+        // try {
+        //     const user = await this.auth.getCurrentUser();
+        //     this.signalBus.publish("user-logged", { user, isNew: false });
+        // } catch {
+        //     this.signalBus.publish("user-logout");
+        // }
     }
 }

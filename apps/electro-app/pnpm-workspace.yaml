@@ -1,5 +1,6 @@
 packages:
   - "views/*"
   - "runtime"
+  - "libs/*"
 catalog:
   vite: ^8.0.2

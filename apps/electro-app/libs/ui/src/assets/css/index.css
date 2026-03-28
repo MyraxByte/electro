@@ -1,8 +1,14 @@
 @import "tailwindcss";
+@source "../../../src";
 
 /* Override font-ui to Nunito (design spec, loaded via Google Fonts) */
 @theme {
     --font-ui: "Nunito", system-ui, sans-serif;
+    --font-brand: "Nunito", system-ui, sans-serif;
+    --color-brand: #c82634;
+    --color-brand-primary: #c82634;
+    --color-text-white: #ffffff;
+    --color-text-disabled: #85939966;
 }
 
 /* Platform-specific tokens */

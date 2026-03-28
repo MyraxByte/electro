@@ -8,7 +8,7 @@ interface SurfaceProps {
 export function MacSurface({ children, className }: SurfaceProps) {
     return (
         <div
-            className={cn("h-screen text-white flex flex-col overflow-hidden rounded-2xl", className)}
+            className={cn("min-h-screen h-screen text-white flex flex-col overflow-hidden rounded-2xl", className)}
             style={{
                 background: "var(--surface-bg)",
             }}

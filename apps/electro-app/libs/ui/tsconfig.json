@@ -1,0 +1,8 @@
+{
+    "extends": "@electrojs/config/tsconfig/library.json",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "types": ["unplugin-icons/types/react"]
+    },
+    "include": ["src/**/*"]
+}
