@@ -29,7 +29,7 @@ export class AppModule {
         });
     }
 
-    async onReady() {
+    async onStart() {
         await this.window.open();
     }
 }

@@ -20,6 +20,8 @@ app.on("before-quit", () => {
     void kernel.shutdown();
 });
 
-void app.whenReady().then(async () => {
+void (async () => {
+    await kernel.initialize();
+    await app.whenReady();
     await kernel.start();
-});
+})();

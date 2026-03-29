@@ -35,7 +35,7 @@ const features = [
     {
         icon: "clock-01",
         title: "Lifecycle-Aware",
-        detail: "onInit, onReady, onShutdown, onDispose — predictable resource management across your entire app.",
+        detail: "onInit, onStart, onReady, onShutdown, onDispose — predictable resource management across your entire app.",
     },
     {
         icon: "computer",
