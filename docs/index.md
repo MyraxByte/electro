@@ -24,7 +24,7 @@ features:
       details: Synchronous inject() with hierarchical scoping. No constructors, no service locator.
       icon: <i class="hgi-stroke hgi-tree-01"></i>
     - title: Lifecycle-Aware
-      details: onInit, onReady, onShutdown, onDispose — predictable resource management across your entire app.
+      details: onInit, onStart, onReady, onShutdown, onDispose — predictable resource management across your entire app.
       icon: <i class="hgi-stroke hgi-clock-01"></i>
     - title: Window & View System
       details: Declarative window management with per-view access control and source binding.

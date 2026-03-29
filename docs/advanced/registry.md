@@ -140,10 +140,11 @@ export class DiagnosticsService {
 | Status           | Meaning                                        |
 | ---------------- | ---------------------------------------------- |
 | `"creating"`     | Provider instantiation in progress             |
-| `"initializing"` | `onInit()` running                             |
-| `"started"`      | `onReady()` completed — module is fully active |
+| `"ready"`        | `onInit()` completed; startup has not finished |
+| `"started"`      | `onStart()` and `onReady()` completed          |
 | `"stopping"`     | `onShutdown()` running                         |
 | `"stopped"`      | `onDispose()` completed                        |
+| `"failed"`       | Startup or shutdown failed                     |
 
 ### ModuleRegistry API
 

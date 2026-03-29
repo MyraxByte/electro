@@ -114,8 +114,8 @@ Views support the full lifecycle. See [Application Lifecycle](/core/lifecycle).
     signals: ["auth:user-logged-in"],
 })
 export class MainView {
-    async onReady() {
-        // Runtime is fully initialized. Start subscriptions.
+    async onStart() {
+        // Startup phase is active. Load subscriptions or renderer coordination here.
     }
 
     async onShutdown() {

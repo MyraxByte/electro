@@ -40,6 +40,9 @@ export class AuthModule {
     async onInit() {
         /* ... */
     }
+    async onStart() {
+        /* ... */
+    }
     async onReady() {
         /* ... */
     }
@@ -104,17 +107,17 @@ See [Application Lifecycle](/core/lifecycle) for the full phase reference.
 @Module({ id: "auth", imports: [HttpModule], providers: [AuthService] })
 export class AuthModule {
     async onInit() {
-        // One-time setup only. No network calls, no window operations.
-        // Registering Electron-level listeners (app.on(...)) is acceptable here.
+        // Prepare bridge-safe dependencies and register app-level listeners.
+    }
+
+    async onStart() {
+        // Startup side effects: windows, jobs, network bootstrapping.
+        await inject(AuthService).restoreSession();
     }
 
     async onReady() {
-        // All dependencies are ready. Call into services to start work.
-        const session = await inject(AuthService).restoreSession();
-        if (session) {
-            // Signal emission must go through a service — not the module itself
-            inject(AuthService).notifySessionRestored(session);
-        }
+        // Final coordination before the kernel becomes fully started.
+        inject(AuthService).notifyStartupComplete();
     }
 
     async onShutdown() {
@@ -140,7 +143,7 @@ When `ModuleA` imports `ModuleB`, it can call exported services directly.
 ```ts
 @Module({ id: "projects", imports: [AuthModule], providers: [ProjectService] })
 export class ProjectsModule {
-    async onReady() {
+    async onStart() {
         // AuthModule is imported → AuthService is in scope
         const user = await inject(AuthService).getMe();
         await inject(ProjectService).loadForUser(user?.id);

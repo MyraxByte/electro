@@ -60,7 +60,7 @@ These methods are provided by the framework on every Window class:
 
 ## Lifecycle Hooks
 
-Windows participate in the full lifecycle. Use `onReady()` for logic that runs once the app is fully initialized, and `onShutdown()` to persist window state before shutdown.
+Windows participate in the full lifecycle. Use `onStart()` for window creation and startup UI work, `onReady()` for final coordination, and `onShutdown()` to persist window state before shutdown.
 
 ```ts
 @Window({ id: "main" })
@@ -68,7 +68,7 @@ export class MainWindow {
     private readonly auth = inject(AuthService);
     private readonly settings = inject(SettingsService);
 
-    async onReady() {
+    async onStart() {
         const session = await this.auth.getMe();
 
         if (!session) {
@@ -172,7 +172,7 @@ export class SplashWindow {
         });
     }
 
-    async onReady() {
+    async onStart() {
         await this.updater.checkForUpdates();
     }
 }
@@ -201,7 +201,7 @@ Redirect to an auth window if no session exists.
 export class MainWindow {
     private readonly auth = inject(AuthService);
 
-    async onReady() {
+    async onStart() {
         const user = await this.auth.getMe();
 
         if (!user) {

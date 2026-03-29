@@ -4,77 +4,96 @@ title: Application Lifecycle
 
 # Application Lifecycle
 
-Every component in ElectroJS — modules, views, and windows — participates in a shared, ordered lifecycle. Understanding this lifecycle is essential for correct resource management.
+Every component in ElectroJS — modules, views, and windows — participates in a shared, ordered lifecycle. Understanding this lifecycle is essential for correct resource management and for startup flows such as splash or launch screens.
 
 ---
 
 ## Lifecycle Phases
 
-The application moves through five sequential phases.
+The application now boots in two explicit stages: `initialize()` and `start()`.
+
+```ts
+const kernel = AppKernel.create(AppModule);
+const electronReady = app.whenReady();
+
+await kernel.initialize();
+await electronReady;
+await kernel.start();
+```
+
+At a high level the lifecycle looks like this:
 
 ```
  AppKernel.create(AppModule)
           │
           ▼
-  ┌────────────────┐
-  │   1. CREATION  │  DI container built. Providers instantiated. No side-effects.
-  └───────┬────────┘
-          │
-          ▼
-  ┌────────────────┐
-  │   2. onInit()  │  Synchronous setup: configs, DB connections, handler registration.
-  └───────┬────────┘
-          │
-          ▼
-  ┌────────────────┐
-  │  3. onReady()  │  Active work begins: HTTP calls, jobs, signal subscriptions, windows.
-  └───────┬────────┘
-          │
-          ▼
-  ┌────────────────┐
-  │   APPLICATION  │  Running. User can interact.
-  │    RUNNING     │
-  └───────┬────────┘
-          │  kernel.shutdown()
-          ▼
-  ┌────────────────┐
-  │  4. onShutdown()│  Active work stops: save state, stop jobs, close connections.
-  └───────┬────────┘        (called in REVERSE dependency order)
-          │
-          ▼
-  ┌────────────────┐
-  │ 5. onDispose() │  Final cleanup: release memory, close file descriptors.
-  └────────────────┘        (called in REVERSE dependency order)
+  ┌──────────────────────┐
+  │ 1. kernel.initialize │  Scan graph, build DI, install capabilities
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │    2. onInit()       │  Prepare state, handlers, listeners, bridge-safe resources
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │ 3. kernel.initialized│  App graph is ready, waiting for Electron readiness
+  └──────────┬───────────┘
+             │ app.whenReady()
+             ▼
+  ┌──────────────────────┐
+  │   4. kernel.start    │  Enter startup phase, open bridge for renderer startup flows
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │    5. onStart()      │  Windows, jobs, auth restore, splash/launch coordination
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │    6. onReady()      │  Final coordination before the kernel becomes fully started
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │   7. kernel.started  │  Application is fully running
+  └──────────┬───────────┘
+             │ kernel.shutdown()
+             ▼
+  ┌──────────────────────┐
+  │   8. onShutdown()    │  Stop active work, flush state, close external resources
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │    9. onDispose()    │  Final cleanup
+  └──────────────────────┘
 ```
 
 ---
 
 ## Hook Reference
 
-Each hook has a specific contract. Violating it leads to fragile startup or shutdown behavior.
+Each hook has a specific contract. Keeping those boundaries sharp is what makes early bridge access during startup safe.
 
 ### `onInit()`
 
-Called once during the initialization phase, **after** all dependencies have been instantiated.
+Called during `kernel.initialize()`, before `app.whenReady()` is required.
 
-**Do in `onInit()`:**
+**Use `onInit()` for:**
 
-- Register Electron event listeners (`app.on(...)`)
-- Set up deep-link handlers
-- Initialize synchronous resources (in-memory caches, config parsing)
-- Prepare the DI container for `onReady()`
+- Registering Electron event listeners such as `app.on(...)`
+- Setting up deep-link handlers
+- Preparing caches, config, repositories, and other bridge-safe dependencies
+- Registering anything that startup code may need immediately once `start()` begins
 
-**Do NOT in `onInit()`:**
+**Do not use `onInit()` for:**
 
-- Make HTTP requests
-- Open windows
-- Start jobs or subscriptions
+- Opening windows
+- Loading views
+- Running launch/auth/update flows that depend on Electron UI
+- Starting jobs or other active background work
 
 ```ts
 @Module({ id: "auth", providers: [AuthService] })
 export class AuthModule {
     async onInit() {
-        // Register deep link handler before the app is fully started
         app.on("open-url", async (event, url) => {
             event.preventDefault();
             await inject(AuthService).handleDeepLink(url);
@@ -83,30 +102,61 @@ export class AuthModule {
 }
 ```
 
+`onInit()` should leave the module in a state where any bridge handler exposed by that module can already execute safely once `start()` begins.
+
+---
+
+### `onStart()`
+
+Called during `kernel.start()`, after `app.whenReady()`.
+
+This is the phase for active startup work. The runtime bridge is opened at the beginning of `starting`, so renderer startup handshakes can happen here.
+
+**Use `onStart()` for:**
+
+- Creating and showing windows
+- Loading views
+- Launch/splash screen coordination
+- Starting jobs
+- Kicking off auth/session restore
+- Performing startup network requests
+
+```ts
+@Window({ id: "splash" })
+export class SplashWindow {
+    private readonly splashView = inject(SplashView);
+
+    async onStart() {
+        this.create();
+        await this.splashView.load();
+        this.mount(this.splashView);
+        this.show();
+    }
+}
+```
+
 ---
 
 ### `onReady()`
 
-Called after `onInit()` completes for all components. This is where active work begins.
+Called after `onStart()` completes for all modules and providers, still inside `kernel.start()`.
 
-**Do in `onReady()`:**
+`onReady()` is the final coordination phase before the kernel transitions to `started`.
 
-- Make network requests to load initial data
-- Start background jobs
-- Subscribe to signals
-- Show windows
+**Use `onReady()` for:**
 
-**Do NOT in `onReady()`:**
-
-- Assume other modules have not yet started (they have)
-- Create new providers
+- Cross-module coordination that depends on all startup work being complete
+- Final visibility switches between windows
+- Publishing "startup complete" signals
+- Last-step validation before the app is considered fully ready
 
 ```ts
-@Module({ id: "auth", providers: [AuthService] })
-export class AuthModule {
+@Module({ id: "app", imports: [AuthModule], windows: [MainWindow] })
+export class AppModule {
     async onReady() {
-        // Signal emission goes through the service, not the module directly
-        await inject(AuthService).restoreSession();
+        if (await inject(AuthService).hasSession()) {
+            inject(MainWindow).show();
+        }
     }
 }
 ```
@@ -115,77 +165,67 @@ export class AuthModule {
 
 ### `onShutdown()`
 
-Called on shutdown, in **reverse dependency order**. Modules that depend on others stop first.
+Called on shutdown, in reverse dependency order.
 
-**Do in `onShutdown()`:**
+**Use `onShutdown()` for:**
 
-- Stop background jobs
-- Unsubscribe from signals
-- Persist state that must survive the next startup
-- Close network connections gracefully
+- Stopping jobs
+- Persisting state
+- Closing network connections gracefully
+- Removing listeners or subscriptions that should not survive the next launch
 
-**Errors in `onShutdown()` must not block shutdown.** Catch and log them — never re-throw.
-
-```ts
-@Module({ id: "sync", providers: [SyncService] })
-export class SyncModule {
-    async onShutdown() {
-        try {
-            await inject(SyncService).savePendingOperations();
-        } catch (err) {
-            console.error("[SyncModule] Failed to flush pending ops:", err);
-        }
-    }
-}
-```
+**Errors in `onShutdown()` must not block shutdown.** Catch and log them where recovery matters.
 
 ---
 
 ### `onDispose()`
 
-Called after `onShutdown()` completes for all components, in **reverse dependency order**. This is the final cleanup.
+Called after `onShutdown()`, in reverse dependency order. If the kernel is initialized but never started, only `onDispose()` runs.
 
-**Do in `onDispose()`:**
+**Use `onDispose()` for:**
 
-- Close file descriptors
-- Release memory
-- Finalize any remaining cleanup
+- Final cleanup
+- Releasing file handles
+- Freeing memory-heavy resources
 
-**Do NOT in `onDispose()`:**
+**Do not use `onDispose()` for:**
 
-- Make network requests (the process is about to exit)
-- Start any new async work
-
-```ts
-@Module({ id: "database", providers: [DatabaseService] })
-export class DatabaseModule {
-    async onDispose() {
-        await inject(DatabaseService).disconnect();
-    }
-}
-```
+- Starting new async work
+- Performing last-minute network bootstrapping
 
 ---
 
 ## Execution Order
 
-### Startup — dependency-first
+### Initialization
 
-Modules are started **after** all modules they import have started. If `AppModule` imports `AuthModule` which imports `HttpModule`, the order is:
+`onInit()` runs dependency-first:
 
 ```
 HttpModule.onInit()
 AuthModule.onInit()
 AppModule.onInit()
+```
+
+### Startup
+
+`onStart()` runs dependency-first, then `onReady()` runs dependency-first:
+
+```
+HttpModule.onStart()
+AuthModule.onStart()
+AppModule.onStart()
 
 HttpModule.onReady()
 AuthModule.onReady()
 AppModule.onReady()
 ```
 
-### Shutdown — reverse
+Only after both phases complete does the kernel become `started`.
 
-Shutdown runs in the exact reverse order. The root module stops first, its dependencies stop after.
+### Shutdown
+
+Shutdown still runs in exact reverse dependency order:
 
 ```
 AppModule.onShutdown()
@@ -197,27 +237,31 @@ AuthModule.onDispose()
 HttpModule.onDispose()
 ```
 
-This guarantees that when `AuthModule.onShutdown()` runs, `AppModule` has already stopped and will no longer make calls that depend on `AuthService`.
+This guarantees that when `AuthModule.onShutdown()` runs, `AppModule` has already stopped issuing work that depends on `AuthService`.
 
 ---
 
-## Lifecycle in Windows and Views
+## Windows and Views
 
-Windows and Views participate in the same lifecycle. Their hooks are called interleaved with module hooks, after the module graph has been fully initialized.
+Windows and views participate in the same lifecycle and follow the same guidance:
+
+- `onInit()` for registration and lightweight preparation
+- `onStart()` for `create()`, `load()`, `mount()`, and startup UI behavior
+- `onReady()` for final coordination once all startup work is complete
 
 ```ts
 @Window({ id: "main" })
 export class MainWindow {
-    async onReady() {
-        // All modules are already started here.
-        // Safe to load data and show the window.
-        inject(MainView).load();
-        this.window.show();
+    private readonly mainView = inject(MainView);
+
+    async onStart() {
+        this.create();
+        await this.mainView.load();
+        this.mount(this.mainView);
     }
 
-    async onShutdown() {
-        const bounds = this.window.getBounds();
-        await inject(SettingsService).saveWindowBounds(bounds);
+    async onReady() {
+        this.show();
     }
 }
 ```
@@ -226,22 +270,14 @@ export class MainWindow {
 
 ## Error Handling
 
-If `onInit()` or `onReady()` throws, the application **will not start**. Re-throwing is the correct behavior for critical failures.
+If `onInit()`, `onStart()`, or `onReady()` throws, the application does not finish booting. The runtime rolls back the startup sequence and transitions the kernel to `failed`.
 
-If `onShutdown()` or `onDispose()` throws, it **must be caught**. Never let shutdown hooks throw — the process must exit cleanly.
+If `onShutdown()` or `onDispose()` throws, the runtime logs the failure and continues shutting down the remaining components.
 
-```ts
-async onReady() {
-    // Critical — if this fails, the app should not run
-    await inject(DatabaseService).connect(); // throws on failure → correct
-}
+---
 
-async onShutdown() {
-    try {
-        await inject(DatabaseService).flush();
-    } catch (err) {
-        // Non-critical path — log and continue shutdown
-        console.error("Flush failed during shutdown:", err);
-    }
-}
-```
+## Practical Rule
+
+If a renderer command is allowed to run during startup, everything it depends on must already be prepared in `onInit()`.
+
+That one rule keeps early startup bridge access safe while still allowing launch screens, splash handshakes, and renderer-driven startup flows during `onStart()`.

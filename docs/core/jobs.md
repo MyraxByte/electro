@@ -114,7 +114,7 @@ Jobs are managed through `JobRegistry`, which is injectable anywhere in the runt
 export class SyncModule {
     private readonly jobs = inject(JobRegistry);
 
-    async onReady() {
+    async onStart() {
         // ensure() → starts the job if it is not already running
         this.jobs.ensure("sync:user-data");
     }
@@ -237,7 +237,7 @@ export class HealthService {
 
 **Wrap job bodies in try/catch.** An unhandled throw inside a job will crash that job run. Log the error and return — the cron scheduler will retry at the next tick.
 
-**Start jobs in `onReady()`, stop them in `onShutdown()`.** This ensures jobs align with the module lifecycle and are properly cancelled on shutdown.
+**Start jobs in `onStart()`, stop them in `onShutdown()`.** This ensures jobs align with the module lifecycle and are properly cancelled on shutdown.
 
 **Keep jobs idempotent.** A job may be interrupted and re-run. Design the job body so that running it twice produces the same result as running it once.
 
