@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/runtime",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "Electron main-process runtime for ElectroJS with DI, lifecycle hooks, typed IPC, and jobs",
     "keywords": [
         "dependency-injection",
@@ -58,8 +58,8 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/common": "1.0.7",
-        "@electrojs/config": "1.0.7",
+        "@electrojs/common": "1.0.8",
+        "@electrojs/config": "1.0.8",
         "@types/node": "^25.5.0",
         "electron": ">=41"
     }

@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/cli",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "CLI for ElectroJS dev, code generation, build, and preview in Electron apps",
     "keywords": [
         "build-tool",
@@ -59,9 +59,9 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/codegen": "1.0.7",
-        "@electrojs/config": "1.0.7",
-        "@electrojs/runtime": "1.0.7",
+        "@electrojs/codegen": "1.0.8",
+        "@electrojs/config": "1.0.8",
+        "@electrojs/runtime": "1.0.8",
         "@types/node": "^25.5.0",
         "electron": ">=41",
         "vite": "^8.0.2"
