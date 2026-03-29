@@ -58,13 +58,18 @@
     background: var(--vp-c-bg-soft);
     border: 1px solid rgba(255, 248, 235, 0.05);
     border-radius: 10px;
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .dark .VPFeatures .VPFeature:hover {
     border-color: rgba(251, 191, 36, 0.22);
     background: var(--vp-c-bg-elv);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(251, 191, 36, 0.04);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(251, 191, 36, 0.04);
 }
 
 .dark .VPFeatures .VPFeature .title {
@@ -154,8 +159,13 @@
 }
 
 /* ─── Scrollbar ───────────────────────────────────────── */
-.dark ::-webkit-scrollbar { width: 5px; height: 5px; }
-.dark ::-webkit-scrollbar-track { background: transparent; }
+.dark ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+.dark ::-webkit-scrollbar-track {
+    background: transparent;
+}
 .dark ::-webkit-scrollbar-thumb {
     background: rgba(255, 248, 235, 0.1);
     border-radius: 3px;

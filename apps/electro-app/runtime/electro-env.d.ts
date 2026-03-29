@@ -5,29 +5,24 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> =
-    import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
+type _ModuleAuthoringApi<TModuleId extends import("@electrojs/runtime").ModuleRegistryId> = import("@electrojs/runtime").ModuleAuthoringApi<TModuleId>;
 type _WindowAuthoringApi = import("@electrojs/runtime").WindowAuthoringApi;
 type _ViewAuthoringApi = import("@electrojs/runtime").ViewAuthoringApi;
-type _InvokeMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer V
-            ? (...args: A) => Promise<Awaited<V>>
-            : never
-        : never;
-type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? I extends keyof A
-                ? A[I]
-                : void
-            : never
-        : never;
-type _SignalPayloadFromMethod<T, K extends PropertyKey> =
-    _SignalPayloadFromMethodParam<T, K, 0>;
+type _InvokeMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer V
+        ? (...args: A) => Promise<Awaited<V>>
+        : never
+    : never;
+type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? I extends keyof A
+            ? A[I]
+            : void
+        : never
+    : never;
+type _SignalPayloadFromMethod<T, K extends PropertyKey> = _SignalPayloadFromMethodParam<T, K, 0>;
 
 declare module "@electrojs/runtime" {
-
     interface ModuleMethodMap {
         "auth:login": _InvokeMethod<typeof import("./src/modules/auth/auth.service").AuthService, "login">;
         "auth:logout": _InvokeMethod<typeof import("./src/modules/auth/auth.service").AuthService, "logout">;
@@ -41,76 +36,77 @@ declare module "@electrojs/runtime" {
     }
 
     interface ModuleApiRegistry {
-        "app": {};
-        "auth": {
+        app: {};
+        auth: {
             login: _InvokeMethod<typeof import("./src/modules/auth/auth.service").AuthService, "login">;
             logout: _InvokeMethod<typeof import("./src/modules/auth/auth.service").AuthService, "logout">;
             getCurrentUser: _InvokeMethod<typeof import("./src/modules/auth/auth.service").AuthService, "getCurrentUser">;
         };
-        "deeplinker": {};
-        "http": {};
-        "notes": {
+        deeplinker: {};
+        http: {};
+        notes: {
             createNote: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "createNote">;
             getNotes: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "getNotes">;
             getNote: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "getNote">;
             deleteNote: _InvokeMethod<typeof import("./src/modules/notes/notes.service").NotesService, "deleteNote">;
         };
-        "settings": {
+        settings: {
             isDev: _InvokeMethod<typeof import("./src/modules/settings/settings.service").SettingsService, "isDev">;
             getVersion: _InvokeMethod<typeof import("./src/modules/settings/settings.service").SettingsService, "getVersion">;
         };
-        "startup": {};
-        "storage": {};
-        "updater": {};
+        startup: {};
+        storage: {};
+        updater: {};
     }
 
     interface ModuleSignalPayloadMap {
         "user-logout": void;
         "user-logged": unknown;
-        "error": unknown;
+        error: unknown;
         "updater:status-changed": _SignalPayloadFromMethodParam<typeof import("./src/modules/updater/updater.service").UpdaterService, "setStatus", 0>;
-        "updater:download-progress": Pick<_SignalPayloadFromMethodParam<typeof import("./src/modules/updater/updater.service").UpdaterService, "setDownloadProgress", 0>, "percent" | "bytesPerSecond" | "transferred" | "total">;
+        "updater:download-progress": Pick<
+            _SignalPayloadFromMethodParam<typeof import("./src/modules/updater/updater.service").UpdaterService, "setDownloadProgress", 0>,
+            "percent" | "bytesPerSecond" | "transferred" | "total"
+        >;
     }
 
     interface ModuleJobRegistry {
-        "app": never;
-        "auth": never;
-        "deeplinker": never;
-        "http": never;
-        "notes": never;
-        "settings": never;
-        "startup": never;
-        "storage": never;
-        "updater": never;
+        app: never;
+        auth: never;
+        deeplinker: never;
+        http: never;
+        notes: never;
+        settings: never;
+        startup: never;
+        storage: never;
+        updater: never;
     }
 
     interface InjectableClassRegistry {
-        "AuthService": typeof import("./src/modules/auth/auth.service").AuthService;
-        "DeeplinkerService": typeof import("./src/modules/deeplinker/deeplinker.service").DeeplinkerService;
-        "HttpService": typeof import("./src/modules/http/http.service").HttpService;
-        "NotesService": typeof import("./src/modules/notes/notes.service").NotesService;
-        "SettingsService": typeof import("./src/modules/settings/settings.service").SettingsService;
-        "StorageService": typeof import("./src/modules/storage/storage.service").StorageService;
-        "UpdaterService": typeof import("./src/modules/updater/updater.service").UpdaterService;
+        AuthService: typeof import("./src/modules/auth/auth.service").AuthService;
+        DeeplinkerService: typeof import("./src/modules/deeplinker/deeplinker.service").DeeplinkerService;
+        HttpService: typeof import("./src/modules/http/http.service").HttpService;
+        NotesService: typeof import("./src/modules/notes/notes.service").NotesService;
+        SettingsService: typeof import("./src/modules/settings/settings.service").SettingsService;
+        StorageService: typeof import("./src/modules/storage/storage.service").StorageService;
+        UpdaterService: typeof import("./src/modules/updater/updater.service").UpdaterService;
     }
 
     interface WindowClassRegistry {
-        "main": typeof import("./src/modules/app.window").MainWindow;
-        "auth": typeof import("./src/modules/auth/auth.window").AuthWindow;
-        "splash": typeof import("./src/modules/startup/startup.window").StartupWindow;
+        main: typeof import("./src/modules/app.window").MainWindow;
+        auth: typeof import("./src/modules/auth/auth.window").AuthWindow;
+        splash: typeof import("./src/modules/startup/startup.window").StartupWindow;
     }
 
     interface ViewClassRegistry {
-        "main": typeof import("./src/modules/app.view").MainView;
-        "auth": typeof import("./src/modules/auth/auth.view").AuthView;
-        "settings": typeof import("./src/modules/settings/settings.view").SettingsView;
-        "startup": typeof import("./src/modules/startup/startup.view").StartupView;
+        main: typeof import("./src/modules/app.view").MainView;
+        auth: typeof import("./src/modules/auth/auth.view").AuthView;
+        settings: typeof import("./src/modules/settings/settings.view").SettingsView;
+        startup: typeof import("./src/modules/startup/startup.view").StartupView;
     }
-
 }
 
 declare module "@electrojs/common" {
-
     interface ViewAccessRegistry {
         "auth:login": true;
         "auth:logout": true;
@@ -126,18 +122,17 @@ declare module "@electrojs/common" {
     interface ViewSignalRegistry {
         "user-logout": true;
         "user-logged": true;
-        "error": true;
+        error: true;
         "updater:status-changed": true;
         "updater:download-progress": true;
     }
 
     interface BundledViewIdRegistry {
-        "main": true;
-        "auth": true;
-        "settings": true;
-        "startup": true;
+        main: true;
+        auth: true;
+        settings: true;
+        startup: true;
     }
-
 }
 import "./src/modules/app.module";
 declare module "./src/modules/app.module" {

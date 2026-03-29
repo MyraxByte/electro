@@ -8,10 +8,12 @@ import Icons from "unplugin-icons/rolldown";
 const SVG_COMPONENT_QUERY = "?react";
 
 function toComponentName(filePath: string): string {
-    return basename(filePath, ".svg")
-        .replace(/[^a-zA-Z0-9]+(.)/g, (_, char: string) => char.toUpperCase())
-        .replace(/^[a-z]/, (char) => char.toUpperCase())
-        .replace(/[^a-zA-Z0-9]/g, "") || "SvgAsset";
+    return (
+        basename(filePath, ".svg")
+            .replace(/[^a-zA-Z0-9]+(.)/g, (_, char: string) => char.toUpperCase())
+            .replace(/^[a-z]/, (char) => char.toUpperCase())
+            .replace(/[^a-zA-Z0-9]/g, "") || "SvgAsset"
+    );
 }
 
 function svgrPlugin(): Rolldown.Plugin {

@@ -148,13 +148,13 @@ class DatabaseService {
 }
 ```
 
-| Hook         | Phase          | Purpose                                                       |
-| ------------ | -------------- | ------------------------------------------------------------- |
-| `onInit`     | Initialize     | Prepare bridge-safe state, handlers, and runtime dependencies |
-| `onStart`    | Startup        | Start windows, jobs, network bootstrapping, launch flows      |
-| `onReady`    | Startup        | Final coordination before the kernel becomes `started`        |
-| `onShutdown` | Shutdown       | Release resources gracefully                                  |
-| `onDispose`  | Shutdown       | Final cleanup (file handles, timers)                          |
+| Hook         | Phase      | Purpose                                                       |
+| ------------ | ---------- | ------------------------------------------------------------- |
+| `onInit`     | Initialize | Prepare bridge-safe state, handlers, and runtime dependencies |
+| `onStart`    | Startup    | Start windows, jobs, network bootstrapping, launch flows      |
+| `onReady`    | Startup    | Final coordination before the kernel becomes `started`        |
+| `onShutdown` | Shutdown   | Release resources gracefully                                  |
+| `onDispose`  | Shutdown   | Final cleanup (file handles, timers)                          |
 
 **Ordering:** `onInit`, `onStart`, and `onReady` all run per-module in dependency-first order. Within each module, provider hooks run before the module's own hook. Shutdown runs in the reverse order -- module first, then its providers.
 

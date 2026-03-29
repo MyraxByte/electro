@@ -137,14 +137,14 @@ export class DiagnosticsService {
 
 ### Module Status Values
 
-| Status           | Meaning                                        |
-| ---------------- | ---------------------------------------------- |
-| `"creating"`     | Provider instantiation in progress             |
-| `"ready"`        | `onInit()` completed; startup has not finished |
-| `"started"`      | `onStart()` and `onReady()` completed          |
-| `"stopping"`     | `onShutdown()` running                         |
-| `"stopped"`      | `onDispose()` completed                        |
-| `"failed"`       | Startup or shutdown failed                     |
+| Status       | Meaning                                        |
+| ------------ | ---------------------------------------------- |
+| `"creating"` | Provider instantiation in progress             |
+| `"ready"`    | `onInit()` completed; startup has not finished |
+| `"started"`  | `onStart()` and `onReady()` completed          |
+| `"stopping"` | `onShutdown()` running                         |
+| `"stopped"`  | `onDispose()` completed                        |
+| `"failed"`   | Startup or shutdown failed                     |
 
 ### ModuleRegistry API
 

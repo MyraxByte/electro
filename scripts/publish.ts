@@ -22,7 +22,15 @@ import { resolve } from "node:path";
 const root = resolve(import.meta.dirname, "..");
 
 /** Packages in dependency order (leaf → dependents). */
-const PACKAGES = ["packages/create-electro", "packages/common", "packages/config", "packages/renderer", "packages/runtime", "packages/codegen", "packages/cli"] as const;
+const PACKAGES = [
+    "packages/create-electro",
+    "packages/common",
+    "packages/config",
+    "packages/renderer",
+    "packages/runtime",
+    "packages/codegen",
+    "packages/cli",
+] as const;
 
 function run(cmd: string[], opts?: { cwd?: string }): void {
     const [command, ...args] = cmd;

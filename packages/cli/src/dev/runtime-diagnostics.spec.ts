@@ -43,9 +43,7 @@ describe("createRuntimeDiagnosticsFormatter()", () => {
 
     it("keeps raw diagnostics unchanged in raw mode", () => {
         const formatter = createRuntimeDiagnosticsFormatter("raw");
-        const output = formatter
-            .formatLine("14:36:24 [electro] AppKernel → initializing")
-            .map((line) => line.replace(ANSI_RE, ""));
+        const output = formatter.formatLine("14:36:24 [electro] AppKernel → initializing").map((line) => line.replace(ANSI_RE, ""));
 
         expect(output).toEqual(["14:36:24 [electro] AppKernel → initializing"]);
     });

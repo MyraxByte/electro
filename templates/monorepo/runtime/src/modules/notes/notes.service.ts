@@ -13,7 +13,8 @@ export class NotesService {
         {
             id: "bridge-demo",
             title: "Bridge is connected",
-            content: "This note was loaded via bridge.notes.getNotes() — a @query method in the runtime. Try creating and deleting notes to test @command methods.",
+            content:
+                "This note was loaded via bridge.notes.getNotes() — a @query method in the runtime. Try creating and deleting notes to test @command methods.",
             createdAt: new Date().toISOString(),
         },
         {

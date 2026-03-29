@@ -11,17 +11,7 @@ const TEMPLATE_ROOT_CANDIDATES = [
 
 const TEMPLATE_FILE_RENAMES = new Map([["_gitignore", ".gitignore"]]);
 
-const TEXT_FILE_EXTENSIONS = new Set([
-    ".css",
-    ".html",
-    ".json",
-    ".md",
-    ".svg",
-    ".ts",
-    ".tsx",
-    ".yaml",
-    ".yml",
-]);
+const TEXT_FILE_EXTENSIONS = new Set([".css", ".html", ".json", ".md", ".svg", ".ts", ".tsx", ".yaml", ".yml"]);
 
 interface ScaffoldProjectOptions {
     readonly force?: boolean;

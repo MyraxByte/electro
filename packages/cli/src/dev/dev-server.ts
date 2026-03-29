@@ -16,7 +16,19 @@ import type { ManagedProcess } from "./electron-launcher";
 import { launchElectron } from "./electron-launcher";
 import { resolveExternals } from "./externals";
 import type { FooterEndpoint, SessionMeta } from "./logger";
-import { createScopedViteLogger, flushDeferredRuntimeLogs, footer, info, logSession, note, runtimeLog, setLogLevel, startTimer, step, stepFail } from "./logger";
+import {
+    createScopedViteLogger,
+    flushDeferredRuntimeLogs,
+    footer,
+    info,
+    logSession,
+    note,
+    runtimeLog,
+    setLogLevel,
+    startTimer,
+    step,
+    stepFail,
+} from "./logger";
 import type { NodeOutputFormat } from "./node-format";
 import { resolveMainEntryPath, resolveNodeOutputFormat } from "./node-format";
 import { terminateManagedProcess } from "./process-shutdown";

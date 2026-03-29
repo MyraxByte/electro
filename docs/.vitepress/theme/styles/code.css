@@ -73,7 +73,7 @@
 .dark .vp-doc :not(pre) > code {
     /* Neutral warm — easy on the eyes, not yellow */
     background: rgba(255, 248, 235, 0.07);
-    color: #D4C5A9;
+    color: #d4c5a9;
     border: 1px solid rgba(255, 248, 235, 0.09);
     border-radius: 4px;
     padding: 1px 6px;
@@ -83,7 +83,7 @@
 /* ─── Line highlight ──────────────────────────────────── */
 .dark div[class*="language-"] .line.highlighted {
     background: rgba(251, 191, 36, 0.06);
-    border-left-color: #FBBF24;
+    border-left-color: #fbbf24;
 }
 
 /* ─── Copy button ─────────────────────────────────────── */
@@ -95,7 +95,9 @@
     border: 1px solid rgba(255, 248, 235, 0.1);
     border-radius: 5px;
     background: rgba(13, 12, 11, 0.7);
-    transition: border-color 0.2s, background 0.2s;
+    transition:
+        border-color 0.2s,
+        background 0.2s;
 }
 .dark div[class*="language-"] > button.copy:hover {
     border-color: rgba(251, 191, 36, 0.3);
