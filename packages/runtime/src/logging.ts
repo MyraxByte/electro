@@ -1,6 +1,6 @@
 export type ElectroLogLevel = "debug" | "info" | "warn" | "error";
 export type DiagnosticLevel = "electro" | "warn" | "error";
-export type DiagnosticTarget = string | { constructor?: { name?: string } };
+export type DiagnosticTarget = string | object;
 
 export interface ElectroLogBindings {
     readonly target?: string;

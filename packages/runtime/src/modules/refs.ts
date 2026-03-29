@@ -18,6 +18,7 @@ import type { ProviderDefinition } from "./scanner";
  * @Injectable()
  * class DatabaseService implements LifecycleTarget {
  *     async onInit() { await this.connect(); }
+ *     async onStart() { await this.startReplication(); }
  *     async onShutdown() { await this.disconnect(); }
  * }
  * ```
@@ -29,7 +30,9 @@ import type { ProviderDefinition } from "./scanner";
 export interface LifecycleTarget {
     /** Called during initialization phase. Use for setting up connections, state, etc. */
     onInit?(): void | Promise<void>;
-    /** Called after all modules have been initialized. Use for cross-module coordination. */
+    /** Called after the Electron app is ready. Use for startup side effects such as windows, jobs, and launch flows. */
+    onStart?(): void | Promise<void>;
+    /** Called after startup work completes. Use for final coordination before the kernel becomes `started`. */
     onReady?(): void | Promise<void>;
     /** Called during graceful shutdown. Use for releasing resources, closing connections. */
     onShutdown?(): void | Promise<void>;
@@ -41,13 +44,15 @@ export interface LifecycleTarget {
  * Represents the current phase of a module's lifecycle.
  *
  * Transitions follow a strict state machine: creating -> ready -> started -> stopping -> stopped.
+ * Modules may also transition directly from `ready` to `stopped` if the kernel is
+ * shut down after initialization but before startup completes.
  * Any state can also transition to "failed".
  */
 export type ModuleStatus = "creating" | "ready" | "started" | "stopping" | "stopped" | "failed";
 
 const ALLOWED_TRANSITIONS: Readonly<Record<ModuleStatus, readonly ModuleStatus[]>> = {
     creating: ["ready", "failed"],
-    ready: ["started", "failed"],
+    ready: ["started", "stopped", "failed"],
     started: ["stopping", "failed"],
     stopping: ["stopped", "failed"],
     stopped: [],

@@ -11,7 +11,7 @@ export class LifecycleError extends RuntimeError {
     }
 
     /**
-     * A lifecycle hook (`onInit`, `onReady`, etc.) threw during the startup sequence.
+     * A lifecycle hook (`onInit`, `onStart`, `onReady`, etc.) threw during the startup sequence.
      *
      * @remarks
      * The original error is attached as {@link Error.cause}.

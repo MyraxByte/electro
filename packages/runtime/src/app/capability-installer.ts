@@ -43,7 +43,7 @@ export interface FrameworkServices {
  *
  * Also populates the `ModuleRegistry` with all loaded module refs for introspection.
  *
- * @internal Called once by {@link AppKernel.start} after module loading, before lifecycle hooks.
+ * @internal Called once by {@link AppKernel.initialize} after module loading, before lifecycle hooks.
  */
 export function installCapabilities(moduleRefs: readonly ModuleRef[], services: FrameworkServices): void {
     services.moduleRegistry.load(moduleRefs);
@@ -126,7 +126,7 @@ function installAuthoringApi(moduleRef: ModuleRef, services: FrameworkServices):
  * Connects the bridge access guard to kernel state transitions so it can
  * block or allow IPC calls based on whether the kernel is fully started.
  *
- * @internal Called once by {@link AppKernel.start} after capability installation.
+ * @internal Called once by {@link AppKernel.initialize} after capability installation.
  */
 export function connectAccessGuard(accessGuard: BridgeAccessGuard, onStateChange: (callback: (state: KernelState) => void) => void): void {
     onStateChange((state) => accessGuard.setKernelState(state));
@@ -178,7 +178,7 @@ function installJobHandlers(providerRef: ProviderRef, jobRegistry: JobRegistry):
  * published on the main process are forwarded to renderer processes that
  * have opted in via `@View({ signals: [...] })`.
  *
- * @internal Called once by {@link AppKernel.start} after capability installation.
+ * @internal Called once by {@link AppKernel.initialize} after capability installation.
  */
 export function installSignalRelay(signalBus: SignalBus, rendererRegistry: RendererRegistry): () => void {
     return signalBus.connectRelay((signalId, payload) => {

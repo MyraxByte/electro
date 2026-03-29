@@ -81,7 +81,7 @@ export type {
     ModuleDefinition,
     /** Serializable snapshot of a module's runtime state, returned by {@link ModuleRegistry.snapshot}. */
     ModuleSnapshot,
-    /** Runtime status of a module: `"creating"` → `"ready"` → `"started"` → `"stopping"` → `"stopped"` | `"failed"`. */
+    /** Runtime status of a module: `"creating"` → `"ready"` → `"started"` → `"stopping"` → `"stopped"` | `"failed"` (`"ready"` may also dispose directly to `"stopped"`). */
     ModuleStatus,
     /** Static metadata for a single `@Injectable`/`@View`/`@Window`-decorated provider. */
     ProviderDefinition,

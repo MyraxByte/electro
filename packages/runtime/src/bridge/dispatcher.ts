@@ -27,7 +27,8 @@ export interface BridgeResponse {
 /**
  * Routes IPC requests from renderer processes to the appropriate {@link BridgeHandler}.
  *
- * For each incoming request the dispatcher verifies that the kernel is ready,
+ * For each incoming request the dispatcher verifies that the kernel currently
+ * accepts bridge calls,
  * that the requesting renderer has an active session, and that the session grants
  * access to the requested channel. If all checks pass the corresponding handler
  * is invoked; otherwise a serialized error is returned. Errors never propagate as
@@ -51,7 +52,7 @@ export class BridgeDispatcher {
     /**
      * Process an IPC request from a renderer identified by its `webContentsId`.
      *
-     * Performs kernel-readiness, session-existence, and channel-access checks before
+     * Performs kernel bridge-readiness, session-existence, and channel-access checks before
      * delegating to the registered handler. All errors are caught and returned as
      * serialized error objects in the response.
      */

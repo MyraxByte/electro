@@ -12,7 +12,7 @@ import { InjectionContext } from "./injection-context";
  * @remarks
  * `inject()` is only available inside a framework-managed execution scope:
  * - **Construction** -- property initializers of `@Injectable()`, `@Module()`, `@View()`, or `@Window()` classes
- * - **Lifecycle hooks** -- `onInit`, `onReady`, `onShutdown`, `onDispose`
+ * - **Lifecycle hooks** -- `onInit`, `onStart`, `onReady`, `onShutdown`, `onDispose`
  * - **Capability handlers** -- methods decorated with `@command`, `@query`, `@signal`, or `@job`
  *
  * Calling it anywhere else (e.g. in a `setTimeout` callback or a plain function)

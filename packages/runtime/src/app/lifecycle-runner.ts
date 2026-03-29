@@ -4,7 +4,8 @@ import { emitDevDiagnostic, emitTargetError } from "../diagnostics";
 import { LifecycleError } from "../errors/lifecycle";
 import type { LifecycleTarget, ModuleRef } from "../modules/refs";
 
-type StartupHook = "onInit" | "onReady";
+type InitializationHook = "onInit";
+type StartupHook = "onStart" | "onReady";
 type ShutdownHook = "onShutdown" | "onDispose";
 
 function hasHook(target: LifecycleTarget, hook: string): boolean {
@@ -14,6 +15,17 @@ function hasHook(target: LifecycleTarget, hook: string): boolean {
 function getLifecycleLabel(target: LifecycleTarget, fallback: string): string {
     const name = target.constructor?.name?.trim();
     return name && name.length > 0 ? name : fallback;
+}
+
+async function callInitializationHook(target: LifecycleTarget, hook: InitializationHook, injector: Injector): Promise<void> {
+    if (!hasHook(target, hook)) return;
+
+    try {
+        await InjectionContext.run(injector, () => target[hook]!());
+    } catch (error) {
+        emitTargetError(target, `${hook} failed`, error);
+        throw LifecycleError.startupFailed(hook, target.constructor.name, error);
+    }
 }
 
 async function callStartupHook(target: LifecycleTarget, hook: StartupHook, injector: Injector): Promise<void> {
@@ -38,84 +50,88 @@ async function callShutdownHook(target: LifecycleTarget, hook: ShutdownHook, inj
 }
 
 /**
- * Executes the two-phase startup sequence across all modules.
+ * Executes the initialization sequence across all modules.
  *
- * **Phase 1 (init):** Calls `onInit` on each module's providers and then the module
- * itself, in dependency-first order. Transitions each module to `ready`.
+ * Calls `onInit` on each module's providers and then the module itself, in
+ * dependency-first order. Successfully initialized modules transition to `ready`.
  *
- * **Phase 2 (ready):** Calls `onReady` on each module's providers and then the module
- * itself, in the same order. Transitions each module to `started`.
- *
- * If any hook throws, already-started modules receive `onShutdown` and all initialized
- * modules receive `onDispose` (both in reverse order) before the error is re-thrown.
+ * If any hook throws, already-initialized modules receive `onDispose` in reverse
+ * order before the error is re-thrown.
  *
  * @internal
  */
-export async function runStartup(moduleRefs: readonly ModuleRef[]): Promise<void> {
+export async function runInitialization(moduleRefs: readonly ModuleRef[]): Promise<void> {
     const initializedModules: ModuleRef[] = [];
-    const startedModules: ModuleRef[] = [];
 
     try {
-        // Phase 1: onInit for all modules (per-module grouped, dependency-first)
         for (const moduleRef of moduleRefs) {
             const label = getLifecycleLabel(moduleRef.instance, moduleRef.id);
             emitDevDiagnostic(label, "initializing");
             for (const providerRef of moduleRef.providers) {
-                await callStartupHook(providerRef.instance, "onInit", providerRef.injector);
+                await callInitializationHook(providerRef.instance, "onInit", providerRef.injector);
             }
 
-            await callStartupHook(moduleRef.instance, "onInit", moduleRef.injector);
+            await callInitializationHook(moduleRef.instance, "onInit", moduleRef.injector);
             moduleRef.transitionTo("ready");
             emitDevDiagnostic(label, "initialized");
             initializedModules.push(moduleRef);
         }
+    } catch (error) {
+        markFailed(moduleRefs);
+        await runDispose(initializedModules);
+        throw error;
+    }
+}
 
-        // Phase 2: onReady for all modules (per-module grouped, dependency-first)
+/**
+ * Executes the startup sequence across all initialized modules.
+ *
+ * **Phase 1 (start):** Calls `onStart` on each module's providers and then the module
+ * itself, in dependency-first order.
+ *
+ * **Phase 2 (ready):** Calls `onReady` on each module's providers and then the module
+ * itself, in the same order. Transitions each module to `started`.
+ *
+ * If any hook throws, modules that completed `onStart` receive `onShutdown`, and
+ * all initialized modules receive `onDispose` (both in reverse order), before the
+ * error is re-thrown.
+ *
+ * @internal
+ */
+export async function runStartup(moduleRefs: readonly ModuleRef[]): Promise<void> {
+    const startedModules: ModuleRef[] = [];
+
+    try {
         for (const moduleRef of moduleRefs) {
             const label = getLifecycleLabel(moduleRef.instance, moduleRef.id);
             emitDevDiagnostic(label, "starting");
+            for (const providerRef of moduleRef.providers) {
+                await callStartupHook(providerRef.instance, "onStart", providerRef.injector);
+            }
+
+            await callStartupHook(moduleRef.instance, "onStart", moduleRef.injector);
+            startedModules.push(moduleRef);
+        }
+
+        for (const moduleRef of moduleRefs) {
             for (const providerRef of moduleRef.providers) {
                 await callStartupHook(providerRef.instance, "onReady", providerRef.injector);
             }
 
             await callStartupHook(moduleRef.instance, "onReady", moduleRef.injector);
             moduleRef.transitionTo("started");
-            emitDevDiagnostic(label, "started");
-            startedModules.push(moduleRef);
+            emitDevDiagnostic(getLifecycleLabel(moduleRef.instance, moduleRef.id), "started");
         }
     } catch (error) {
-        // Transition failed modules to "failed"
-        for (const moduleRef of moduleRefs) {
-            if (moduleRef.status !== "stopped" && moduleRef.status !== "failed") {
-                try {
-                    moduleRef.transitionTo("failed");
-                    emitDevDiagnostic(getLifecycleLabel(moduleRef.instance, moduleRef.id), "failed", "error");
-                } catch {
-                    // Status transition may not be allowed — skip
-                }
-            }
-        }
-
-        // Rollback: onShutdown for started modules, onDispose for all initialized (reverse order)
-        for (const moduleRef of [...startedModules].reverse()) {
-            await callShutdownHook(moduleRef.instance, "onShutdown", moduleRef.injector);
-            for (const providerRef of [...moduleRef.providers].reverse()) {
-                await callShutdownHook(providerRef.instance, "onShutdown", providerRef.injector);
-            }
-        }
-        for (const moduleRef of [...initializedModules].reverse()) {
-            await callShutdownHook(moduleRef.instance, "onDispose", moduleRef.injector);
-            for (const providerRef of [...moduleRef.providers].reverse()) {
-                await callShutdownHook(providerRef.instance, "onDispose", providerRef.injector);
-            }
-        }
-
+        markFailed(moduleRefs);
+        await runStop(startedModules);
+        await runDispose(moduleRefs);
         throw error;
     }
 }
 
 /**
- * Executes the two-phase shutdown sequence across all modules in reverse dependency order.
+ * Executes the two-phase shutdown sequence across all started modules in reverse dependency order.
  *
  * **Phase 1 (shutdown):** Calls `onShutdown` on each module and its providers (reverse order).
  * Transitions each module to `stopping`.
@@ -129,7 +145,6 @@ export async function runStartup(moduleRefs: readonly ModuleRef[]): Promise<void
 export async function runShutdown(moduleRefs: readonly ModuleRef[]): Promise<void> {
     const reversed = [...moduleRefs].reverse();
 
-    // Phase 1: onShutdown (reverse module order)
     for (const moduleRef of reversed) {
         const label = getLifecycleLabel(moduleRef.instance, moduleRef.id);
         emitDevDiagnostic(label, "stopping");
@@ -142,8 +157,11 @@ export async function runShutdown(moduleRefs: readonly ModuleRef[]): Promise<voi
         moduleRef.transitionTo("stopping");
     }
 
-    // Phase 2: onDispose (reverse module order)
-    for (const moduleRef of reversed) {
+    await runDispose(moduleRefs);
+}
+
+export async function runDispose(moduleRefs: readonly ModuleRef[]): Promise<void> {
+    for (const moduleRef of [...moduleRefs].reverse()) {
         const label = getLifecycleLabel(moduleRef.instance, moduleRef.id);
         await callShutdownHook(moduleRef.instance, "onDispose", moduleRef.injector);
 
@@ -151,7 +169,34 @@ export async function runShutdown(moduleRefs: readonly ModuleRef[]): Promise<voi
             await callShutdownHook(providerRef.instance, "onDispose", providerRef.injector);
         }
 
-        moduleRef.transitionTo("stopped");
-        emitDevDiagnostic(label, "stopped");
+        if (moduleRef.status !== "failed" && moduleRef.status !== "stopped") {
+            moduleRef.transitionTo("stopped");
+            emitDevDiagnostic(label, "stopped");
+        }
+    }
+}
+
+async function runStop(moduleRefs: readonly ModuleRef[]): Promise<void> {
+    for (const moduleRef of [...moduleRefs].reverse()) {
+        await callShutdownHook(moduleRef.instance, "onShutdown", moduleRef.injector);
+
+        for (const providerRef of [...moduleRef.providers].reverse()) {
+            await callShutdownHook(providerRef.instance, "onShutdown", providerRef.injector);
+        }
+    }
+}
+
+function markFailed(moduleRefs: readonly ModuleRef[]): void {
+    for (const moduleRef of moduleRefs) {
+        if (moduleRef.status === "stopped" || moduleRef.status === "failed") {
+            continue;
+        }
+
+        try {
+            moduleRef.transitionTo("failed");
+            emitDevDiagnostic(getLifecycleLabel(moduleRef.instance, moduleRef.id), "failed", "error");
+        } catch {
+            // Status transition may not be allowed — skip
+        }
     }
 }

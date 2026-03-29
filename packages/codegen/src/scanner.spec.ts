@@ -196,7 +196,7 @@ describe("scan()", () => {
         ]);
     });
 
-    it("skips lifecycle methods (onInit, onReady, onShutdown, onDispose)", async () => {
+    it("skips lifecycle methods (onInit, onStart, onReady, onShutdown, onDispose)", async () => {
         const result = await scanFixture({
             "module.ts": `
                 @Module()
@@ -205,6 +205,7 @@ describe("scan()", () => {
                     myCommand() {}
 
                     onInit() {}
+                    onStart() {}
                     onReady() {}
                     onShutdown() {}
                     onDispose() {}

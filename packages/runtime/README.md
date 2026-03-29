@@ -43,10 +43,11 @@ class AppModule {}
 const kernel = AppKernel.create(AppModule, {
     logger: createConsoleLogger(),
 });
+await kernel.initialize();
 await kernel.start();
 ```
 
-`AppKernel.create` scans `AppModule`, validates the module graph, creates the DI container, instantiates module declarations, and runs startup lifecycle hooks. That single call is enough to bootstrap a working application.
+`AppKernel.initialize()` scans `AppModule`, validates the module graph, creates the DI container, instantiates module declarations, installs capabilities, and runs `onInit`. `kernel.start()` then runs `onStart` and `onReady`. Calling `start()` directly from `idle` still performs initialization automatically for backward compatibility.
 
 Modules, providers, windows, and views also receive `this.logger` through the authoring API, so app-level logs can use the same runtime logger contract and be redirected to a file, Sentry, or any other sink by passing a custom logger into `AppKernel.create(...)`.
 
@@ -101,7 +102,7 @@ class AuthService {
 `inject()` works inside:
 
 - **Property initializers** -- during construction of framework-managed classes
-- **Lifecycle hooks** -- `onInit`, `onReady`, `onShutdown`, `onDispose`
+- **Lifecycle hooks** -- `onInit`, `onStart`, `onReady`, `onShutdown`, `onDispose`
 - **Capability handlers** -- methods decorated with `@command`, `@query`, `@signal`, `@job`
 
 Calling it outside these scopes throws a `DIError`.
@@ -129,6 +130,10 @@ class DatabaseService {
         await this.pool.connect();
     }
 
+    async onStart() {
+        await this.attachWindowListeners();
+    }
+
     async onReady() {
         await this.runMigrations();
     }
@@ -143,14 +148,15 @@ class DatabaseService {
 }
 ```
 
-| Hook         | Phase    | Purpose                                              |
-| ------------ | -------- | ---------------------------------------------------- |
-| `onInit`     | Startup  | Set up resources (connections, state)                |
-| `onReady`    | Startup  | Cross-module coordination, everything is initialized |
-| `onShutdown` | Shutdown | Release resources gracefully                         |
-| `onDispose`  | Shutdown | Final cleanup (file handles, timers)                 |
+| Hook         | Phase          | Purpose                                                       |
+| ------------ | -------------- | ------------------------------------------------------------- |
+| `onInit`     | Initialize     | Prepare bridge-safe state, handlers, and runtime dependencies |
+| `onStart`    | Startup        | Start windows, jobs, network bootstrapping, launch flows      |
+| `onReady`    | Startup        | Final coordination before the kernel becomes `started`        |
+| `onShutdown` | Shutdown       | Release resources gracefully                                  |
+| `onDispose`  | Shutdown       | Final cleanup (file handles, timers)                          |
 
-**Ordering:** Startup hooks run per-module in dependency-first order. Within each module, provider hooks run before the module's own hook. Shutdown runs in the reverse order -- module first, then its providers.
+**Ordering:** `onInit`, `onStart`, and `onReady` all run per-module in dependency-first order. Within each module, provider hooks run before the module's own hook. Shutdown runs in the reverse order -- module first, then its providers.
 
 If a startup hook throws, the framework automatically rolls back already-initialized modules by calling their shutdown hooks.
 
@@ -284,7 +290,7 @@ Windows and views are first-class providers. Extend the base classes `WindowProv
 class MainWindow extends WindowProvider {
     private readonly mainView = inject(MainView);
 
-    onReady() {
+    onStart() {
         this.create();
         this.mount(this.mainView);
         this.show();
@@ -303,7 +309,7 @@ class MainWindow extends WindowProvider {
     signals: ["user-logged-in"],
 })
 class MainView extends ViewProvider {
-    async onReady() {
+    async onStart() {
         await this.load();
         this.setBounds({ x: 0, y: 0, width: 1280, height: 800 });
         this.setBackgroundColor("#00000000");

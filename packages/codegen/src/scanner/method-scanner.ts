@@ -19,7 +19,7 @@ export interface MethodScanResult {
 }
 
 /** Lifecycle method names that should not be treated as bridge methods. */
-const LIFECYCLE_METHODS = new Set(["onInit", "onReady", "onShutdown", "onDispose"]);
+const LIFECYCLE_METHODS = new Set(["onInit", "onStart", "onReady", "onShutdown", "onDispose"]);
 
 interface MethodParameter {
     readonly index: number;
@@ -208,7 +208,7 @@ function scanProgrammaticSignals(member: ASTNode, ownerClassName: string, method
  * - Static methods
  * - Private methods (TypeScript `private` keyword)
  * - Computed property names
- * - Lifecycle hook methods (onInit, onReady, onShutdown, onDispose)
+ * - Lifecycle hook methods (onInit, onStart, onReady, onShutdown, onDispose)
  */
 export function scanMethods(classNode: ASTNode, ownerClassName: string): MethodScanResult {
     const methods: ScannedMethod[] = [];

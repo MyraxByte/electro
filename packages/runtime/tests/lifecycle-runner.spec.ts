@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { runShutdown, runStartup } from "../src/app/lifecycle-runner";
+import { runInitialization, runShutdown, runStartup } from "../src/app/lifecycle-runner";
 import type { Injector } from "../src/container/injector";
 import { ModuleRef } from "../src/modules/refs";
 
@@ -30,6 +30,7 @@ describe("lifecycle diagnostics", () => {
         const appRef = createModuleRef("app", new AppModule());
         const authRef = createModuleRef("auth", new AuthModule());
 
+        await runInitialization([appRef, authRef]);
         await runStartup([appRef, authRef]);
         await runShutdown([appRef, authRef]);
 
@@ -39,8 +40,8 @@ describe("lifecycle diagnostics", () => {
             "AuthModule → initializing",
             "AuthModule → initialized",
             "AppModule → starting",
-            "AppModule → started",
             "AuthModule → starting",
+            "AppModule → started",
             "AuthModule → started",
             "AuthModule → stopping",
             "AppModule → stopping",

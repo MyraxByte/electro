@@ -29,7 +29,9 @@ describe("module declarations", () => {
         const definition = scanModules(AppModule);
         const moduleDef = definition.modules[0];
 
-        expect(moduleDef.providers.map((provider) => [provider.target.name, provider.kind])).toEqual([
+        expect(moduleDef).toBeDefined();
+
+        expect(moduleDef!.providers.map((provider) => [provider.target.name, provider.kind])).toEqual([
             ["UserService", "provider"],
             ["MainView", "view"],
             ["MainWindow", "window"],

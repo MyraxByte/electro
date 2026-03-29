@@ -6,7 +6,7 @@ import { BridgeError } from "../errors/bridge";
  * Enforces access control for bridge IPC calls.
  *
  * Checks two conditions before a bridge request is allowed through:
- * 1. The application kernel must be in the `"started"` state.
+ * 1. The application kernel must be in the `"starting"` or `"started"` state.
  * 2. The requesting renderer's {@link RendererSession} must have the target channel
  *    in its access set (as declared in `@View({ access: [...] })`).
  *
@@ -21,12 +21,12 @@ export class BridgeAccessGuard {
     }
 
     /**
-     * Assert that the kernel is in the `"started"` state.
+     * Assert that the kernel is in a state where bridge calls are allowed.
      *
      * @throws {BridgeError} If the kernel is not ready to handle requests.
      */
     public assertKernelReady(): void {
-        if (this.kernelState !== "started") {
+        if (this.kernelState !== "starting" && this.kernelState !== "started") {
             throw BridgeError.kernelNotReady();
         }
     }

@@ -89,7 +89,7 @@ export function applyWindowAuthoringApi(instance: object, configuration?: BaseWi
  * ```ts
  * @Window({ width: 800, height: 600, show: false })
  * class MainWindow extends WindowProvider {
- *     async onReady() {
+ *     async onStart() {
  *         this.create();
  *         this.mount(this.mainView);
  *         this.show();

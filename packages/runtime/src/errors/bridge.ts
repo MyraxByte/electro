@@ -32,9 +32,9 @@ export class BridgeError extends RuntimeError {
         return error;
     }
 
-    /** A bridge call arrived before the kernel finished starting or after it began shutting down. */
+    /** A bridge call arrived before startup entered the `starting` phase or after shutdown began. */
     public static kernelNotReady(): BridgeError {
-        return new BridgeError("Bridge invocation rejected — kernel is not in started state.", "ELECTRO_BRIDGE_KERNEL_NOT_READY");
+        return new BridgeError("Bridge invocation rejected — kernel is not accepting bridge calls in its current state.", "ELECTRO_BRIDGE_KERNEL_NOT_READY");
     }
 
     /** A bridge request came from a `webContents` that is not associated with any known view. */

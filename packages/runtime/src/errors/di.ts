@@ -46,13 +46,13 @@ export class DIError extends RuntimeError {
      *
      * @remarks
      * `inject()` is only available during construction (property initializers),
-     * lifecycle hooks (`onInit`/`onReady`/`onShutdown`/`onDispose`),
+     * lifecycle hooks (`onInit`/`onStart`/`onReady`/`onShutdown`/`onDispose`),
      * and capability handlers (`@command`, `@query`, `@signal`, `@job`).
      */
     public static noInjectionContext(): DIError {
         return new DIError(
             "inject() called outside of a framework-managed context. " +
-                "inject() is only available during construction (property initializers), lifecycle hooks (onInit/onReady/onShutdown/onDispose), " +
+                "inject() is only available during construction (property initializers), lifecycle hooks (onInit/onStart/onReady/onShutdown/onDispose), " +
                 "and capability handlers (bridge, signal, job).",
             "ELECTRO_DI_NO_INJECTION_CONTEXT",
         );

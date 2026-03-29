@@ -136,7 +136,7 @@ export function applyViewAuthoringApi(instance: object, source?: string, webPref
  * ```ts
  * @View({ source: 'view:main', access: ['app:getVersion'] })
  * class MainView extends ViewProvider {
- *     async onReady() {
+ *     async onStart() {
  *         await this.load();
  *         this.setBounds({ x: 0, y: 0, width: 800, height: 600 });
  *     }
