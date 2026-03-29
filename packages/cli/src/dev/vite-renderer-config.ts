@@ -16,6 +16,8 @@ export interface SingleViewRendererConfigOptions {
     logLevel?: "info" | "warn" | "error" | "silent";
     /** Whether to clear the screen on rebuild. */
     clearScreen?: boolean;
+    /** Custom Vite logger for scoped dev output. */
+    customLogger?: Logger;
 }
 
 /**
@@ -34,6 +36,7 @@ export function createSingleViewRendererConfig(opts: SingleViewRendererConfigOpt
         // Use the view's own directory as the Vite root so that file paths
         // in index.html and imports resolve relative to the view package.
         root: view.root,
+        customLogger: opts.customLogger,
         // Multiple isolated dev servers must not share a single optimize-deps cache.
         cacheDir: opts.cacheDir,
         envPrefix: ["RENDERER_VITE_", "VITE_"],

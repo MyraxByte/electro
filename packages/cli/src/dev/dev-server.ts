@@ -16,7 +16,7 @@ import type { ManagedProcess } from "./electron-launcher";
 import { launchElectron } from "./electron-launcher";
 import { resolveExternals } from "./externals";
 import type { FooterEndpoint, SessionMeta } from "./logger";
-import { footer, info, logSession, note, patchLogger, runtimeLog, setLogLevel, startTimer, step, stepFail } from "./logger";
+import { createScopedViteLogger, flushDeferredRuntimeLogs, footer, info, logSession, note, runtimeLog, setLogLevel, startTimer, step, stepFail } from "./logger";
 import type { NodeOutputFormat } from "./node-format";
 import { resolveMainEntryPath, resolveNodeOutputFormat } from "./node-format";
 import { terminateManagedProcess } from "./process-shutdown";
@@ -185,6 +185,7 @@ export class DevServer {
         // Renderer-only mode — skip preload, main, and Electron
         if (this.rendererOnly) {
             note("Renderer-only mode — skipping main, preload, Electron");
+            flushDeferredRuntimeLogs();
             footer(`Ready in ${totalTimer()}`, this.readyEndpoints);
             this.logDevToolsHints();
             this.attachConfigWatcher();
@@ -237,6 +238,7 @@ export class DevServer {
             throw err;
         }
 
+        flushDeferredRuntimeLogs();
         footer(`Ready in ${totalTimer()}`, this.readyEndpoints);
         this.logDevToolsHints();
 
@@ -359,17 +361,18 @@ export class DevServer {
         try {
             const servers = await Promise.all(
                 this.rendererViews.map(async (view, index) => {
+                    const scope = `renderer:${view.id}`;
                     const config = createSingleViewRendererConfig({
                         view,
                         cacheDir: resolve(this.root, "node_modules", ".vite", "electro", view.id),
                         port: basePort + index,
                         logLevel: this.logLevel,
                         clearScreen: this.clearScreen,
+                        customLogger: createScopedViteLogger(scope),
                     });
 
                     const server = await createServer(config);
                     startedServers.push(server);
-                    patchLogger(server.config.logger, `renderer:${view.id}`);
                     await server.listen();
 
                     return {

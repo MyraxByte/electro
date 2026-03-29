@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { footer, logSession } from "./logger";
+import { createScopedViteLogger, flushDeferredRuntimeLogs, footer, logSession } from "./logger";
 
 const ANSI_RE = new RegExp(String.raw`\u001B\[[0-9;]*m`, "g");
 
 function getOutput(spy: ReturnType<typeof vi.spyOn>): string {
     return spy.mock.calls
-        .flatMap((args) => args)
+        .flatMap((args: unknown[]) => args)
         .join("\n")
         .replace(ANSI_RE, "");
 }
@@ -60,5 +60,20 @@ describe("logSession()", () => {
         expect(output).toContain("views/main/index.html");
         expect(output).toContain("auth");
         expect(output).toContain("views/auth/index.html");
+    });
+});
+
+describe("createScopedViteLogger()", () => {
+    it("routes dependency re-optimization messages through scoped electro logs", () => {
+        const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+        const logger = createScopedViteLogger("renderer:startup");
+
+        logger.info("3:55:42 PM [vite] (client) Re-optimizing dependencies because vite config has changed");
+        flushDeferredRuntimeLogs();
+
+        const output = getOutput(logSpy);
+        expect(output).toContain("[electro]");
+        expect(output).toContain("(renderer:startup)");
+        expect(output).toContain("deps re-optimize (vite config has changed)");
     });
 });

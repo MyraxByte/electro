@@ -20,6 +20,7 @@ export type LogLevel = "info" | "warn" | "error" | "silent";
 const levels: Record<LogLevel, number> = { info: 0, warn: 1, error: 2, silent: 3 };
 
 let currentLevel: LogLevel = "info";
+const deferredRuntimeLogs: Array<() => void> = [];
 
 export function setLogLevel(level: LogLevel): void {
     currentLevel = level;
@@ -120,6 +121,16 @@ export function runtimeLog(scope: string, msg: string, changedFile?: string | nu
     const time = formatTime(new Date());
     const filePart = changedFile ? ` ${dim}${changedFile}${reset}` : "";
     console.log(`${dim}${time}${reset} ${yellow}[electro]${reset} ${dim}(${scope})${reset} ${colorRuntimeMessage(msg)}${filePart}`);
+}
+
+export function deferRuntimeLog(scope: string, msg: string, changedFile?: string | null): void {
+    deferredRuntimeLogs.push(() => runtimeLog(scope, msg, changedFile));
+}
+
+export function flushDeferredRuntimeLogs(): void {
+    while (deferredRuntimeLogs.length > 0) {
+        deferredRuntimeLogs.shift()?.();
+    }
 }
 
 // ── Footer ──────────────────────────────────────────────────────────
@@ -276,6 +287,12 @@ export function patchLogger(logger: Logger, scope: string): void {
             return;
         }
 
+        if (clean.includes("Re-optimizing dependencies because")) {
+            const reason = extractSuffix(clean, "Re-optimizing dependencies because");
+            deferRuntimeLog(scope, `deps re-optimize${reason ? ` (${reason})` : ""}`);
+            return;
+        }
+
         origInfo(retagMessage(msg), options);
     };
 
@@ -297,6 +314,13 @@ function extractTarget(message: string, event: string): string | null {
     return match?.[1]?.trim() ?? null;
 }
 
+function extractSuffix(message: string, prefix: string): string | null {
+    const index = message.indexOf(prefix);
+    if (index === -1) return null;
+    const suffix = message.slice(index + prefix.length).trim();
+    return suffix.length > 0 ? suffix : null;
+}
+
 /**
  * Create a Vite customLogger config for a given scope.
  * Returns `undefined` if no scope-specific logger is needed
@@ -306,6 +330,12 @@ export function createLoggerConfig(_scope: string): { logLevel: ViteLogLevel } |
     // For now, we only use patchLogger post-creation.
     // This is a placeholder for future per-scope log level overrides.
     return undefined;
+}
+
+export function createScopedViteLogger(scope: string): Logger {
+    const logger = viteCreateLogger(currentLevel, { allowClearScreen: false });
+    patchLogger(logger, scope);
+    return logger;
 }
 
 // ── Build-mode logger ──────────────────────────────────────────────

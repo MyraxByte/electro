@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { access, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { createRuntimeDiagnosticsFormatter, type RuntimeDiagnosticsMode } from "./runtime-diagnostics";
 
 async function fileExists(path: string): Promise<boolean> {
     try {
@@ -59,49 +60,32 @@ export interface ManagedProcess {
     exited: Promise<number | null>;
 }
 
-// ── ANSI constants ──────────────────────────────────────────────────
-
-const yellow = "\x1b[33m";
-const red = "\x1b[31m";
-const dim = "\x1b[90m";
-const reset = "\x1b[0m";
-
-// Match runtime diagnostic lines: "HH:MM:SS [tag] code → message"
-// biome-ignore lint/complexity/useRegexLiterals: readability
-const DIAG_RE = new RegExp(String.raw`^(\d{2}:\d{2}:\d{2}) \[(electro|warn|error)\] (.+?) \u2192 (.+)$`);
-
-function colorDiagnosticLine(line: string): string {
-    const match = line.match(DIAG_RE);
-    if (!match) return line;
-
-    const [, time, tag, code, message] = match;
-    let coloredTag: string;
-
-    if (tag === "error") {
-        coloredTag = `${red}[${tag}]${reset}`;
-    } else if (tag === "warn") {
-        coloredTag = `${yellow}[${tag}]${reset}`;
-    } else {
-        coloredTag = `${yellow}[${tag}]${reset}`;
-    }
-
-    return `${dim}${time}${reset} ${coloredTag} ${dim}${code}${reset} \u2192 ${message}`;
+function resolveRuntimeDiagnosticsMode(env: NodeJS.ProcessEnv = process.env): RuntimeDiagnosticsMode {
+    return env.ELECTRO_RUNTIME_LOGS === "raw" ? "raw" : "pretty";
 }
 
 function pipeWithColoring(stream: NodeJS.ReadableStream, target: NodeJS.WritableStream): void {
     let buffer = "";
+    const formatter = createRuntimeDiagnosticsFormatter(resolveRuntimeDiagnosticsMode());
     stream.on("data", (chunk: Buffer) => {
         buffer += chunk.toString();
         const lines = buffer.split("\n");
         // Keep the last incomplete line in the buffer
         buffer = lines.pop() ?? "";
         for (const line of lines) {
-            target.write(`${colorDiagnosticLine(line)}\n`);
+            for (const formattedLine of formatter.formatLine(line)) {
+                target.write(`${formattedLine}\n`);
+            }
         }
     });
     stream.on("end", () => {
         if (buffer) {
-            target.write(`${colorDiagnosticLine(buffer)}\n`);
+            for (const formattedLine of formatter.formatLine(buffer)) {
+                target.write(`${formattedLine}\n`);
+            }
+        }
+        for (const formattedLine of formatter.flush()) {
+            target.write(`${formattedLine}\n`);
         }
     });
 }
