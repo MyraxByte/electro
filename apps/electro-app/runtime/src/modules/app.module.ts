@@ -24,8 +24,6 @@ export class AppModule {
     private readonly window = inject(MainWindow);
 
     async onInit() {
-        this.window.register();
-
         app.on("activate", async () => {
             if (this.auth.isAuthorized()) {
                 if (!this.window.window) {
@@ -50,5 +48,9 @@ export class AppModule {
             await new Promise((resolve) => setTimeout(resolve, 500));
             if (this.window) this.window.close();
         });
+    }
+
+    async onStart() {
+        this.window.register();
     }
 }

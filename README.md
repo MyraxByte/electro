@@ -27,7 +27,7 @@ Your business logic runs in Node.js (the Runtime). Your UI runs in a sandboxed b
 Every feature belongs to a module. Modules declare what they import and what they export. Nothing leaks across boundaries accidentally.
 
 **Lifecycle-aware.**
-Every module, view, and window participates in a consistent `onInit → onReady → onShutdown → onDispose` lifecycle. Resource management is predictable and explicit.
+Every module, view, and window participates in a consistent `onInit → onStart → onReady → onShutdown → onDispose` lifecycle. Resource management is predictable and explicit.
 
 **Inject everything.**
 Dependencies are resolved synchronously through `inject()`. No constructors. No service locator antipatterns. The DI system is hierarchical and scoped per module.

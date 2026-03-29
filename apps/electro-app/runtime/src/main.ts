@@ -11,6 +11,10 @@ if (!app.requestSingleInstanceLock()) {
 app.on("window-all-closed", () => process.platform !== "darwin" && app.quit());
 app.on("before-quit", () => kernel.shutdown());
 
-void app.whenReady().then(async () => {
+const electronReady = app.whenReady();
+
+void (async () => {
+    await kernel.initialize();
+    await electronReady;
     await kernel.start();
-});
+})();

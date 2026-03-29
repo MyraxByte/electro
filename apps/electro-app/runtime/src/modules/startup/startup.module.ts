@@ -31,9 +31,6 @@ export class StartupModule {
             app.quit();
         }
 
-        this.window.create();
-        await this.window.open();
-
         /**
          * Subscribe to signal bus events.
          */
@@ -46,6 +43,11 @@ export class StartupModule {
             this.logger.info("received signal user-logout");
             this.window.close();
         });
+    }
+
+    async onStart() {
+        this.window.create();
+        await this.window.open();
     }
 
     async onReady() {

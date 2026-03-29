@@ -32,6 +32,6 @@ export class StartupWindow extends WindowProvider {
         this.view.setBackgroundColor("#00000000");
         this.view.setBounds({ x: 0, y: 0, width: 400, height: 400 });
         this.view.webContents?.openDevTools();
-        this.window?.show();
+        this.show();
     }
 }

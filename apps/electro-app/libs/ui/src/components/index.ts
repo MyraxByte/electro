@@ -2,6 +2,7 @@ export * from "./button";
 export * from "./dialog";
 export * from "./error-boundary";
 export * from "./input";
+export { default as Logo } from "./logo";
 export * from "./platform/provider";
 export * from "./platform/content";
 export * from "./platform/surface";

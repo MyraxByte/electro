@@ -1,4 +1,4 @@
-import logoSrc from "@libs/ui/assets/images/logo.svg";
+import { Logo } from "@libs/ui";
 import { motion } from "framer-motion";
 import { useUpdater } from "./updater-store";
 import { useUpdaterEvents } from "./use-updater";
@@ -30,15 +30,14 @@ export function SplashScreen() {
         <div className="flex-1 flex items-center justify-center">
             <div className="flex flex-col items-center gap-3">
                 {/* Dragon mascot logo */}
-                <motion.img
-                    src={logoSrc}
-                    alt="Cordy App"
-                    className="w-30 h-25.25 object-contain"
+                <motion.div
+                    className="w-30 h-25.25"
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    draggable={false}
-                />
+                >
+                    <Logo className="w-full h-full object-contain" alt="Cordy App" />
+                </motion.div>
 
                 {/* Status text */}
                 <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="text-sm font-ui text-gray-200/75">

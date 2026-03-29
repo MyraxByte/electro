@@ -52,6 +52,6 @@ export class MainWindow extends WindowProvider {
             return { action: "deny" };
         });
 
-        this.window?.show();
+        this.show();
     }
 }

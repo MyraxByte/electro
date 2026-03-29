@@ -47,6 +47,6 @@ export class AuthWindow extends WindowProvider {
         });
 
         this.view.webContents?.openDevTools();
-        this.window?.show();
+        this.show();
     }
 }

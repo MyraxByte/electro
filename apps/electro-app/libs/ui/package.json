@@ -5,6 +5,9 @@
     "files": [
         "dist"
     ],
+    "sideEffects": [
+        "./dist/assets/css/index.css"
+    ],
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -13,7 +16,7 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js"
         },
-        "./assets/*": "./dist/assets/*"
+        "./styles.css": "./dist/assets/css/index.css"
     },
     "scripts": {
         "build": "tsdown"
@@ -22,11 +25,11 @@
         "framer-motion": "^12.38.0"
     },
     "devDependencies": {
-        "@electrojs/config": "link:../../packages/config",
-        "@iconify-json/hugeicons": "^1.2.24",
-        "@radix-ui/react-slot": "^1.2.4",
         "@svgr/core": "^8.1.0",
         "@svgr/plugin-jsx": "^8.1.0",
+        "@electrojs/config": "link:../../../packages/config",
+        "@iconify-json/hugeicons": "^1.2.24",
+        "@radix-ui/react-slot": "^1.2.4",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "class-variance-authority": "^0.7.1",

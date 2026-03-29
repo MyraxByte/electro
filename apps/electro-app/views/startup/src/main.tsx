@@ -1,4 +1,4 @@
-import "@libs/ui/assets/css/index.css";
+import "@libs/ui/styles.css";
 import { PlatformProvider } from "@libs/ui";
 import { Surface } from "@libs/ui";
 import { ElectroRenderer } from "@electrojs/renderer";

@@ -47,8 +47,8 @@ importers:
         version: 4.2.2
     devDependencies:
       '@electrojs/config':
-        specifier: link:../../packages/config
-        version: link:../../packages/config
+        specifier: link:../../../packages/config
+        version: link:../../../packages/config
       '@iconify-json/hugeicons':
         specifier: ^1.2.24
         version: 1.2.24
