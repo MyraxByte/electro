@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/codegen",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "TypeScript code generation for ElectroJS preload scripts, typed IPC, and runtime registry",
     "keywords": [
         "ast",
@@ -53,9 +53,9 @@
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/common": "1.0.8",
-        "@electrojs/config": "1.0.8",
-        "@electrojs/runtime": "1.0.8",
+        "@electrojs/common": "1.0.9",
+        "@electrojs/config": "1.0.9",
+        "@electrojs/runtime": "1.0.9",
         "@types/node": "^25.5.0"
     }
 }
