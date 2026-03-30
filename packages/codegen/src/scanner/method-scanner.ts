@@ -146,7 +146,16 @@ function isSignalBusMemberObject(node: ASTNode | null | undefined, signalBusBind
     if (!node || node.type !== "MemberExpression" || node.computed) return false;
 
     const propertyName = getPropertyName(node.property as ASTNode | null);
-    return node.object?.type === "ThisExpression" && !!propertyName && signalBusBindings.has(propertyName);
+    if (node.object?.type !== "ThisExpression" || !propertyName) {
+        return false;
+    }
+
+    // `signals` is the runtime authoring surface exposed on every module/provider.
+    if (propertyName === "signals") {
+        return true;
+    }
+
+    return signalBusBindings.has(propertyName);
 }
 
 function isSignalBusCallTarget(node: ASTNode | null | undefined, signalBusBindings: ReadonlySet<string>): boolean {

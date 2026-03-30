@@ -13,6 +13,11 @@ type _InvokeMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
         ? (...args: A) => Promise<Awaited<V>>
         : never
     : never;
+type _SignalId = Extract<keyof import("@electrojs/runtime").ModuleSignalPayloadMap, string>;
+type _VoidSignalId = {
+    [TKey in _SignalId]: import("@electrojs/runtime").ModuleSignalPayloadMap[TKey] extends void ? TKey : never;
+}[_SignalId];
+type _NonVoidSignalId = Exclude<_SignalId, _VoidSignalId>;
 
 declare module "@electrojs/runtime" {
     interface ModuleMethodMap {
@@ -31,6 +36,13 @@ declare module "@electrojs/runtime" {
     }
 
     interface ModuleSignalPayloadMap {}
+
+    interface SignalBus {
+        publish<TSignalId extends _VoidSignalId>(signalId: TSignalId): void;
+        publish<TSignalId extends _NonVoidSignalId>(signalId: TSignalId, payload: ModuleSignalPayloadMap[TSignalId]): void;
+        subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: SignalListener<ModuleSignalPayloadMap[TSignalId]>): () => void;
+        subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: ContextualSignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;
+    }
 
     interface ModuleJobRegistry {
         app: never;

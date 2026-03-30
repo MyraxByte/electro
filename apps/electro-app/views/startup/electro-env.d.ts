@@ -5,48 +5,44 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> = K extends keyof _Instance<T>
-    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-        ? I extends keyof A
-            ? A[I]
-            : void
-        : never
-    : never;
-type _SignalPayloadFromMethod<T, K extends PropertyKey> = _SignalPayloadFromMethodParam<T, K, 0>;
-type _BridgeInputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
-    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-        ? A extends []
-            ? undefined
-            : A extends [infer TOnly]
-              ? TOnly
-              : A
-        : never
-    : never;
-type _BridgeOutputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
-    ? _Instance<T>[K] extends (...args: infer _Args) => infer V
-        ? Awaited<V>
-        : never
-    : never;
+type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
+    K extends keyof _Instance<T>
+        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+            ? I extends keyof A
+                ? A[I]
+                : void
+            : never
+        : never;
+type _SignalPayloadFromMethod<T, K extends PropertyKey> =
+    _SignalPayloadFromMethodParam<T, K, 0>;
+type _BridgeInputFromMethod<T, K extends PropertyKey> =
+    K extends keyof _Instance<T>
+        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+            ? A extends []
+                ? undefined
+                : A extends [infer TOnly]
+                    ? TOnly
+                    : A
+            : never
+        : never;
+type _BridgeOutputFromMethod<T, K extends PropertyKey> =
+    K extends keyof _Instance<T>
+        ? _Instance<T>[K] extends (...args: infer _Args) => infer V
+            ? Awaited<V>
+            : never
+        : never;
 
 declare module "@electrojs/renderer" {
     interface BridgeQueries {
-        "settings:getVersion": import("@electrojs/renderer").BridgeContractEntry<
-            _BridgeInputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">,
-            _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">
-        >;
+        "settings:getVersion": import("@electrojs/renderer").BridgeContractEntry<_BridgeInputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">, _BridgeOutputFromMethod<typeof import("../../runtime/src/modules/settings/settings.service").SettingsService, "getVersion">>;
     }
 
-    interface BridgeCommands {}
+    interface BridgeCommands {
+
+    }
 
     interface BridgeSignals {
-        "updater:status-changed": _SignalPayloadFromMethodParam<
-            typeof import("../../runtime/src/modules/updater/updater.service").UpdaterService,
-            "setStatus",
-            0
-        >;
-        "updater:download-progress": Pick<
-            _SignalPayloadFromMethodParam<typeof import("../../runtime/src/modules/updater/updater.service").UpdaterService, "setDownloadProgress", 0>,
-            "percent" | "bytesPerSecond" | "transferred" | "total"
-        >;
+        "updater:status-changed": _SignalPayloadFromMethodParam<typeof import("../../runtime/src/modules/updater/updater.service").UpdaterService, "setStatus", 0>;
+        "updater:download-progress": Pick<_SignalPayloadFromMethodParam<typeof import("../../runtime/src/modules/updater/updater.service").UpdaterService, "setDownloadProgress", 0>, "percent" | "bytesPerSecond" | "transferred" | "total">;
     }
 }

@@ -331,4 +331,61 @@ describe("scan()", () => {
         expect(expectDefined(workspace.providers[0]).className).toBe("WorkspaceService");
         expect(workspace.imports).toEqual(["auth"]);
     });
+
+    it("discovers programmatic signals from the runtime authoring surface", async () => {
+        const result = await scanFixture({
+            "app.ts": `
+                @Injectable()
+                export class AuthService {
+                    publishSession(payload: { userId: string; isNew: boolean }) {
+                        this.signals.publish("auth:session-changed", payload);
+                        this.signals.publish("auth:logged-out");
+                    }
+
+                    onInit() {
+                        this.signals.subscribe("auth:session-changed", () => {});
+                    }
+                }
+
+                @Module({
+                    providers: [AuthService],
+                })
+                export class AuthModule {}
+            `,
+        });
+
+        const auth = expectDefined(result.modules[0]);
+        const authService = expectDefined(auth.providers.find((provider) => provider.className === "AuthService"));
+
+        expect(authService.signals).toEqual([
+            expect.objectContaining({
+                id: "auth:session-changed",
+                methodName: "publishSession",
+                ownerClassName: "AuthService",
+                source: "publish",
+                payload: {
+                    kind: "method-parameter",
+                    parameterIndex: 0,
+                },
+            }),
+            expect.objectContaining({
+                id: "auth:logged-out",
+                methodName: "publishSession",
+                ownerClassName: "AuthService",
+                source: "publish",
+                payload: {
+                    kind: "void",
+                },
+            }),
+            expect.objectContaining({
+                id: "auth:session-changed",
+                methodName: "onInit",
+                ownerClassName: "AuthService",
+                source: "subscribe",
+                payload: {
+                    kind: "unknown",
+                },
+            }),
+        ]);
+    });
 });

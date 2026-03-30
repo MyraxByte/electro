@@ -41,6 +41,11 @@ type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
         : never;
 type _SignalPayloadFromMethod<T, K extends PropertyKey> =
     _SignalPayloadFromMethodParam<T, K, 0>;
+type _SignalId = Extract<keyof import("@electrojs/runtime").ModuleSignalPayloadMap, string>;
+type _VoidSignalId = {
+    [TKey in _SignalId]: import("@electrojs/runtime").ModuleSignalPayloadMap[TKey] extends void ? TKey : never;
+}[_SignalId];
+type _NonVoidSignalId = Exclude<_SignalId, _VoidSignalId>;
 `;
 
 /** Generate a method type reference for env types. */
@@ -123,6 +128,17 @@ function generateModuleSignalPayloadMap(modules: readonly ScannedModule[], envFi
     }
 
     return `\n    interface ModuleSignalPayloadMap {\n${[...seen.values()].join("\n")}\n    }\n`;
+}
+
+function generateSignalBusAugmentation(): string {
+    return `
+    interface SignalBus {
+        publish<TSignalId extends _VoidSignalId>(signalId: TSignalId): void;
+        publish<TSignalId extends _NonVoidSignalId>(signalId: TSignalId, payload: ModuleSignalPayloadMap[TSignalId]): void;
+        subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: SignalListener<ModuleSignalPayloadMap[TSignalId]>): () => void;
+        subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: ContextualSignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;
+    }
+`;
 }
 
 function generateModuleJobRegistry(modules: readonly ScannedModule[]): string {
@@ -260,7 +276,7 @@ export function generateEnvTypes(scanResult: ScanResult, srcDir: string): Genera
 
     const content = `${ENV_TYPES_HEADER}
 declare module "@electrojs/runtime" {
-${generateModuleMethodMap(scanResult.modules, envFilePath)}${generateModuleApiRegistry(scanResult.modules, envFilePath)}${generateModuleSignalPayloadMap(scanResult.modules, envFilePath)}${generateModuleJobRegistry(scanResult.modules)}${generateInjectableClassRegistry(scanResult.modules, envFilePath)}${generateWindowClassRegistry(scanResult.windows, envFilePath)}${generateViewClassRegistry(scanResult.views, envFilePath)}
+${generateModuleMethodMap(scanResult.modules, envFilePath)}${generateModuleApiRegistry(scanResult.modules, envFilePath)}${generateModuleSignalPayloadMap(scanResult.modules, envFilePath)}${generateSignalBusAugmentation()}${generateModuleJobRegistry(scanResult.modules)}${generateInjectableClassRegistry(scanResult.modules, envFilePath)}${generateWindowClassRegistry(scanResult.windows, envFilePath)}${generateViewClassRegistry(scanResult.views, envFilePath)}
 }
 
 declare module "@electrojs/common" {

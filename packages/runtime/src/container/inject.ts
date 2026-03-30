@@ -1,5 +1,7 @@
 import type { InjectionToken } from "@electrojs/common";
+import type { TypedSignalBus } from "../contracts/authoring";
 import { DIError } from "../errors/di";
+import { SignalBus } from "../signals/bus";
 import { InjectionContext } from "./injection-context";
 
 /**
@@ -28,12 +30,12 @@ import { InjectionContext } from "./injection-context";
  *
  * @throws {@link DIError} if no injection context is active or the token cannot be resolved.
  */
-export function inject<T>(token: InjectionToken<T>): T {
+export function inject<T>(token: InjectionToken<T>): T extends SignalBus ? TypedSignalBus : T {
     const injector = InjectionContext.current();
 
     if (!injector) {
         throw DIError.noInjectionContext();
     }
 
-    return injector.get(token);
+    return injector.get(token) as T extends SignalBus ? TypedSignalBus : T;
 }

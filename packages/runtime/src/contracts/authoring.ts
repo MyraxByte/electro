@@ -6,7 +6,7 @@ import type { WindowAuthoringSurface } from "../desktop/window-provider";
 import type { JobRuntimeState } from "../jobs/registry";
 import type { ElectroLogger } from "../logging";
 import type { ModuleRegistry } from "../modules/registry";
-import type { SignalHandler } from "../signals/bus";
+import type { ContextualSignalHandler, SignalListener } from "../signals/bus";
 
 /**
  * Codegen contract types for `@electrojs/runtime`.
@@ -84,7 +84,8 @@ export interface AppKernelDefinition {
 export interface TypedSignalBus {
     publish<TSignalId extends VoidSignalId>(signalId: TSignalId): void;
     publish<TSignalId extends NonVoidSignalId>(signalId: TSignalId, payload: ModuleSignalPayloadMap[TSignalId]): void;
-    subscribe<TSignalId extends SignalId>(signalId: TSignalId, handler: SignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;
+    subscribe<TSignalId extends SignalId>(signalId: TSignalId, handler: SignalListener<ModuleSignalPayloadMap[TSignalId]>): () => void;
+    subscribe<TSignalId extends SignalId>(signalId: TSignalId, handler: ContextualSignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;
 }
 
 export interface TypedJobRegistry<TJobId extends string = string> {

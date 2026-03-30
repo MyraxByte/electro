@@ -112,6 +112,8 @@ export class SignalBus {
      *
      * @returns A dispose function that removes the subscription.
      */
+    public subscribe<T>(signalId: string, handler: SignalListener<T>): () => void;
+    public subscribe<T>(signalId: string, handler: ContextualSignalHandler<T>): () => void;
     public subscribe<T>(signalId: string, handler: SignalHandler<T>): () => void {
         const id = ensureSignalId(signalId);
         const set = this.handlers.get(id) ?? new Set();
