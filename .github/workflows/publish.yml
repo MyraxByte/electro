@@ -14,7 +14,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -70,3 +70,38 @@ jobs:
       - name: Publish create-electro
         working-directory: packages/create-electro
         run: pnpm publish --access public --no-git-checks
+
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const tag = context.ref.replace("refs/tags/", "");
+            const match = /^v(\d+)\.(\d+)\.\d+$/.exec(tag);
+            const versionLine = match ? `v${match[1]}.${match[2]}` : tag;
+            const docsUrl = `https://electrojs.myraxbyte.dev/versions/${versionLine}/`;
+            const body = `Documentation snapshot: ${docsUrl}`;
+
+            try {
+              await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag,
+              });
+              core.info(`Release ${tag} already exists. Skipping creation.`);
+              return;
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+            }
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: tag,
+              body,
+              generate_release_notes: true,
+              make_latest: "true",
+            });

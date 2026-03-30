@@ -6,6 +6,7 @@
         "docs:dev": "pnpm --filter website dev",
         "docs:build": "pnpm --filter website build",
         "docs:preview": "pnpm --filter website preview",
+        "docs:version": "tsx scripts/version-docs.ts",
         "build": "pnpm --filter './packages/*' build",
         "test": "pnpm -r test",
         "lint": "oxlint --fix",

@@ -15,6 +15,7 @@
 import { spawnSync } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { snapshotDocs } from "./version-docs.ts";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -28,6 +29,7 @@ const PACKAGES = [
     "packages/runtime/package.json",
 ] as const;
 const LOCKFILE = "pnpm-lock.yaml";
+const VERSIONED_DOCS = "docs/versions";
 
 type BumpType = "patch" | "minor" | "major";
 
@@ -144,9 +146,12 @@ for (const rel of PACKAGES) {
 console.log("");
 exec(["pnpm", "install"], dryRun);
 
+console.log("");
+await snapshotDocs(nextVersion, { dryRun });
+
 // Git commit + tag
 console.log("");
-exec(["git", "add", ...PACKAGES.map((p) => resolve(root, p)), resolve(root, LOCKFILE)], dryRun);
+exec(["git", "add", ...PACKAGES.map((p) => resolve(root, p)), resolve(root, LOCKFILE), resolve(root, VERSIONED_DOCS)], dryRun);
 exec(["git", "commit", "-m", `release: v${nextVersion}`], dryRun);
 exec(["git", "tag", `v${nextVersion}`], dryRun);
 
