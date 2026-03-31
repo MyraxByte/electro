@@ -45,9 +45,9 @@
     },
     "devDependencies": {
         "@electrojs/config": "workspace:*",
-        "@vitest/browser-playwright": "^4.1.1",
-        "@vitest/coverage-v8": "^4.1.1",
-        "@vitest/ui": "^4.1.1",
+        "@vitest/browser-playwright": "^4.1.2",
+        "@vitest/coverage-v8": "^4.1.2",
+        "@vitest/ui": "^4.1.2",
         "jsdom": "^29.0.1",
         "publint": "^0.3.18",
         "tsdown": "catalog:",
