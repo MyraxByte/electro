@@ -42,7 +42,7 @@
         "prepublishOnly": "tsdown --minify"
     },
     "dependencies": {
-        "oxc-parser": "^0.121.0",
+        "oxc-parser": "^0.123.0",
         "tinyglobby": "^0.2.15"
     },
     "devDependencies": {
