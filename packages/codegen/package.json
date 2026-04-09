@@ -42,8 +42,8 @@
         "prepublishOnly": "tsdown --minify"
     },
     "dependencies": {
-        "oxc-parser": "^0.123.0",
-        "tinyglobby": "^0.2.15"
+        "oxc-parser": "^0.124.0",
+        "tinyglobby": "^0.2.16"
     },
     "devDependencies": {
         "@electrojs/common": "workspace:*",
@@ -56,6 +56,6 @@
         "@electrojs/common": "1.0.9",
         "@electrojs/config": "1.0.9",
         "@electrojs/runtime": "1.0.9",
-        "@types/node": "^25.5.0"
+        "@types/node": "^25.5.2"
     }
 }

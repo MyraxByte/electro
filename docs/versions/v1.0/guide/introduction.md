@@ -81,8 +81,8 @@ Those APIs are typed from runtime source and each view's declared access/signal 
 
 ## Main Docs
 
-| Document                                           | Purpose                                                             |
-| -------------------------------------------------- | ------------------------------------------------------------------- |
+| Document                                                         | Purpose                                                             |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [Getting Started](/versions/v1.0/guide/getting-started)          | Build a new app with the recommended workspace layout               |
 | [Project Structure](/versions/v1.0/guide/project-structure)      | Reference for the supported package layout and dependency ownership |
 | [Dev Workflow](/versions/v1.0/guide/dev-workflow)                | What `dev`, `generate`, `build`, and `preview` actually do          |

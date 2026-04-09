@@ -62,8 +62,8 @@
         "@electrojs/codegen": "1.0.9",
         "@electrojs/config": "1.0.9",
         "@electrojs/runtime": "1.0.9",
-        "@types/node": "^25.5.0",
+        "@types/node": "^25.5.2",
         "electron": ">=41",
-        "vite": "^8.0.2"
+        "vite": "^8.0.8"
     }
 }

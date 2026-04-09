@@ -5,43 +5,33 @@
 export {};
 
 type _Instance<T> = T extends abstract new (...args: never[]) => infer R ? R : never;
-type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? I extends keyof A
-                ? A[I]
-                : void
-            : never
-        : never;
-type _SignalPayloadFromMethod<T, K extends PropertyKey> =
-    _SignalPayloadFromMethodParam<T, K, 0>;
-type _BridgeInputFromMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
-            ? A extends []
-                ? undefined
-                : A extends [infer TOnly]
-                    ? TOnly
-                    : A
-            : never
-        : never;
-type _BridgeOutputFromMethod<T, K extends PropertyKey> =
-    K extends keyof _Instance<T>
-        ? _Instance<T>[K] extends (...args: infer _Args) => infer V
-            ? Awaited<V>
-            : never
-        : never;
+type _SignalPayloadFromMethodParam<T, K extends PropertyKey, I extends number> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? I extends keyof A
+            ? A[I]
+            : void
+        : never
+    : never;
+type _SignalPayloadFromMethod<T, K extends PropertyKey> = _SignalPayloadFromMethodParam<T, K, 0>;
+type _BridgeInputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer A) => infer _Ignored
+        ? A extends []
+            ? undefined
+            : A extends [infer TOnly]
+              ? TOnly
+              : A
+        : never
+    : never;
+type _BridgeOutputFromMethod<T, K extends PropertyKey> = K extends keyof _Instance<T>
+    ? _Instance<T>[K] extends (...args: infer _Args) => infer V
+        ? Awaited<V>
+        : never
+    : never;
 
 declare module "@electrojs/renderer" {
-    interface BridgeQueries {
+    interface BridgeQueries {}
 
-    }
+    interface BridgeCommands {}
 
-    interface BridgeCommands {
-
-    }
-
-    interface BridgeSignals {
-
-    }
+    interface BridgeSignals {}
 }

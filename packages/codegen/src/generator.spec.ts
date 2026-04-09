@@ -331,8 +331,12 @@ describe("generate()", () => {
             '"projectOpened": _SignalPayloadFromMethod<typeof import("./modules/workspace/workspace.service").WorkspaceService, "onProjectOpened">;',
         );
         expect(envTypes.content).toContain("interface SignalBus {");
-        expect(envTypes.content).toContain('subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: SignalListener<ModuleSignalPayloadMap[TSignalId]>): () => void;');
-        expect(envTypes.content).toContain('subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: ContextualSignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;');
+        expect(envTypes.content).toContain(
+            "subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: SignalListener<ModuleSignalPayloadMap[TSignalId]>): () => void;",
+        );
+        expect(envTypes.content).toContain(
+            "subscribe<TSignalId extends _SignalId>(signalId: TSignalId, handler: ContextualSignalHandler<ModuleSignalPayloadMap[TSignalId]>): () => void;",
+        );
         expect(envTypes.content).toContain("interface ModuleJobRegistry");
         expect(envTypes.content).toContain('"workspace": "sync-projects";');
         expect(envTypes.content).toContain("interface InjectableClassRegistry");

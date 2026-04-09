@@ -51,8 +51,8 @@
     "devDependencies": {
         "@electrojs/common": "workspace:*",
         "@electrojs/config": "workspace:*",
-        "@vitest/coverage-v8": "^4.1.2",
-        "@vitest/ui": "^4.1.2",
+        "@vitest/coverage-v8": "^4.1.4",
+        "@vitest/ui": "^4.1.4",
         "publint": "^0.3.18",
         "tsdown": "catalog:",
         "vitest": "catalog:"
@@ -60,7 +60,7 @@
     "peerDependencies": {
         "@electrojs/common": "1.0.9",
         "@electrojs/config": "1.0.9",
-        "@types/node": "^25.5.0",
+        "@types/node": "^25.5.2",
         "electron": ">=41"
     }
 }
