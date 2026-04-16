@@ -3,6 +3,6 @@ packages:
   - "packages/*"
   - "tools/*"
 catalog:
-  tsdown: ^0.21.7
+  tsdown: ^0.21.8
   vite: ^8.0.8
   vitest: ^4.1.4
