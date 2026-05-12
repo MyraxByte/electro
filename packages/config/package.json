@@ -46,7 +46,7 @@
         "prepublishOnly": "tsdown --minify"
     },
     "devDependencies": {
-        "publint": "^0.3.18",
+        "publint": "^0.3.20",
         "tsdown": "catalog:"
     },
     "peerDependencies": {
