@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "electron": "41.0.4",
+        "electron": "42.1.0",
         "electron-store": "^11.0.2",
         "electron-updater": "^6.8.3"
     },
@@ -13,9 +13,8 @@
         "@electrojs/config": "link:../../../packages/config",
         "@electrojs/runtime": "link:../../../packages/runtime",
         "@electron-toolkit/utils": "^4.0.0",
-        "@types/node": "^25.5.0",
-        "@vitejs/devtools": "^0.1.11",
-        "typescript": "^6.0.2",
-        "vite": "^8.0.2"
+        "@types/node": "^25.8.0",
+        "typescript": "^6.0.3",
+        "vite": "^8.0.13"
     }
 }

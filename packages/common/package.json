@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/common",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Decorators, DI primitives, and shared contracts for ElectroJS Electron apps",
     "keywords": [
         "decorators",
@@ -46,14 +46,14 @@
     },
     "devDependencies": {
         "@electrojs/config": "workspace:*",
-        "@vitest/coverage-v8": "^4.1.4",
-        "@vitest/ui": "^4.1.4",
-        "publint": "^0.3.18",
+        "@vitest/coverage-v8": "^4.1.6",
+        "@vitest/ui": "^4.1.6",
+        "publint": "^0.3.21",
         "tsdown": "catalog:",
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/config": "1.0.9",
+        "@electrojs/config": "1.0.10",
         "electron": ">=41"
     }
 }

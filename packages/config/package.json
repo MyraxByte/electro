@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/config",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Typed config helpers for ElectroJS runtime and renderer view packages",
     "keywords": [
         "config",
@@ -46,11 +46,11 @@
         "prepublishOnly": "tsdown --minify"
     },
     "devDependencies": {
-        "publint": "^0.3.18",
+        "publint": "^0.3.21",
         "tsdown": "catalog:"
     },
     "peerDependencies": {
-        "typescript": ">=6.0.2",
+        "typescript": ">=6.0.3",
         "vite": ">=8"
     }
 }

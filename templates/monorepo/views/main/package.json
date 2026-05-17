@@ -4,8 +4,8 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electrojs/config": "^1.0.9",
-        "@electrojs/renderer": "^1.0.9",
+        "@electrojs/config": "^1.0.10",
+        "@electrojs/renderer": "^1.0.10",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^6.0.1",

@@ -4,11 +4,11 @@
     "private": true,
     "type": "module",
     "devDependencies": {
-        "@electrojs/common": "1.0.9",
-        "@electrojs/config": "1.0.9",
-        "@electrojs/runtime": "1.0.9",
-        "@types/node": "^25.5.2",
-        "electron": "41.2.0",
+        "@electrojs/common": "1.0.10",
+        "@electrojs/config": "1.0.10",
+        "@electrojs/runtime": "1.0.10",
+        "@types/node": "^25.8.0",
+        "electron": "42.1.0",
         "typescript": "^6.0.2",
         "vite": "^8.0.8"
     }

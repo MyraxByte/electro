@@ -3,4 +3,4 @@ packages:
   - "runtime"
   - "libs/*"
 catalog:
-  vite: ^8.0.2
+  vite: ^8.0.13

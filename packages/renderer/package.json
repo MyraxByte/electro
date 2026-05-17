@@ -1,6 +1,6 @@
 {
     "name": "@electrojs/renderer",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "Renderer-side bridge and signals client for ElectroJS Electron apps",
     "keywords": [
         "bridge",
@@ -45,15 +45,15 @@
     },
     "devDependencies": {
         "@electrojs/config": "workspace:*",
-        "@vitest/browser-playwright": "^4.1.4",
-        "@vitest/coverage-v8": "^4.1.4",
-        "@vitest/ui": "^4.1.4",
-        "jsdom": "^29.0.2",
-        "publint": "^0.3.18",
+        "@vitest/browser-playwright": "^4.1.6",
+        "@vitest/coverage-v8": "^4.1.6",
+        "@vitest/ui": "^4.1.6",
+        "jsdom": "^29.1.1",
+        "publint": "^0.3.21",
         "tsdown": "catalog:",
         "vitest": "catalog:"
     },
     "peerDependencies": {
-        "@electrojs/config": "1.0.9"
+        "@electrojs/config": "1.0.10"
     }
 }
