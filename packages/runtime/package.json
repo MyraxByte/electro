@@ -51,9 +51,9 @@
     "devDependencies": {
         "@electrojs/common": "workspace:*",
         "@electrojs/config": "workspace:*",
-        "@vitest/coverage-v8": "^4.1.6",
-        "@vitest/ui": "^4.1.6",
-        "publint": "^0.3.21",
+        "@vitest/coverage-v8": "^4.1.10",
+        "@vitest/ui": "^4.1.10",
+        "publint": "^0.3.22",
         "tsdown": "catalog:",
         "vitest": "catalog:"
     },

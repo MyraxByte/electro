@@ -15,11 +15,11 @@
         "publish:packages": "tsx scripts/publish.ts"
     },
     "devDependencies": {
-        "lint-staged": "^17.0.5",
-        "oxfmt": "^0.50.0",
-        "oxlint": "^1.65.0",
+        "lint-staged": "^17.2.0",
+        "oxfmt": "^0.61.0",
+        "oxlint": "^1.76.0",
         "tsdown": "catalog:",
-        "tsx": "^4.22.1",
+        "tsx": "^4.23.1",
         "vite": "^8.0.13",
         "vitest": "^4.1.6"
     },
